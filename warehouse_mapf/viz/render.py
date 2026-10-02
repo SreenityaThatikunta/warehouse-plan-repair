@@ -1,11 +1,13 @@
 """Matplotlib rendering of the warehouse: disruption snapshots (before / after repair) and GIF replay."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import matplotlib
 
-matplotlib.use('Agg')
+if os.environ.get('WAREHOUSE_LIVE') != '1':     # set by `run --live` to keep an interactive backend
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.animation import FuncAnimation, PillowWriter  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
@@ -164,7 +166,7 @@ def save_disruption_snapshots(sim, out: Path, max_n: int = 12) -> list[Path]:
     return paths
 
 
-def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90) -> None:
+def _animation(sim, fps: int, trail: int, dpi: int, repeat: bool = True):
     T = sim.t + 1
     fig, ax = plt.subplots(figsize=(10, 6.2), dpi=dpi)
     recent_window = 8
@@ -192,9 +194,20 @@ def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90)
             head += '\n' + describe(active[-1]) + f'  ->  {len(active[-1].altered)} plan(s) altered'
         ax.set_title(head, fontsize=9, loc='left', color=C['text'])
 
-    anim = FuncAnimation(fig, frame, frames=range(T), interval=1000 // fps)
+    anim = FuncAnimation(fig, frame, frames=range(T), interval=1000 // fps, repeat=repeat)
+    return fig, anim
+
+
+def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90) -> None:
+    fig, anim = _animation(sim, fps, trail, dpi)
     anim.save(path, writer=PillowWriter(fps=fps))
     plt.close(fig)
+
+
+def show_live(sim, fps: int = 8) -> None:
+    """Play the finished run in an interactive matplotlib window."""
+    fig, anim = _animation(sim, fps, trail=6, dpi=100, repeat=False)
+    plt.show()
 
 
 def save_frame(sim, t: int, path: Path) -> None:

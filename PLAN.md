@@ -91,9 +91,11 @@ When a disruption happens at time `t`:
    - Coalitions of size 1, 2, 3 are tried in turn. For each, the robot REQUESTs a joint replan in which it has priority, and each member PROPOSEs its new plan and delay.
    - The first size whose best coalition satisfies `delay + λ·|S| < solo delay` is committed with COMMIT/ACCEPT; the other asked robots get REJECT.
 4. **Tier 3:** the same negotiation with radius `2R`.
+   - **v2 chains:** a coalition member that cannot dodge alone may recruit its own blockers, at most 2 hops and 6 robots, scored as one tree (DECISIONS D17).
+4b. **Tier 3b (v2), for urgent robots only:** a local group replan of the robots within 2R that cross the stuck robot's corridor (D18).
 5. **Otherwise:**
    - If a solo detour exists, it is taken, however long it is.
-   - If none exists, **Tier 4 (hold)**: the robot stays on its cell and is retried every step, with negotiation always allowed so deadlocks can clear. Robots whose plans pass through the held cell are repaired in cascade.
+   - If none exists, **Tier 4 (hold)**: the robot stays on its cell and is retried every step, with negotiation always allowed so deadlocks can clear. After 10 steps on hold, its search radius doubles every 10 steps (D20). Robots whose plans pass through the held cell are repaired in cascade.
 6. **Count.** Every robot whose future path differs from its plan just before the disruption counts as altered. Cascades and later retries count toward the same disruption.
 
 **Permanent breakdown.**
@@ -175,7 +177,66 @@ When a disruption happens at time `t`:
 - `PROGRESS.md`: milestone checklist and a dated log of work done.
 - `DECISIONS.md`: design decisions and the reasons for them, including assumptions and interpretations of the task.
 
-## 10. Assumptions and open questions
+## 10. Improvement plan (v2): ideas taken from a peer implementation, done better (implemented 2026-10-03)
+
+A comparison with a peer repo (`Sirin-890/autonomus`, branches `main` and `v2`) found five ideas worth taking. Each is redesigned below to fit our rules: never re-run global planning, and change as few robots as possible.
+
+### I1. Recursive (chained) negotiation, at most 2 hops
+- **Peer version:** a neighbour asked to move may ask its own neighbours, up to depth 2. A neighbour that cannot move gets REJECT, and the proposal is rolled back.
+- **Gap in ours:** in `_try_joint`, if a coalition member `m` has no path or a large delay, the whole coalition fails (`pm is None` → `ok = False`).
+- **Better version:**
+  - When member `m` fails or is delayed by more than `δ`, `m` runs the same blocker search from its own position (`_blockers` on `m`'s ideal path).
+  - It uses its own communication radius, which keeps the protocol decentralised.
+  - It recursively recruits sub-coalitions of size 1 or 2, at most `max_depth` = 2 hops.
+  - A `visited` set prevents cycles. The robot that started the repair, emergency robots, frozen robots and queued robots are never recruited.
+  - **One global score:** the whole tree is scored by `total delay + λ·|all altered robots|` and compared with the solo delay. So a chain is only accepted when it beats both going solo and every flat coalition. The peer accepts any chain that works.
+  - **Budget:** at most `max_chain_nodes` (6) robots per tree and the same ST-A* expansion cap. Messages are counted per hop: REQUEST, then PROPOSE or FORWARD.
+- **Metrics:** each record gets `chain_depth`. A new tier, `2c`, means the repair was settled by chained negotiation.
+
+### I2. Local group replan before hold (stays local)
+- **Peer version:** a local group replan, then **global** replanning as a last resort. The global step is not allowed here.
+- **Better version:** add **Tier 3b**, which runs after radius-2R negotiation fails and before a long solo detour or hold.
+  - It runs prioritized ST-A* only for the robots inside radius 2R whose reservations cross the stuck robot's ideal corridor.
+  - The stuck robot goes first, then emergency robots, then the rest by remaining path length.
+  - Every other robot's plan is a hard constraint. The result is accepted only under the same `delay + λ·|S|` rule.
+  - If it fails, the robot falls back to the long solo detour or Tier 4 hold, as now. The global planner is still never called.
+- This should reduce the long-detour cases and the Tier 4 holds seen in crowded runs (30–50 robots).
+
+### I3. Emergency deadline: a guarantee we measure and escalate on
+- **Peer version:** an emergency robot must finish its delivery within 3 steps of its solo optimum (the fastest it could do alone), and the repair rejects anything later.
+- **Gap in ours:** δ = 0 only triggers negotiation. Nothing records or enforces how late the emergency delivery ends up.
+- **Better version:**
+  - When the event fires, store `deadline = t + ideal (agent-free) time to finish the delivery + emergency_slack` (default slack = 3).
+  - Emergency repairs whose plan misses the deadline escalate further than normal ones: `max_set_size` 3 → 4, chain depth 2, and Tier 3b.
+  - **Metrics:** `emergency_on_time` (% of emergencies on time) and `emergency_lateness` (steps late), reported for every strategy, so the guarantee is measured rather than assumed.
+
+### I4. Reporting
+- **`throughput`:** tasks completed ÷ makespan, added to the run metrics and `summary.md`.
+- **PDF report:** dropped at the user's request (2026-10-03). Milestone M10 stays open.
+- **`--live`:** a live matplotlib window flag for `warehouse_mapf.run`, alongside `--viz`.
+
+### I5. Measuring the new tiers (ablations)
+- **Strategies:** `local` (the full v2 method), `local-flat` (today's v1: no chains, no Tier 3b), `solo`, `full`.
+- **λ sweep:** λ ∈ {0, 1, 3, 6, 12} at 20 and 40 robots. It shows the trade-off between total time and robots altered, instead of picking λ by hand. This is our answer to the peer's adaptive penalty, which was a heuristic that was never tested.
+- **Full rerun:** all sweeps, 10 seeds. Then regenerate the figures and `summary.md`.
+
+### Tests to add
+1. A constructed corridor case where flat negotiation fails and a 2-hop chain succeeds. Assert tier `2c`, `chain_depth` = 2, and no conflicts.
+2. Chains never recruit emergency or frozen robots, and never revisit a robot.
+3. Tier 3b never touches a robot outside radius 2R.
+4. On a simple map, emergency deadlines are met and the metric is reported.
+5. Existing strict-mode safety tests run for `local-flat` and for the new `local`.
+
+### Success criteria
+- 0 collisions, and every task finished in every sweep run.
+- New `local` has robots altered per disruption ≤ `local-flat` + 0.3, and sum of costs and Tier 4 holds ≤ `local-flat` at 30–50 robots.
+- Emergency on-time rate ≥ `local-flat`.
+- If an idea does not help, the data shows it and the default stays off. This is recorded in DECISIONS.
+
+### Order of work
+I3 (metric first, so the baseline is captured) → I1 → I2 → I4 throughput and `--live` → tests → I5 sweeps → update README, DECISIONS and PROGRESS.
+
+## 11. Assumptions and open questions
 
 - **Movement:** 4-connected moves plus wait, and every action costs 1 time step.
 - **Collisions:** vertex and edge (swap) conflicts are forbidden. Following another agent closely is allowed.

@@ -2,11 +2,13 @@
 
     python -m warehouse_mapf.run --agents 20 --density 0.03 --strategy local --seed 1
     python -m warehouse_mapf.run --config experiments/configs/demo.yaml --viz
+    python -m warehouse_mapf.run --agents 20 --live          # interactive replay window
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 import yaml
@@ -21,11 +23,15 @@ def main() -> None:
     ap.add_argument('--density', type=float, help='dynamic obstacle density (fraction of free cells)')
     ap.add_argument('--breakdowns', type=int)
     ap.add_argument('--emergencies', type=int)
-    ap.add_argument('--strategy', choices=['local', 'solo', 'full'])
+    ap.add_argument('--strategy', choices=['local', 'local-flat', 'solo', 'full'])
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--viz', action='store_true', help='write snapshots, GIF and replay JSON to --out')
     ap.add_argument('--out', type=Path, default=Path('results/run'))
+    ap.add_argument('--live', action='store_true', help='replay the run in an interactive matplotlib window')
+    ap.add_argument('--fps', type=int, default=8, help='frames per second for --live')
     args = ap.parse_args()
+    if args.live:
+        os.environ['WAREHOUSE_LIVE'] = '1'      # must be set before the renderer is imported
 
     cfg = ScenarioConfig.from_dict(yaml.safe_load(args.config.read_text()) if args.config else {})
     if args.agents is not None:
@@ -46,7 +52,8 @@ def main() -> None:
         what = f'agent {r.agent}' if r.agent is not None else f'cell {r.cell}'
         dur = '-' if r.kind == 'emergency' else 'perm' if r.permanent else f'{int(r.duration)} steps'
         print(f'  #{r.id:<3} t={r.t:<4} {r.kind:<9} {what:<14} {dur:<9} direct={len(r.direct)} '
-              f'altered={len(r.altered)} collateral={len(r.collateral)} tiers={sorted(set(r.tiers.values()))}')
+              f'altered={len(r.altered)} collateral={len(r.collateral)} tiers={sorted(set(r.tiers.values()))}'
+              + (f' chain={r.chain_depth}' if r.chain_depth >= 2 else ''))
     if args.viz:
         from .viz.export import export_run
         from .viz.render import save_animation, save_disruption_snapshots
@@ -55,6 +62,9 @@ def main() -> None:
         save_disruption_snapshots(sim, args.out)
         save_animation(sim, args.out / 'run.gif')
         print(f'\nVisual outputs written to {args.out}/')
+    if args.live:
+        from .viz.render import show_live
+        show_live(sim, fps=args.fps)
 
 
 if __name__ == '__main__':

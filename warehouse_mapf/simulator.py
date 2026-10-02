@@ -13,6 +13,7 @@ from .events import Event
 from .grid import INF, Cell
 from .prioritized import PlanRequest, plan_prioritized
 from .repair import STRATEGIES, pad
+from .st_astar import st_astar
 from .reservation import Blockages, ReservationTable
 
 
@@ -26,6 +27,16 @@ class RepairConfig:
     max_set_size: int = 3
     max_candidates: int = 4
     max_expansions: int = 60_000   # ST-A* budget per repair search
+    # v2 additions (used by 'local'; 'local-flat' keeps the v1 behaviour)
+    chain_depth: int = 2           # hops a negotiation may cascade (neighbour recruits its own blockers)
+    chain_fanout: int = 2          # max robots a coalition member may recruit
+    max_chain_nodes: int = 6       # max robots altered by one negotiation tree
+    group_max: int = 8             # tier 3b: max robots in a local group replan
+    group_scope: str = 'urgent'    # tier 3b for 'all' stuck robots, or only 'urgent' ones (emergency / no solo path)
+    emergency_slack: int = 3       # deadline = ideal delivery time at the event + slack
+    emergency_max_set_size: int = 4
+    deadline_penalty: float = 10.0 # repair-score cost of a plan that misses an emergency deadline
+    hold_patience: int = 10        # steps on hold before the search radius doubles (expanding ring)
 
 
 @dataclass
@@ -43,6 +54,7 @@ class DisruptionRecord:
     reassigned: dict = field(default_factory=dict)   # task_id -> new agent (permanent breakdown)
     lost_tasks: list = field(default_factory=list)   # items stranded on a dead robot
     messages: int = 0
+    chain_depth: int = 0                         # deepest negotiation cascade used
     cpu: float = 0.0
     old_paths: dict = field(default_factory=dict)
     new_paths: dict = field(default_factory=dict)
@@ -82,6 +94,7 @@ class Simulator:
         self.initial_paths: dict[int, list[Cell]] = {}
         self.debug = False
         self.guard_hits = 0
+        self.deadlines: dict[int, int] = {}     # emergency task id -> delivery deadline
         self.rt.strict = False  # set True together with debug to catch overwrites
 
     # ------------------------------------------------------------ planning
@@ -222,6 +235,10 @@ class Simulator:
             self.n_tasks += 1
             a.goals[a.ptr:a.ptr] = [Goal(ev.pickup, 'pickup', tid), Goal(ev.delivery, 'delivery', tid)]
             a.emergency_tasks.add(tid)
+            k = max(t, a.fixed_until)
+            ideal = st_astar(self.grid, pad(a.path, k)[k], k, [ev.pickup, ev.delivery], a.id, None, self.blk)
+            if ideal is not None:
+                self.deadlines[tid] = k + len(ideal) - 1 + self.rcfg.emergency_slack
             queue = [a.id]
             rec.direct = {a.id}
         else:
@@ -384,6 +401,14 @@ class Simulator:
             messages=self.bus.total,
         )
         m['soc_overhead'] = m['soc'] - m['nominal_soc']
+        m['throughput'] = done_tasks / max(1, m['makespan'])
+        finish = {tid: tt for a in self.agents for tid, tt in a.completed}
+        if self.deadlines:
+            late = [max(0, finish[tid] - dl) for tid, dl in self.deadlines.items() if tid in finish]
+            m['emergency_n'] = len(self.deadlines)
+            m['emergency_on_time'] = sum(1 for tid, dl in self.deadlines.items()
+                                         if finish.get(tid, INF) <= dl) / len(self.deadlines)
+            m['emergency_lateness'] = float(np.mean(late)) if late else 0.0
         if recs:
             m['altered_mean'] = float(np.mean([len(r.altered) for r in recs]))
             m['collateral_mean'] = float(np.mean([len(r.collateral) for r in recs]))
@@ -391,6 +416,7 @@ class Simulator:
             m['repair_ms_mean'] = 1000 * float(np.mean([r.cpu for r in recs]))
             m['msgs_per_disruption'] = float(np.mean([r.messages for r in recs]))
             tiers = [tr for r in recs for tr in r.tiers.values()]
-            for k in (1, 2, 3, 4, 5):
+            for k in (1, 2, 3, 4, 5, 6):
                 m[f'tier{k}'] = tiers.count(k)
+            m['chained'] = sum(1 for r in recs if r.chain_depth >= 2)
         return m

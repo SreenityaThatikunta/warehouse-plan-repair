@@ -16,13 +16,17 @@ import pandas as pd  # noqa: E402
 
 # Fixed categorical order (validated palette slots 1-3); colour follows the strategy.
 STRAT = {
-    'local': ('#2a78d6', 'Local negotiated repair (ours)', 'o'),
-    'solo':  ('#eb6834', 'Solo replan only (ablation)', 's'),
-    'full':  ('#1baf7a', 'Full replan from scratch (baseline)', '^'),
+    'local':         ('#2a78d6', 'Local negotiated repair v2 (ours)', 'o'),
+    'local-flat':    ('#eda100', 'Local repair v1 (flat coalitions)', 'D'),
+    'local-nochain': ('#e87ba4', 'v2 without chains (ablation)', 'v'),
+    'solo':          ('#eb6834', 'Solo replan only (ablation)', 's'),
+    'full':          ('#1baf7a', 'Full replan from scratch (baseline)', '^'),
 }
-TIER_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4']
-TIER_NAMES = {1: 'Tier 1: solo replan', 2: 'Tier 2: negotiate (R)', 3: 'Tier 3: negotiate (2R)',
-              4: 'Tier 4: hold & retry', 5: 'global replan'}
+ORDER = {s: i for i, s in enumerate(STRAT)}
+TIER_ORDER = (1, 2, 3, 6, 4)
+TIER_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#e87ba4', '#eda100']
+TIER_NAMES = {1: 'Tier 1: solo replan', 2: 'Tier 2: negotiate (R)', 3: 'Tier 3: negotiate (2R+)',
+              6: 'Tier 3b: local group replan', 4: 'Tier 4: hold & retry', 5: 'global replan'}
 INK, INK2, GRID = '#0b0b0b', '#52514e', '#e9e8e4'
 
 plt.rcParams.update({
@@ -44,7 +48,7 @@ def agg(df: pd.DataFrame, by: list[str], col: str) -> pd.DataFrame:
     return pd.DataFrame({'mean': g.mean(), 'ci': g.apply(ci95), 'n': g.size()}).reset_index()
 
 
-def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=('local', 'solo', 'full'),
+def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=tuple(STRAT),
                xfmt=None, note=None, ylim0=True):
     fig, ax = plt.subplots(figsize=(6.4, 4))
     a = agg(df, ['strategy', x], col)
@@ -100,12 +104,15 @@ def grouped_bars(df, cat, col, title, ylabel, path, order=None, note=None):
 
 
 def tier_chart(runs, x, xlabel, title, path):
-    d = runs[runs.strategy == 'local'].groupby(x)[[f'tier{k}' for k in (1, 2, 3, 4)]].sum()
+    runs = runs.copy()
+    if 'tier6' not in runs:
+        runs['tier6'] = 0
+    d = runs[runs.strategy == 'local'].groupby(x)[[f'tier{k}' for k in TIER_ORDER]].sum()
     share = d.div(d.sum(axis=1), axis=0) * 100
     fig, ax = plt.subplots(figsize=(6.4, 3.8))
     bottom = np.zeros(len(share))
     xs = np.arange(len(share))
-    for i, k in enumerate((1, 2, 3, 4)):
+    for i, k in enumerate(TIER_ORDER):
         vals = share[f'tier{k}'].values
         ax.bar(xs, vals, bottom=bottom, color=TIER_COLORS[i], label=TIER_NAMES[k], edgecolor='white',
                linewidth=1.5, width=0.7)
@@ -129,6 +136,38 @@ def md_table(df: pd.DataFrame) -> str:
     return '\n'.join(out)
 
 
+def fmt_pct(x) -> str:
+    return '-' if x is None or x.dropna().empty else f'{x.mean():.0%}'
+
+
+def fmt_num(x, nd: int) -> str:
+    return '-' if x is None or x.dropna().empty else f'{x.mean():.{nd}f}'
+
+
+def lambda_chart(runs, dis, path) -> None:
+    """Trade-off between plans altered and extra time as lambda varies, one panel per fleet size."""
+    ns = sorted(runs.n_agents.unique())
+    fig, axes = plt.subplots(1, len(ns), figsize=(5.2 * len(ns), 4), squeeze=False)
+    for ax, n in zip(axes[0], ns):
+        for s in [s for s in STRAT if s in set(runs.strategy)]:
+            r = runs[(runs.n_agents == n) & (runs.strategy == s)].groupby('alter_penalty').soc_overhead.mean()
+            d = dis[(dis.n_agents == n) & (dis.strategy == s)].groupby('alter_penalty').altered.mean()
+            color, label, marker = STRAT[s]
+            ax.plot(d.values, r.reindex(d.index).values, color=color, lw=2, marker=marker, ms=6, label=label,
+                    markeredgecolor='white', markeredgewidth=1)
+            for lam, xv, yv in zip(d.index, d.values, r.reindex(d.index).values):
+                ax.annotate(f'λ={lam:g}', (xv, yv), textcoords='offset points', xytext=(5, 4), fontsize=7.5,
+                            color=INK2)
+        ax.set_title(f'{n} robots: robots altered vs. extra time')
+        ax.set_xlabel('Plans altered per disruption')
+        ax.set_ylabel('SoC overhead (steps)')
+        ax.legend(loc='upper right', fontsize=8)
+    fig.text(0.01, -0.03, 'Each point is one alter penalty λ (10 seeds). Lower-left is better on both axes.',
+             fontsize=8, color=INK2, ha='left')
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def summary_table(runs, dis, x, xname) -> pd.DataFrame:
     rows = []
     for (xv, s), g in runs.groupby([x, 'strategy']):
@@ -145,12 +184,14 @@ def summary_table(runs, dis, x, xname) -> pd.DataFrame:
             'extra (collateral) / disruption': f'{d.collateral.mean():.2f}',
             'repair ms': f'{d.cpu_ms.mean():.0f}',
             'msgs / disruption': f'{d.messages.mean():.0f}',
+            'emergency on time': fmt_pct(g.get('emergency_on_time')),
+            'emergency lateness': fmt_num(g.get('emergency_lateness'), 1),
+            'throughput (tasks/step)': fmt_num(g.get('throughput'), 3),
             'collisions': int(g.collisions.sum()),
             'tasks done': f'{g.tasks_done.sum()}/{g.tasks_total.sum()}',
         })
-    order = {'local': 0, 'solo': 1, 'full': 2}
     df = pd.DataFrame(rows)
-    df['_s'] = df.strategy.map(order)
+    df['_s'] = df.strategy.map(ORDER)
     return df.sort_values(['_x', '_s']).drop(columns=['_x', '_s'])
 
 
@@ -181,6 +222,12 @@ def main() -> None:
                    'Number of robots', 'CPU time per disruption (ms)', O / 'agents_cpu.png')
         tier_chart(runs, 'n_agents', 'Number of robots', 'Which repair tier resolved each robot (local)',
                    O / 'agents_tiers.png')
+        if 'emergency_on_time' in runs:
+            line_chart(runs, 'n_agents', 'emergency_on_time', 'Emergency deliveries made on time',
+                       'Number of robots', 'Share delivered by the deadline', O / 'agents_emergency.png',
+                       xfmt=None, note='Deadline = ideal (robot-free) delivery time at the event + 3 steps.')
+            line_chart(runs, 'n_agents', 'emergency_lateness', 'Emergency lateness',
+                       'Number of robots', 'Steps late (mean over emergencies)', O / 'agents_lateness.png')
         md += ['## Sweep 1: number of robots', '', md_table(summary_table(runs, dis, 'n_agents', 'robots')), '']
 
     if (R / 'density_runs.csv').exists():
@@ -214,7 +261,7 @@ def main() -> None:
                                                   collateral=('collateral', 'mean'), n=('altered', 'size'))
         t = t.round(2).reset_index()
         t['order'] = t.dtype.map({k: i for i, k in enumerate(order)})
-        t['s'] = t.strategy.map({'local': 0, 'solo': 1, 'full': 2})
+        t['s'] = t.strategy.map(ORDER)
         t = t.sort_values(['order', 's']).drop(columns=['order', 's'])
         md += ['## Sweep 3: single disruption (10–50 robots pooled)', '',
                '`direct`: robots whose plan the disruption itself invalidated. `altered`: all robots whose '
@@ -222,6 +269,25 @@ def main() -> None:
         by_n = dis.pivot_table(index='n_agents', columns='strategy', values='altered', aggfunc='mean').round(2)
         md += ['Plans altered per single disruption, by number of robots:', '',
                md_table(by_n.reset_index()), '']
+
+    if (R / 'lambda_runs.csv').exists():
+        runs, dis = pd.read_csv(R / 'lambda_runs.csv'), pd.read_csv(R / 'lambda_disruptions.csv')
+        lambda_chart(runs, dis, O / 'lambda_tradeoff.png')
+        rows = []
+        for (n, s, lam), g in runs.groupby(['n_agents', 'strategy', 'alter_penalty']):
+            d = dis[(dis.n_agents == n) & (dis.strategy == s) & (dis.alter_penalty == lam)]
+            rows.append({'robots': n, 'strategy': s, 'λ': f'{lam:g}',
+                         'SoC (mean ± 95% CI)': f'{g.soc.mean():.0f} ± {ci95(g.soc):.0f}',
+                         'SoC overhead': f'{g.soc_overhead.mean():.0f}',
+                         'altered / disruption': f'{d.altered.mean():.2f}',
+                         'collateral / disruption': f'{d.collateral.mean():.2f}',
+                         'emergency on time': fmt_pct(g.get('emergency_on_time')),
+                         'repair ms': f'{d.cpu_ms.mean():.0f}',
+                         '_s': ORDER[s], '_l': lam})
+        t = pd.DataFrame(rows).sort_values(['robots', '_s', '_l']).drop(columns=['_s', '_l'])
+        md += ['## Sweep 4: alter penalty λ (20 and 40 robots)', '',
+               'λ is the score charged per extra robot whose plan changes. Higher λ means fewer plans '
+               'altered but possibly longer detours.', '', md_table(t), '']
 
     (R / 'summary.md').write_text('\n'.join(md))
     print(f'figures -> {O}/, tables -> {R / "summary.md"}')

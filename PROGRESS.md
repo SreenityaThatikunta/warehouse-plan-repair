@@ -99,3 +99,36 @@
 ### 2026-10-02
 - Project titled **"Negotiated Local Plan Repair for Multi-Robot Warehouse Pathfinding"**.
 - Created the private GitHub repo `SreenityaThatikunta/warehouse-plan-repair` and pushed the code, docs, results, charts and demos (69 files; `.venv` and `.DS_Store` excluded).
+- Compared the repo with the peer repo `Sirin-890/autonomus` (branches `main` and `v2`). Wrote the v2 improvement plan in PLAN.md §10: chained negotiation, a local group-replan tier, an emergency deadline, throughput, a PDF report, a live view and a λ sweep. It is waiting for approval.
+
+### 2026-10-03: v2 (ideas from the peer repo, done better)
+- **Implemented:**
+  - chained negotiation (D17)
+  - Tier 3b local group replan for urgent robots (D18)
+  - emergency deadline with on-time and lateness metrics (D19)
+  - an expanding-ring hold for all strategies (D20)
+  - a throughput metric
+  - `run --live` (interactive replay window)
+  - strategies `local-flat` (v1) and `local-nochain`
+  - the λ sweep
+  - The PDF report was dropped (D22).
+- **Bugs found and fixed while building it:**
+  - **Deadlock beyond communication range:** `--agents 40 --seed 1` under the CLI defaults left 2 robots, 16 cells apart, on hold forever. v1 had this too. Fixed by the expanding ring (D20).
+  - **Chain recruiting:** blockers were first taken from the member's robot-free path, which for a parked robot is "stay put", so its escape blocker was never found. It now uses the relaxed path (D17). The pocket test covers it.
+  - **Tier 3b for every stuck robot** raised altered/disruption by +0.62 at 50 robots, so it is now limited to urgent robots (D18).
+- **Tests:** 27 pass, up from 20. New: pocket corridor (a 2-hop chain where v1 can only hold), emergency robots never recruited, tier 3b stays local, deadline metric, and a strict safety run for `local-flat`.
+- **Full sweep (10 seeds, 1,700 runs):**
+  - 0 collisions.
+  - All runs finish except `solo`, 50 robots, permanent breakdown, seed 5. All 49 live robots gridlock on hold from t=40; the same seed failed in v1. `local` and `local-flat` finish it (D24).
+- **v2 (`local`) vs v1 (`local-flat`), robots sweep:**
+  - **SoC:** −19 at 30 robots, −7 at 40, −16 at 50.
+  - **Altered/disruption:** −0.05 at 20, −0.10 at 30, −0.12 at 40, +0.13 at 50 (inside the +0.3 limit).
+  - **Emergency on time:** 65% vs 45% at 20 robots, 35% vs 15% at 50. Lateness 9.9 vs 12.1 steps at 50.
+  - **Repair time:** about 2× (2.3 s vs 1.1 s per disruption at 50 robots).
+- **Density sweep, 10%:**
+  - SoC 2768 vs 2792
+  - altered 2.63 vs 2.77
+  - emergency on time 40% vs 15%
+- **Single disruption:** emergency events alter 1.38 robots vs 1.14, because deadline escalation recruits helpers. Permanent breakdowns alter 13.5 vs 13.8.
+- **λ sweep:** at 40 robots, v2 with λ=3 beats v1 at every λ on both axes (SoC overhead 345, 4.67 altered). At 20 robots they are about even.
+- **Chains ablation (`local-nochain`):** results are within noise of full v2 (at 50 robots: SoC 6963 vs 6958, altered 5.72 vs 5.88, on time 30% vs 35%), at half the repair time. Chains fired in 14 of 60 runs. They are kept on, as requested, but the data does not show a clear gain (D23).

@@ -5,7 +5,9 @@ from warehouse_mapf.events import Event
 from warehouse_mapf.grid import INF, Grid, make_warehouse
 from warehouse_mapf.prioritized import PlanRequest, plan_prioritized
 from warehouse_mapf.reservation import Blockages, ReservationTable
+from warehouse_mapf.agent import Agent, Goal
 from warehouse_mapf.scenario import ScenarioConfig, build
+from warehouse_mapf.simulator import DisruptionRecord, RepairConfig, Simulator
 from warehouse_mapf.st_astar import st_astar
 
 
@@ -101,7 +103,7 @@ def run(strategy, seed=0, n=15, **dis):
     return sim, sim.run()
 
 
-@pytest.mark.parametrize('strategy', ['local', 'solo', 'full'])
+@pytest.mark.parametrize('strategy', ['local', 'local-flat', 'solo', 'full'])
 @pytest.mark.parametrize('seed', [0, 1, 2])
 def test_run_is_safe_and_complete(strategy, seed):
     sim, m = run(strategy, seed)
@@ -144,3 +146,85 @@ def test_permanent_breakdown_reassigns_tasks():
     assert sim.agents[3].dead
     assert rec.reassigned and all(w != 3 for w in rec.reassigned.values())
     assert m['tasks_done'] + m['tasks_lost'] == m['tasks_total'] and m['collisions'] == 0
+
+
+# ------------------------------------------------- v2: chains, tier 3b, deadlines
+class _Pocket:
+    """1-wide corridor with a 2-deep side pocket under column 2:
+        row 0:  A . B . G      A must reach G; B is parked on (0,2)
+        row 1:  # # C # #      C is parked in the pocket
+        row 2:  # # . # #
+    A can only pass if B dodges into the pocket, which needs C to step down first.
+    C does not block A's own path, so only a 2-hop chain (A -> B -> C) solves it."""
+
+    def __init__(self, strategy, c_emergency=False):
+        g = Grid(np.array([[0, 0, 0, 0, 0], [1, 1, 0, 1, 1], [1, 1, 0, 1, 1]], dtype=bool))
+        wh = type('WH', (), dict(grid=g, homes=[], stations=[], pickups=[]))()
+        agents = [Agent(0, (0, 0), [Goal((0, 4), 'home', -1)], path=[(0, 0)]),
+                  Agent(1, (0, 2), [Goal((0, 2), 'home', -1)], path=[(0, 2)]),
+                  Agent(2, (1, 2), [Goal((1, 2), 'home', -1)], path=[(1, 2)])]
+        if c_emergency:
+            agents[2].emergency_tasks.add(99)
+        self.sim = sim = Simulator(wh, agents, [], RepairConfig(strategy=strategy))
+        sim.rt.strict = True
+        for a in agents[1:]:
+            sim.rt.add_path(a.id, a.path, 0)
+        self.rec = DisruptionRecord(0, 0, 'blockage', False, 1)
+        snap = {a.id: a.path for a in agents}
+        sim.strategy.repair([0], 0, self.rec)
+        sim._finalize(self.rec, snap, 0)
+
+
+def test_chain_solves_what_flat_negotiation_cannot():
+    p = _Pocket('local')
+    assert p.rec.tiers[0] == 2 and p.rec.chain_depth == 2
+    assert p.rec.altered == {0, 1, 2}
+    assert p.sim.agents[0].path[-1] == (0, 4)
+    assert p.sim.validate_plans(0) == []
+    flat = _Pocket('local-flat')
+    assert flat.rec.tiers[0] == 4 and 0 in flat.sim.pending      # v1 can only hold
+
+
+def test_chain_never_recruits_emergency_robots():
+    p = _Pocket('local', c_emergency=True)
+    assert 2 not in p.rec.altered and p.rec.chain_depth < 2
+    assert p.sim.validate_plans(0) == []
+
+
+def test_group_replan_stays_local(monkeypatch):
+    import warehouse_mapf.repair as rep
+    seen = []
+    real = rep.plan_prioritized
+    holder = {}
+
+    def spy(grid, rt, blk, reqs, *a, **kw):
+        sim = holder['sim']
+        seen.append(([(r.aid, sim.agents[r.aid].pos(sim.t)) for r in reqs], sim.strategy._radius_max))
+        return real(grid, rt, blk, reqs, *a, **kw)
+
+    monkeypatch.setattr(rep, 'plan_prioritized', spy)
+    cfg = ScenarioConfig.from_dict(dict(n_agents=30, repair=dict(strategy='local', group_scope='all'),
+                                        disruptions=dict(obstacle_density=0.04, n_breakdowns=2, n_emergencies=2)))
+    sim = holder['sim'] = build(cfg, 2)
+    sim.debug = True
+    sim.rt.strict = True
+    m = sim.run()
+    assert m['collisions'] == 0 and m['all_done']
+    assert seen, 'tier 3b never ran'
+    R = cfg.repair.comm_radius
+    for reqs, radius in seen:
+        (aid, here), rest = reqs[0], reqs[1:]
+        assert len(rest) <= cfg.repair.group_max
+        assert radius >= 2 * R          # > 2R only for a robot widening its ring after holding
+        assert all(abs(p[0] - here[0]) + abs(p[1] - here[1]) <= radius for _, p in rest)
+    assert any(radius == 2 * R for _, radius in seen)
+
+
+def test_emergency_deadline_is_recorded():
+    sim, m = run('local', 0, n=10, obstacle_density=0.0, n_breakdowns=0, n_emergencies=2)
+    assert sim.deadlines and m['emergency_n'] == len(sim.deadlines)
+    assert 0.0 <= m['emergency_on_time'] <= 1.0 and m['emergency_lateness'] >= 0
+    for r in sim.records:
+        if r.kind == 'emergency':
+            assert any(dl > r.t for dl in sim.deadlines.values())
+    assert m['throughput'] > 0

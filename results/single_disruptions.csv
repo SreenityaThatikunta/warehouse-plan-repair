@@ -1,751 +1,1001 @@
-sweep,x,strategy,seed,dtype,n_agents,density,id,t,kind,permanent,direct,altered,collateral,max_tier,messages,cpu_ms
-single,50,local,2,blockage (temp),50,0.02,0,69,blockage,False,1,1,0,1,35,13.933709007687867
-single,50,local,7,blockage (temp),50,0.02,0,91,blockage,False,6,6,0,1,308,94.81895802309737
-single,50,local,5,blockage (temp),50,0.02,0,60,blockage,False,1,1,0,1,39,105.05533299874514
-single,50,local,8,blockage (temp),50,0.02,0,118,blockage,False,4,4,0,1,129,38.69487502379343
-single,50,local,6,blockage (temp),50,0.02,0,98,blockage,False,2,2,0,1,80,22.93337503215298
-single,50,local,0,blockage (temp),50,0.02,0,117,blockage,False,2,2,0,1,131,35.48600000794977
-single,50,local,1,blockage (temp),50,0.02,0,93,blockage,False,4,4,0,1,182,63.58658301178366
-single,50,solo,2,blockage (temp),50,0.02,0,69,blockage,False,1,1,0,1,3,1.1040419922210276
-single,50,solo,5,blockage (temp),50,0.02,0,60,blockage,False,1,1,0,1,3,17.324707994703203
-single,50,solo,0,blockage (temp),50,0.02,0,117,blockage,False,2,2,0,1,7,2.466416044626385
-single,50,solo,1,blockage (temp),50,0.02,0,93,blockage,False,4,4,0,1,26,8.835625019855797
-single,50,local,9,blockage (temp),50,0.02,0,77,blockage,False,4,4,0,1,175,94.16266699554399
-single,50,solo,4,blockage (temp),50,0.02,0,12,blockage,False,3,3,0,1,32,54.22741698566824
-single,50,solo,3,blockage (temp),50,0.02,0,18,blockage,False,5,5,0,1,27,172.6669170311652
-single,50,solo,7,blockage (temp),50,0.02,0,91,blockage,False,6,6,0,1,38,32.04612497938797
-single,50,solo,6,blockage (temp),50,0.02,0,98,blockage,False,2,2,0,1,14,5.057915986981243
-single,50,solo,8,blockage (temp),50,0.02,0,118,blockage,False,4,4,0,1,23,5.262000020593405
-single,50,full,0,blockage (temp),50,0.02,0,117,blockage,False,2,43,41,5,100,64.15862496942282
-single,50,solo,9,blockage (temp),50,0.02,0,77,blockage,False,4,4,0,1,13,19.844041962642223
-single,50,full,2,blockage (temp),50,0.02,0,69,blockage,False,1,42,41,5,100,527.7018750202842
-single,50,full,1,blockage (temp),50,0.02,0,93,blockage,False,4,45,41,5,100,154.7730000456795
-single,50,local,4,blockage (temp),50,0.02,0,12,blockage,False,3,3,0,1,350,3412.39479201613
-single,50,local,3,blockage (temp),50,0.02,0,18,blockage,False,5,8,3,3,454,3674.784875009209
-single,50,full,5,blockage (temp),50,0.02,0,60,blockage,False,1,44,43,5,100,456.83883398305625
-single,50,full,7,blockage (temp),50,0.02,0,91,blockage,False,6,45,39,5,100,154.83129199128598
-single,50,full,8,blockage (temp),50,0.02,0,118,blockage,False,4,41,37,5,100,89.6049999864772
-single,50,full,3,blockage (temp),50,0.02,0,18,blockage,False,5,41,36,5,100,947.1446669776924
-single,50,full,6,blockage (temp),50,0.02,0,98,blockage,False,2,44,42,5,100,84.87429202068597
-single,50,full,4,blockage (temp),50,0.02,0,12,blockage,False,3,47,44,5,100,1181.577958050184
-single,50,full,9,blockage (temp),50,0.02,0,77,blockage,False,4,47,43,5,100,321.09141699038446
-single,50,local,0,blockage (perm),50,0.02,0,117,blockage,True,7,9,2,3,513,197.17162498272955
-single,50,local,6,blockage (perm),50,0.02,0,98,blockage,True,2,2,0,1,137,124.75487502524629
-single,50,local,7,blockage (perm),50,0.02,0,91,blockage,True,8,8,0,1,451,298.90654201153666
-single,50,local,8,blockage (perm),50,0.02,0,118,blockage,True,6,7,1,3,202,40.390958019997925
-single,50,local,2,blockage (perm),50,0.02,0,69,blockage,True,23,24,1,3,1373,1792.169374995865
-single,50,local,5,blockage (perm),50,0.02,0,60,blockage,True,9,11,2,3,637,1836.6371659794822
-single,50,solo,0,blockage (perm),50,0.02,0,117,blockage,True,7,7,0,1,55,29.647875053342432
-single,50,solo,2,blockage (perm),50,0.02,0,69,blockage,True,23,23,0,1,159,276.5885000117123
-single,50,solo,1,blockage (perm),50,0.02,0,61,blockage,True,21,21,0,1,132,213.6122080264613
-single,50,local,9,blockage (perm),50,0.02,0,77,blockage,True,13,15,2,3,946,1404.0747500257567
-single,50,solo,3,blockage (perm),50,0.02,0,18,blockage,True,7,7,0,1,66,230.97899998538196
-single,50,solo,5,blockage (perm),50,0.02,0,60,blockage,True,9,9,0,1,64,68.0401660501957
-single,50,solo,7,blockage (perm),50,0.02,0,91,blockage,True,8,8,0,1,107,98.91195897944272
-single,50,solo,6,blockage (perm),50,0.02,0,98,blockage,True,2,2,0,1,7,12.650083983317018
-single,50,solo,4,blockage (perm),50,0.02,0,12,blockage,True,18,18,0,1,136,575.0038329861127
-single,50,solo,8,blockage (perm),50,0.02,0,118,blockage,True,6,6,0,1,34,8.381084015127271
-single,50,local,1,blockage (perm),50,0.02,0,61,blockage,True,21,22,1,3,1425,4200.292999972589
-single,50,local,3,blockage (perm),50,0.02,0,18,blockage,True,7,13,6,3,728,4385.898833046667
-single,50,full,0,blockage (perm),50,0.02,0,117,blockage,True,7,45,38,5,100,94.1997499903664
-single,50,solo,9,blockage (perm),50,0.02,0,77,blockage,True,13,13,0,1,83,170.65087502123788
-single,50,full,2,blockage (perm),50,0.02,0,69,blockage,True,23,48,25,5,100,506.39908300945535
-single,50,full,1,blockage (perm),50,0.02,0,61,blockage,True,21,47,26,5,100,439.29279199801385
-single,50,full,5,blockage (perm),50,0.02,0,60,blockage,True,9,48,39,5,100,530.8216669945978
-single,50,full,7,blockage (perm),50,0.02,0,91,blockage,True,8,48,40,5,100,208.7525420356542
-single,50,full,8,blockage (perm),50,0.02,0,118,blockage,True,6,44,38,5,100,128.87295801192522
-single,50,full,6,blockage (perm),50,0.02,0,98,blockage,True,2,44,42,5,100,131.0775420279242
-single,50,full,4,blockage (perm),50,0.02,0,12,blockage,True,18,50,32,5,100,1056.281874945853
-single,50,local,2,breakdown (temp),50,0.02,0,70,breakdown,False,2,2,0,1,121,152.19179197447374
-single,50,local,0,breakdown (temp),50,0.02,0,26,breakdown,False,1,1,0,1,2,60.96716597676277
-single,50,full,9,blockage (perm),50,0.02,0,77,blockage,True,13,46,33,5,100,524.4118749978952
-single,50,local,1,breakdown (temp),50,0.02,0,95,breakdown,False,3,3,0,1,71,24.724500020965934
-single,50,local,3,breakdown (temp),50,0.02,0,88,breakdown,False,1,1,0,1,4,1.0978749487549067
-single,50,local,5,breakdown (temp),50,0.02,0,88,breakdown,False,3,3,0,1,250,162.111375015229
-single,50,local,4,breakdown (temp),50,0.02,0,34,breakdown,False,1,1,0,1,6,37.394165992736816
-single,50,local,6,breakdown (temp),50,0.02,0,103,breakdown,False,1,1,0,1,5,0.7320829899981618
-single,50,full,3,blockage (perm),50,0.02,0,18,blockage,True,7,50,43,5,100,3444.6705839945935
-single,50,solo,2,breakdown (temp),50,0.02,0,70,breakdown,False,2,2,0,1,11,12.598707980941981
-single,50,local,8,breakdown (temp),50,0.02,0,79,breakdown,False,4,4,0,1,186,205.43783297762275
-single,50,local,9,breakdown (temp),50,0.02,0,71,breakdown,False,2,2,0,1,62,22.19899999909103
-single,50,solo,1,breakdown (temp),50,0.02,0,95,breakdown,False,3,3,0,1,7,8.889292017556727
-single,50,solo,0,breakdown (temp),50,0.02,0,26,breakdown,False,1,1,0,1,2,60.27800001902506
-single,50,local,4,blockage (perm),50,0.02,0,12,blockage,True,18,23,5,3,1178,9359.884000034072
-single,50,solo,5,breakdown (temp),50,0.02,0,88,breakdown,False,3,3,0,1,32,8.304874994792044
-single,50,solo,3,breakdown (temp),50,0.02,0,88,breakdown,False,1,1,0,1,4,1.072749961167574
-single,50,solo,6,breakdown (temp),50,0.02,0,103,breakdown,False,1,1,0,1,5,0.7275829557329416
-single,50,solo,4,breakdown (temp),50,0.02,0,34,breakdown,False,1,1,0,1,6,42.71499998867512
-single,50,solo,7,breakdown (temp),50,0.02,0,35,breakdown,False,8,8,0,1,92,255.65391697455198
-single,50,solo,8,breakdown (temp),50,0.02,0,79,breakdown,False,4,4,0,1,22,42.37220803042874
-single,50,solo,9,breakdown (temp),50,0.02,0,71,breakdown,False,2,2,0,1,12,17.16608298011124
-single,50,full,1,breakdown (temp),50,0.02,0,95,breakdown,False,3,50,47,5,100,316.60445901798084
-single,50,full,2,breakdown (temp),50,0.02,0,70,breakdown,False,2,48,46,5,100,710.8737499802373
-single,50,full,5,breakdown (temp),50,0.02,0,88,breakdown,False,3,46,43,5,100,245.9113749791868
-single,50,full,3,breakdown (temp),50,0.02,0,88,breakdown,False,1,47,46,5,100,191.1270419950597
-single,50,full,6,breakdown (temp),50,0.02,0,103,breakdown,False,1,44,43,5,100,77.27433298714459
-single,50,full,4,breakdown (temp),50,0.02,0,34,breakdown,False,1,49,48,5,100,787.0799999800511
-single,50,full,7,breakdown (temp),50,0.02,0,35,breakdown,False,8,50,42,5,100,869.6468750131316
-single,50,local,7,breakdown (temp),50,0.02,0,35,breakdown,False,8,10,2,2,898,4966.846374969464
-single,50,full,0,breakdown (temp),50,0.02,0,26,breakdown,False,1,50,49,5,100,1955.9940419858322
-single,50,full,8,breakdown (temp),50,0.02,0,79,breakdown,False,4,47,43,5,100,295.8623330341652
-single,50,full,9,breakdown (temp),50,0.02,0,71,breakdown,False,2,42,40,5,100,219.080374983605
-single,50,local,3,breakdown (perm),50,0.02,0,58,breakdown,True,11,15,4,3,649,1754.6726249856874
-single,50,local,8,breakdown (perm),50,0.02,0,71,breakdown,True,16,27,11,3,1470,3000.3764168941416
-single,50,local,0,breakdown (perm),50,0.02,0,20,breakdown,True,14,19,5,3,942,6640.750291990116
-single,50,solo,0,breakdown (perm),50,0.02,0,20,breakdown,True,14,14,0,1,137,596.4517500251532
-single,50,local,6,breakdown (perm),50,0.02,0,32,breakdown,True,17,19,2,2,1212,6220.240750000812
-single,50,solo,2,breakdown (perm),50,0.02,0,17,breakdown,True,18,18,0,1,148,628.9098749984987
-single,50,local,2,breakdown (perm),50,0.02,0,17,breakdown,True,18,24,6,3,1141,8881.374416989274
-single,50,local,7,breakdown (perm),50,0.02,0,37,breakdown,True,21,22,1,3,1788,7691.737415967509
-single,50,solo,3,breakdown (perm),50,0.02,0,58,breakdown,True,11,11,0,1,101,138.35533300880343
-single,50,solo,7,breakdown (perm),50,0.02,0,37,breakdown,True,21,21,0,1,258,288.42287498991936
-single,50,solo,6,breakdown (perm),50,0.02,0,32,breakdown,True,17,17,0,1,142,281.5050829667598
-single,50,local,4,breakdown (perm),50,0.02,0,19,breakdown,True,19,27,8,3,1569,9374.861707969103
-single,50,solo,1,breakdown (perm),50,0.02,0,52,breakdown,True,22,38,16,4,822,2492.3150418908335
-single,50,solo,4,breakdown (perm),50,0.02,0,19,breakdown,True,19,26,7,2,257,1104.0167919709347
-single,50,solo,8,breakdown (perm),50,0.02,0,71,breakdown,True,16,22,6,2,199,504.27758297882974
-single,50,solo,9,breakdown (perm),50,0.02,0,35,breakdown,True,20,20,0,1,204,339.6178749972023
-single,50,full,1,breakdown (perm),50,0.02,0,52,breakdown,True,22,48,26,5,128,672.0848749973811
-single,50,full,2,breakdown (perm),50,0.02,0,17,breakdown,True,18,50,32,5,137,1839.8027090006508
-single,50,local,9,breakdown (perm),50,0.02,0,35,breakdown,True,20,22,2,3,1486,10143.961416964885
-single,50,full,3,breakdown (perm),50,0.02,0,58,breakdown,True,11,50,39,5,140,666.988292010501
-single,50,local,1,breakdown (perm),50,0.02,0,52,breakdown,True,22,39,17,4,4506,14977.817039994989
-single,50,full,0,breakdown (perm),50,0.02,0,20,breakdown,True,14,50,36,5,143,3198.8269580178894
-single,50,full,6,breakdown (perm),50,0.02,0,32,breakdown,True,17,49,32,5,149,717.5841249991208
-single,50,full,5,breakdown (perm),50,0.02,0,40,breakdown,True,16,50,34,5,136,1410.3279580012895
-single,50,full,4,breakdown (perm),50,0.02,0,19,breakdown,True,19,50,31,5,161,2048.163375002332
-single,50,full,7,breakdown (perm),50,0.02,0,37,breakdown,True,21,50,29,5,197,919.3960829870775
-single,50,full,8,breakdown (perm),50,0.02,0,71,breakdown,True,16,50,34,5,116,763.6453339946456
-single,50,local,2,emergency,50,0.02,0,57,emergency,True,1,1,0,1,61,167.68070904072374
-single,50,local,0,emergency,50,0.02,0,91,emergency,True,1,1,0,1,122,340.66475002327934
-single,50,local,1,emergency,50,0.02,0,112,emergency,True,1,1,0,1,86,18.04987504146993
-single,50,full,9,breakdown (perm),50,0.02,0,35,breakdown,True,20,49,29,5,161,734.9162499886006
-single,50,local,3,emergency,50,0.02,0,30,emergency,True,1,2,1,2,31,210.89279098669067
-single,50,local,4,emergency,50,0.02,0,99,emergency,True,1,2,1,3,61,20.971165969967842
-single,50,local,5,emergency,50,0.02,0,11,emergency,True,1,1,0,1,23,123.93462500767782
-single,50,local,8,emergency,50,0.02,0,84,emergency,True,1,3,2,3,47,52.90849995799363
-single,50,solo,2,emergency,50,0.02,0,57,emergency,True,1,1,0,1,3,14.372207981068641
-single,50,local,6,emergency,50,0.02,0,34,emergency,True,1,1,0,1,120,497.50616698293015
-single,50,local,7,emergency,50,0.02,0,63,emergency,True,1,1,0,1,193,613.8326249783859
-single,50,local,9,emergency,50,0.02,0,117,emergency,True,1,1,0,1,31,2.1411670022644103
-single,50,solo,1,emergency,50,0.02,0,112,emergency,True,1,1,0,1,6,1.3952500303275883
-single,50,solo,0,emergency,50,0.02,0,91,emergency,True,1,1,0,1,6,6.655459001194686
-single,50,solo,5,emergency,50,0.02,0,11,emergency,True,1,1,0,1,1,58.917167014442384
-single,50,solo,4,emergency,50,0.02,0,99,emergency,True,1,1,0,1,4,1.3438329915516078
-single,50,solo,3,emergency,50,0.02,0,30,emergency,True,1,1,0,1,6,26.951209001708776
-single,50,solo,7,emergency,50,0.02,0,63,emergency,True,1,1,0,1,9,11.534166987985373
-single,50,solo,6,emergency,50,0.02,0,34,emergency,True,1,1,0,1,8,9.199208987411112
-single,50,solo,8,emergency,50,0.02,0,84,emergency,True,1,1,0,1,3,28.451249992940575
-single,50,solo,9,emergency,50,0.02,0,117,emergency,True,1,1,0,1,3,1.796416996512562
-single,50,full,1,emergency,50,0.02,0,112,emergency,True,1,45,44,5,100,78.36704200599343
-single,50,full,0,emergency,50,0.02,0,91,emergency,True,1,49,48,5,100,322.37083301879466
-single,50,full,4,emergency,50,0.02,0,99,emergency,True,1,47,46,5,100,104.19208405073732
-single,50,full,3,emergency,50,0.02,0,30,emergency,True,1,49,48,5,100,818.3264579856768
-single,50,full,2,emergency,50,0.02,0,57,emergency,True,1,1,0,1,53,1400.0307910027914
-single,50,full,5,emergency,50,0.02,0,11,emergency,True,1,45,44,5,100,1069.570458959788
-single,40,local,0,blockage (temp),40,0.02,0,111,blockage,False,1,1,0,1,38,14.552083041053265
-single,50,full,6,emergency,50,0.02,0,34,emergency,True,1,50,49,5,100,687.5488749938086
-single,50,full,7,emergency,50,0.02,0,63,emergency,True,1,45,44,5,100,339.1137080034241
-single,50,full,8,emergency,50,0.02,0,84,emergency,True,1,46,45,5,100,315.09933300549164
-single,50,full,9,emergency,50,0.02,0,117,emergency,True,1,45,44,5,100,125.85545901674777
-single,40,local,2,blockage (temp),40,0.02,0,61,blockage,False,2,2,0,1,144,460.10145801119506
-single,40,local,5,blockage (temp),40,0.02,0,71,blockage,False,1,1,0,1,66,120.33870804589242
-single,40,local,3,blockage (temp),40,0.02,0,18,blockage,False,2,2,0,1,87,663.2132499944419
-single,40,local,6,blockage (temp),40,0.02,0,93,blockage,False,3,3,0,1,342,368.5865419683978
-single,40,local,8,blockage (temp),40,0.02,0,109,blockage,False,5,5,0,1,71,12.734917050693184
-single,40,local,1,blockage (temp),40,0.02,0,105,blockage,False,3,34,31,3,2102,1410.8305409899913
-single,40,local,7,blockage (temp),40,0.02,0,115,blockage,False,4,4,0,1,73,8.264250005595386
-single,40,solo,0,blockage (temp),40,0.02,0,111,blockage,False,1,1,0,1,4,3.302375029306859
-single,40,solo,2,blockage (temp),40,0.02,0,61,blockage,False,2,2,0,1,14,34.055500000249594
-single,40,local,9,blockage (temp),40,0.02,0,80,blockage,False,2,2,0,1,120,337.957291980274
-single,40,solo,3,blockage (temp),40,0.02,0,18,blockage,False,2,2,0,1,3,15.14591701561585
-single,40,solo,4,blockage (temp),40,0.02,0,15,blockage,False,2,2,0,1,8,50.774000003002584
-single,40,solo,6,blockage (temp),40,0.02,0,93,blockage,False,3,3,0,1,20,3.9653750136494637
-single,40,local,4,blockage (temp),40,0.02,0,15,blockage,False,2,2,0,1,210,2024.739334010519
-single,40,solo,5,blockage (temp),40,0.02,0,71,blockage,False,1,1,0,1,6,26.49712498532608
-single,40,solo,8,blockage (temp),40,0.02,0,109,blockage,False,5,5,0,1,17,6.164000020362437
-single,40,solo,1,blockage (temp),40,0.02,0,105,blockage,False,3,34,31,3,556,838.5407500318252
-single,40,solo,7,blockage (temp),40,0.02,0,115,blockage,False,4,4,0,1,15,8.317290979903191
-single,40,solo,9,blockage (temp),40,0.02,0,80,blockage,False,2,2,0,1,4,24.32362496620044
-single,40,full,0,blockage (temp),40,0.02,0,111,blockage,False,1,25,24,5,80,55.267624964471906
-single,40,full,1,blockage (temp),40,0.02,0,105,blockage,False,3,35,32,5,80,127.81916599487886
-single,40,full,6,blockage (temp),40,0.02,0,93,blockage,False,3,34,31,5,80,181.83845799649134
-single,40,full,2,blockage (temp),40,0.02,0,61,blockage,False,2,39,37,5,80,557.7242499566637
-single,40,full,3,blockage (temp),40,0.02,0,18,blockage,False,2,33,31,5,80,693.9218749757856
-single,40,full,5,blockage (temp),40,0.02,0,71,blockage,False,1,31,30,5,80,358.2161249942146
-single,40,full,7,blockage (temp),40,0.02,0,115,blockage,False,4,25,21,5,80,34.7474169684574
-single,40,full,4,blockage (temp),40,0.02,0,15,blockage,False,2,40,38,5,80,872.519165975973
-single,40,full,9,blockage (temp),40,0.02,0,80,blockage,False,2,32,30,5,80,77.67029100796208
-single,40,full,8,blockage (temp),40,0.02,0,109,blockage,False,5,34,29,5,80,42.37091698450968
-single,40,local,0,blockage (perm),40,0.02,0,111,blockage,True,3,4,1,2,24,14.47487500263378
-single,40,local,6,blockage (perm),40,0.02,0,93,blockage,True,6,6,0,1,486,441.0412080469541
-single,40,local,1,blockage (perm),40,0.02,0,68,blockage,True,11,11,0,2,511,694.4009169819765
-single,40,local,7,blockage (perm),40,0.02,0,115,blockage,True,5,5,0,1,194,46.15566699067131
-single,40,local,2,blockage (perm),40,0.02,0,61,blockage,True,13,15,2,3,871,1409.4349169754423
-single,40,local,8,blockage (perm),40,0.02,0,109,blockage,True,7,7,0,1,77,24.3279580026865
-single,40,solo,0,blockage (perm),40,0.02,0,111,blockage,True,3,3,0,1,12,6.419916986487806
-single,40,local,5,blockage (perm),40,0.02,0,71,blockage,True,12,15,3,3,722,1308.1444579875097
-single,40,solo,2,blockage (perm),40,0.02,0,61,blockage,True,13,13,0,1,95,190.85195800289512
-single,40,solo,1,blockage (perm),40,0.02,0,68,blockage,True,11,11,0,1,55,53.20983298588544
-single,40,solo,3,blockage (perm),40,0.02,0,18,blockage,True,19,19,0,1,104,519.6912080282345
-single,40,local,9,blockage (perm),40,0.02,0,80,blockage,True,10,10,0,2,403,1224.1050000302494
-single,40,solo,4,blockage (perm),40,0.02,0,15,blockage,True,13,13,0,1,78,297.44133399799466
-single,40,solo,6,blockage (perm),40,0.02,0,93,blockage,True,6,6,0,1,34,14.11783299408853
-single,40,solo,8,blockage (perm),40,0.02,0,109,blockage,True,7,7,0,1,23,16.703832952771336
-single,40,solo,9,blockage (perm),40,0.02,0,80,blockage,True,10,10,0,1,42,125.42770802974701
-single,40,full,0,blockage (perm),40,0.02,0,111,blockage,True,3,24,21,5,80,22.796124976594
-single,40,solo,7,blockage (perm),40,0.02,0,115,blockage,True,5,5,0,1,28,15.293500036932528
-single,40,solo,5,blockage (perm),40,0.02,0,71,blockage,True,12,30,18,2,432,1221.6678730328567
-single,40,full,1,blockage (perm),40,0.02,0,68,blockage,True,11,37,26,5,80,348.0203329818323
-single,40,full,2,blockage (perm),40,0.02,0,61,blockage,True,13,40,27,5,80,729.2957499739714
-single,40,full,3,blockage (perm),40,0.02,0,18,blockage,True,19,36,17,5,80,927.0892500062473
-single,40,full,6,blockage (perm),40,0.02,0,93,blockage,True,6,34,28,5,80,133.01066699204966
-single,40,full,5,blockage (perm),40,0.02,0,71,blockage,True,12,39,27,5,80,292.13675000937656
-single,40,full,7,blockage (perm),40,0.02,0,115,blockage,True,5,25,20,5,80,53.776249988004565
-single,40,full,8,blockage (perm),40,0.02,0,109,blockage,True,7,34,27,5,80,46.00441601360217
-single,50,local,5,breakdown (perm),50,0.02,0,40,breakdown,True,16,50,34,4,4216,33316.30637397757
-single,40,full,9,blockage (perm),40,0.02,0,80,blockage,True,10,37,27,5,80,141.19062502868474
-single,40,local,0,breakdown (temp),40,0.02,0,25,breakdown,False,1,1,0,1,2,50.38058303762227
-single,40,full,4,blockage (perm),40,0.02,0,15,blockage,True,13,39,26,5,80,1980.3875840152614
-single,40,local,1,breakdown (temp),40,0.02,0,106,breakdown,False,1,1,0,1,1,2.4358340306207538
-single,40,local,3,breakdown (temp),40,0.02,0,88,breakdown,False,6,6,0,2,301,208.44612503424287
-single,40,local,2,breakdown (temp),40,0.02,0,62,breakdown,False,2,2,0,1,211,275.78341600019485
-single,40,local,6,breakdown (temp),40,0.02,0,97,breakdown,False,2,2,0,1,11,2.394207986071706
-single,40,local,5,breakdown (temp),40,0.02,0,103,breakdown,False,1,1,0,1,7,2.9030829900875688
-single,40,local,7,breakdown (temp),40,0.02,0,45,breakdown,False,1,1,0,1,5,14.561875024810433
-single,40,local,8,breakdown (temp),40,0.02,0,73,breakdown,False,3,3,0,1,137,136.9534580153413
-single,40,solo,0,breakdown (temp),40,0.02,0,25,breakdown,False,1,1,0,1,2,53.59720898559317
-single,40,local,4,breakdown (temp),40,0.02,0,40,breakdown,False,4,4,0,2,202,1276.4507090323605
-single,40,solo,1,breakdown (temp),40,0.02,0,106,breakdown,False,1,1,0,1,1,1.5585829969495535
-single,40,solo,2,breakdown (temp),40,0.02,0,62,breakdown,False,2,2,0,1,25,8.412292052526027
-single,40,local,9,breakdown (temp),40,0.02,0,74,breakdown,False,4,4,0,1,260,480.453708965797
-single,40,solo,3,breakdown (temp),40,0.02,0,88,breakdown,False,6,6,0,1,45,19.596625003032386
-single,40,solo,4,breakdown (temp),40,0.02,0,40,breakdown,False,4,4,0,1,24,58.89479198958725
-single,40,solo,6,breakdown (temp),40,0.02,0,97,breakdown,False,2,2,0,1,11,1.5783749986439943
-single,40,solo,5,breakdown (temp),40,0.02,0,103,breakdown,False,1,1,0,1,7,4.90104197524488
-single,40,solo,9,breakdown (temp),40,0.02,0,74,breakdown,False,4,4,0,1,22,26.53454098617658
-single,40,solo,8,breakdown (temp),40,0.02,0,73,breakdown,False,3,3,0,1,17,8.3710000035353
-single,40,solo,7,breakdown (temp),40,0.02,0,45,breakdown,False,1,1,0,1,5,10.638999985530972
-single,40,full,1,breakdown (temp),40,0.02,0,106,breakdown,False,1,28,27,5,80,154.54991604201496
-single,40,full,0,breakdown (temp),40,0.02,0,25,breakdown,False,1,39,38,5,80,312.8519579768181
-single,40,full,2,breakdown (temp),40,0.02,0,62,breakdown,False,2,40,38,5,80,237.71679197670892
-single,40,full,3,breakdown (temp),40,0.02,0,88,breakdown,False,6,6,0,1,85,475.8334580110386
-single,40,full,5,breakdown (temp),40,0.02,0,103,breakdown,False,1,30,29,5,80,118.00075002247468
-single,40,full,6,breakdown (temp),40,0.02,0,97,breakdown,False,2,37,35,5,80,105.59141600970179
-single,40,full,4,breakdown (temp),40,0.02,0,40,breakdown,False,4,40,36,5,80,849.9618750065565
-single,40,full,8,breakdown (temp),40,0.02,0,73,breakdown,False,3,38,35,5,80,187.2021250310354
-single,40,full,9,breakdown (temp),40,0.02,0,74,breakdown,False,4,38,34,5,80,221.43287502694875
-single,40,local,4,blockage (perm),40,0.02,0,15,blockage,True,13,15,2,3,1225,10700.701583002228
-single,40,full,7,breakdown (temp),40,0.02,0,45,breakdown,False,1,33,32,5,80,400.27241699863225
-single,40,local,3,breakdown (perm),40,0.02,0,58,breakdown,True,11,12,1,2,884,1518.6842510011047
-single,40,local,3,blockage (perm),40,0.02,0,18,blockage,True,19,22,3,3,1687,14007.483166991733
-single,40,local,2,breakdown (perm),40,0.02,0,15,breakdown,True,11,13,2,3,794,3670.297875010874
-single,40,local,5,breakdown (perm),40,0.02,0,46,breakdown,True,19,23,4,3,873,3385.263375006616
-single,40,local,8,breakdown (perm),40,0.02,0,65,breakdown,True,11,11,0,1,410,351.8245829618536
-single,40,solo,0,breakdown (perm),40,0.02,0,19,breakdown,True,14,14,0,1,125,335.42266697622836
-single,40,local,7,breakdown (perm),40,0.02,0,47,breakdown,True,14,17,3,3,764,2372.313249972649
-single,40,local,0,breakdown (perm),40,0.02,0,19,breakdown,True,14,17,3,3,932,5054.143750050571
-single,40,solo,2,breakdown (perm),40,0.02,0,15,breakdown,True,11,11,0,1,89,131.98162498883903
-single,40,solo,3,breakdown (perm),40,0.02,0,58,breakdown,True,11,11,0,1,201,320.6577909877524
-single,40,solo,4,breakdown (perm),40,0.02,0,22,breakdown,True,14,14,0,1,138,161.3976249936968
-single,40,local,4,breakdown (perm),40,0.02,0,22,breakdown,True,14,15,1,3,953,5594.967124983668
-single,40,solo,1,breakdown (perm),40,0.02,0,58,breakdown,True,15,35,20,3,349,1377.0897089270875
-single,40,solo,6,breakdown (perm),40,0.02,0,30,breakdown,True,15,15,0,1,133,297.0329169766046
-single,40,solo,8,breakdown (perm),40,0.02,0,65,breakdown,True,11,11,0,1,92,76.82404201477766
-single,40,solo,5,breakdown (perm),40,0.02,0,46,breakdown,True,19,19,0,1,104,461.5095829940401
-single,40,solo,7,breakdown (perm),40,0.02,0,47,breakdown,True,14,14,0,1,117,170.28620798373595
-single,40,solo,9,breakdown (perm),40,0.02,0,37,breakdown,True,9,9,0,1,54,122.63237498700619
-single,40,local,6,breakdown (perm),40,0.02,0,30,breakdown,True,15,16,1,3,1383,7278.501915978268
-single,40,full,3,breakdown (perm),40,0.02,0,58,breakdown,True,11,40,29,5,108,382.43591698119417
-single,40,local,9,breakdown (perm),40,0.02,0,37,breakdown,True,9,10,1,3,843,3788.870041957125
-single,40,full,1,breakdown (perm),40,0.02,0,58,breakdown,True,15,40,25,5,100,507.6569170341827
-single,40,full,2,breakdown (perm),40,0.02,0,15,breakdown,True,11,39,28,5,117,594.1063339705579
-single,40,full,4,breakdown (perm),40,0.02,0,22,breakdown,True,14,39,25,5,135,629.9887499772012
-single,40,full,0,breakdown (perm),40,0.02,0,19,breakdown,True,14,40,26,5,129,1350.6652500363998
-single,40,full,5,breakdown (perm),40,0.02,0,46,breakdown,True,19,39,20,5,88,242.46795801445842
-single,40,full,8,breakdown (perm),40,0.02,0,65,breakdown,True,11,39,28,5,108,196.49650005158037
-single,40,full,9,breakdown (perm),40,0.02,0,37,breakdown,True,9,36,27,5,99,348.71491603553295
-single,40,local,0,emergency,40,0.02,0,87,emergency,True,1,1,0,1,50,23.267208016477525
-single,40,local,1,breakdown (perm),40,0.02,0,58,breakdown,True,15,32,17,4,2133,9326.979042030871
-single,40,full,7,breakdown (perm),40,0.02,0,47,breakdown,True,14,40,26,5,108,365.56725000264123
-single,40,local,2,emergency,40,0.02,0,51,emergency,True,1,1,0,1,56,1.9562920206226408
-single,40,local,1,emergency,40,0.02,0,126,emergency,True,1,1,0,1,54,1.0304590105079114
-single,40,local,3,emergency,40,0.02,0,30,emergency,True,1,2,1,3,61,91.22574998764321
-single,40,full,6,breakdown (perm),40,0.02,0,30,breakdown,True,15,40,25,5,123,1194.754708034452
-single,40,local,4,emergency,40,0.02,0,115,emergency,True,1,1,0,1,4,1.229999994393438
-single,40,local,8,emergency,40,0.02,0,78,emergency,True,1,1,0,1,44,2.6796250022016466
-single,40,local,9,emergency,40,0.02,0,122,emergency,True,1,1,0,1,75,67.16954195871949
-single,40,solo,0,emergency,40,0.02,0,87,emergency,True,1,1,0,1,6,2.8039589524269104
-single,40,local,6,emergency,40,0.02,0,33,emergency,True,1,1,0,1,91,498.48737497814
-single,40,solo,2,emergency,40,0.02,0,51,emergency,True,1,1,0,1,6,1.7724159988574684
-single,40,local,7,emergency,40,0.02,0,79,emergency,True,1,1,0,1,25,22.018667019438
-single,40,solo,1,emergency,40,0.02,0,126,emergency,True,1,1,0,1,6,2.60974996490404
-single,40,solo,3,emergency,40,0.02,0,30,emergency,True,1,1,0,1,6,10.678499995265156
-single,40,solo,6,emergency,40,0.02,0,33,emergency,True,1,1,0,1,7,17.755749984644353
-single,40,solo,4,emergency,40,0.02,0,115,emergency,True,1,1,0,1,4,5.540332989767194
-single,40,solo,8,emergency,40,0.02,0,78,emergency,True,1,1,0,1,4,3.9156670100055635
-single,40,solo,5,emergency,40,0.02,0,13,emergency,True,1,1,0,1,8,27.327207964845
-single,40,local,5,emergency,40,0.02,0,13,emergency,True,1,1,0,1,158,1215.69083299255
-single,40,solo,9,emergency,40,0.02,0,122,emergency,True,1,1,0,1,7,3.250667010433972
-single,40,solo,7,emergency,40,0.02,0,79,emergency,True,1,1,0,1,1,10.660167026799172
-single,40,full,0,emergency,40,0.02,0,87,emergency,True,1,35,34,5,80,59.96645800769329
-single,40,full,1,emergency,40,0.02,0,126,emergency,True,1,20,19,5,80,53.19770803907886
-single,40,full,2,emergency,40,0.02,0,51,emergency,True,1,39,38,5,80,201.29241701215506
-single,40,full,4,emergency,40,0.02,0,115,emergency,True,1,36,35,5,80,129.98658401193097
-single,40,full,3,emergency,40,0.02,0,30,emergency,True,1,38,37,5,80,340.3366249985993
-single,30,local,0,blockage (temp),30,0.02,0,106,blockage,False,1,1,0,1,7,1.51012500282377
-single,30,local,1,blockage (temp),30,0.02,0,112,blockage,False,2,2,0,1,39,19.157207978423685
-single,40,full,6,emergency,40,0.02,0,33,emergency,True,1,37,36,5,80,485.52016698522493
-single,30,local,2,blockage (temp),30,0.02,0,75,blockage,False,1,1,0,1,42,32.79787499923259
-single,40,full,9,emergency,40,0.02,0,122,emergency,True,1,24,23,5,80,17.494625004474074
-single,40,full,8,emergency,40,0.02,0,78,emergency,True,1,36,35,5,80,147.49004202894866
-single,40,full,7,emergency,40,0.02,0,79,emergency,True,1,32,31,5,80,239.13266602903605
-single,30,local,4,blockage (temp),30,0.02,0,15,blockage,False,1,1,0,1,4,8.02016700617969
-single,30,local,5,blockage (temp),30,0.02,0,71,blockage,False,7,7,0,1,277,140.84929204545915
-single,30,local,7,blockage (temp),30,0.02,0,111,blockage,False,2,2,0,1,5,1.0567919816821814
-single,30,local,9,blockage (temp),30,0.02,0,75,blockage,False,2,2,0,1,34,10.029583994764835
-single,30,local,6,blockage (temp),30,0.02,0,74,blockage,False,3,6,3,1,391,294.02937402483076
-single,30,local,8,blockage (temp),30,0.02,0,105,blockage,False,4,5,1,3,96,56.546958978287876
-single,30,solo,1,blockage (temp),30,0.02,0,112,blockage,False,2,2,0,1,7,1.8224589875899255
-single,30,solo,0,blockage (temp),30,0.02,0,106,blockage,False,1,1,0,1,7,1.4666669885627925
-single,30,solo,2,blockage (temp),30,0.02,0,75,blockage,False,1,1,0,1,4,6.018625048454851
-single,30,solo,4,blockage (temp),30,0.02,0,15,blockage,False,1,1,0,1,4,2.394542039837688
-single,30,solo,5,blockage (temp),30,0.02,0,71,blockage,False,7,7,0,1,31,18.087790987920016
-single,30,solo,6,blockage (temp),30,0.02,0,74,blockage,False,3,6,3,1,97,49.50166598428041
-single,30,solo,7,blockage (temp),30,0.02,0,111,blockage,False,2,2,0,1,5,1.0959579958580434
-single,30,solo,3,blockage (temp),30,0.02,0,20,blockage,False,3,3,0,1,5,143.95241701276973
-single,30,solo,9,blockage (temp),30,0.02,0,75,blockage,False,2,2,0,1,4,3.8530000019818544
-single,30,solo,8,blockage (temp),30,0.02,0,105,blockage,False,4,4,0,1,10,7.047667051665485
-single,30,full,0,blockage (temp),30,0.02,0,106,blockage,False,1,17,16,5,60,19.48675001040101
-single,30,full,2,blockage (temp),30,0.02,0,75,blockage,False,1,19,18,5,60,40.28300003847107
-single,30,full,1,blockage (temp),30,0.02,0,112,blockage,False,2,22,20,5,60,10.145083942916244
-single,30,local,3,blockage (temp),30,0.02,0,20,blockage,False,3,3,0,3,177,1214.8932080017403
-single,30,full,5,blockage (temp),30,0.02,0,71,blockage,False,7,28,21,5,60,107.55641700234264
-single,30,full,7,blockage (temp),30,0.02,0,111,blockage,False,2,9,7,5,60,17.31708401348442
-single,30,full,4,blockage (temp),30,0.02,0,15,blockage,False,1,19,18,5,60,273.9198339986615
-single,30,full,6,blockage (temp),30,0.02,0,74,blockage,False,3,27,24,5,60,105.07779201725498
-single,30,full,8,blockage (temp),30,0.02,0,105,blockage,False,4,20,16,5,60,29.90454202517867
-single,30,full,3,blockage (temp),30,0.02,0,20,blockage,False,3,25,22,5,60,308.7933749775402
-single,30,full,9,blockage (temp),30,0.02,0,75,blockage,False,2,17,15,5,60,52.81570798251778
-single,40,full,5,emergency,40,0.02,0,13,emergency,True,1,40,39,5,80,2365.2688749716617
-single,30,local,1,blockage (perm),30,0.02,0,73,blockage,True,9,9,0,2,204,224.04333297163248
-single,30,local,0,blockage (perm),30,0.02,0,106,blockage,True,5,5,0,2,172,99.52454100130126
-single,30,local,7,blockage (perm),30,0.02,0,111,blockage,True,6,6,0,1,50,24.639124982059002
-single,30,local,6,blockage (perm),30,0.02,0,74,blockage,True,6,6,0,1,355,248.80695901811123
-single,30,local,5,blockage (perm),30,0.02,0,71,blockage,True,9,9,0,3,398,466.8446669820696
-single,30,solo,1,blockage (perm),30,0.02,0,73,blockage,True,9,9,0,1,36,35.57208395795897
-single,30,local,8,blockage (perm),30,0.02,0,105,blockage,True,4,5,1,3,96,58.309833984822035
-single,30,solo,0,blockage (perm),30,0.02,0,106,blockage,True,5,5,0,1,17,33.29649998340756
-single,30,local,9,blockage (perm),30,0.02,0,75,blockage,True,10,11,1,3,377,231.3275839551352
-single,30,local,2,blockage (perm),30,0.02,0,75,blockage,True,8,9,1,3,269,952.5826249737293
-single,30,solo,2,blockage (perm),30,0.02,0,75,blockage,True,8,8,0,1,36,79.0310840238817
-single,30,local,4,blockage (perm),30,0.02,0,15,blockage,True,12,14,2,2,345,953.294790990185
-single,30,solo,4,blockage (perm),30,0.02,0,15,blockage,True,12,12,0,1,50,161.8884580093436
-single,30,solo,5,blockage (perm),30,0.02,0,71,blockage,True,9,9,0,1,37,33.6001249961555
-single,30,solo,6,blockage (perm),30,0.02,0,74,blockage,True,6,6,0,1,97,74.39054199494421
-single,30,solo,7,blockage (perm),30,0.02,0,111,blockage,True,6,6,0,1,14,5.0221249694004655
-single,30,solo,3,blockage (perm),30,0.02,0,20,blockage,True,11,11,0,1,44,261.0899159917608
-single,30,solo,8,blockage (perm),30,0.02,0,105,blockage,True,4,4,0,1,10,17.665666004177183
-single,30,solo,9,blockage (perm),30,0.02,0,75,blockage,True,10,10,0,1,45,85.1255000452511
-single,30,full,1,blockage (perm),30,0.02,0,73,blockage,True,9,29,20,5,60,74.8104170197621
-single,30,full,2,blockage (perm),30,0.02,0,75,blockage,True,8,25,17,5,60,132.32974999118596
-single,30,full,0,blockage (perm),30,0.02,0,106,blockage,True,5,19,14,5,60,43.621250020805746
-single,30,full,6,blockage (perm),30,0.02,0,74,blockage,True,6,27,21,5,60,103.4190829959698
-single,30,full,5,blockage (perm),30,0.02,0,71,blockage,True,9,27,18,5,60,127.05962499603629
-single,30,full,7,blockage (perm),30,0.02,0,111,blockage,True,6,13,7,5,60,18.56504095485434
-single,30,full,4,blockage (perm),30,0.02,0,15,blockage,True,12,29,17,5,60,313.4101670002565
-single,30,full,9,blockage (perm),30,0.02,0,75,blockage,True,10,22,12,5,60,100.5466670030728
-single,30,full,8,blockage (perm),30,0.02,0,105,blockage,True,4,20,16,5,60,20.786000008229166
-single,30,local,0,breakdown (temp),30,0.02,0,23,breakdown,False,2,2,0,1,55,16.232167021371424
-single,30,local,1,breakdown (temp),30,0.02,0,114,breakdown,False,4,4,0,1,78,7.269292022101581
-single,30,local,2,breakdown (temp),30,0.02,0,76,breakdown,False,1,1,0,1,8,2.032749995123595
-single,30,full,3,blockage (perm),30,0.02,0,20,blockage,True,11,26,15,5,60,638.7846249854192
-single,30,local,3,breakdown (temp),30,0.02,0,98,breakdown,False,1,1,0,1,1,0.17033301992341876
-single,30,local,4,breakdown (temp),30,0.02,0,43,breakdown,False,2,2,0,1,8,4.5251669944263995
-single,30,local,6,breakdown (temp),30,0.02,0,77,breakdown,False,2,2,0,1,85,41.883833007887006
-single,30,local,5,breakdown (temp),30,0.02,0,103,breakdown,False,2,2,0,1,35,7.5566250015981495
-single,30,local,9,breakdown (temp),30,0.02,0,68,breakdown,False,3,3,0,1,48,28.860291989985853
-single,30,solo,2,breakdown (temp),30,0.02,0,76,breakdown,False,1,1,0,1,8,8.885874995030463
-single,30,solo,1,breakdown (temp),30,0.02,0,114,breakdown,False,4,4,0,1,28,3.628042002674192
-single,30,solo,0,breakdown (temp),30,0.02,0,23,breakdown,False,2,2,0,1,11,20.16695903148502
-single,30,local,7,breakdown (temp),30,0.02,0,44,breakdown,False,2,2,0,1,99,398.4615830122493
-single,30,local,8,breakdown (temp),30,0.02,0,70,breakdown,False,5,5,0,2,216,220.9847079939209
-single,30,solo,3,breakdown (temp),30,0.02,0,98,breakdown,False,1,1,0,1,1,0.17925002612173557
-single,30,solo,4,breakdown (temp),30,0.02,0,43,breakdown,False,2,2,0,1,8,9.315458999481052
-single,30,solo,6,breakdown (temp),30,0.02,0,77,breakdown,False,2,2,0,1,11,9.690041013527662
-single,30,solo,5,breakdown (temp),30,0.02,0,103,breakdown,False,2,2,0,1,5,2.651083981618285
-single,30,solo,7,breakdown (temp),30,0.02,0,44,breakdown,False,2,2,0,1,11,21.84374997159466
-single,30,solo,9,breakdown (temp),30,0.02,0,68,breakdown,False,3,3,0,1,8,48.10124996583909
-single,30,solo,8,breakdown (temp),30,0.02,0,70,breakdown,False,5,5,0,1,28,18.007832986768335
-single,30,full,2,breakdown (temp),30,0.02,0,76,breakdown,False,1,17,16,5,60,47.53341601463035
-single,30,full,1,breakdown (temp),30,0.02,0,114,breakdown,False,4,23,19,5,60,21.574500016868114
-single,30,full,4,breakdown (temp),30,0.02,0,43,breakdown,False,2,24,22,5,60,61.24712503515184
-single,30,full,5,breakdown (temp),30,0.02,0,103,breakdown,False,2,19,17,5,60,19.40733299124986
-single,30,full,0,breakdown (temp),30,0.02,0,23,breakdown,False,2,29,27,5,60,322.3477909923531
-single,30,full,3,breakdown (temp),30,0.02,0,98,breakdown,False,1,24,23,5,60,84.09420901443809
-single,30,full,6,breakdown (temp),30,0.02,0,77,breakdown,False,2,28,26,5,60,97.35762496711686
-single,30,local,3,blockage (perm),30,0.02,0,20,blockage,True,11,14,3,3,670,4127.225500007626
-single,30,full,9,breakdown (temp),30,0.02,0,68,breakdown,False,3,25,22,5,60,64.62045799707994
-single,30,full,8,breakdown (temp),30,0.02,0,70,breakdown,False,5,30,25,5,60,142.1377919614315
-single,30,full,7,breakdown (temp),30,0.02,0,44,breakdown,False,2,24,22,5,60,418.91020903130993
-single,30,local,3,breakdown (perm),30,0.02,0,64,breakdown,True,6,6,0,1,56,73.56095797149464
-single,30,local,2,breakdown (perm),30,0.02,0,19,breakdown,True,6,6,0,1,227,445.5049589741975
-single,30,local,1,breakdown (perm),30,0.02,0,62,breakdown,True,12,12,0,1,368,648.3279169769958
-single,30,local,5,breakdown (perm),30,0.02,0,46,breakdown,True,13,15,2,3,383,975.2895830315538
-single,30,solo,0,breakdown (perm),30,0.02,0,18,breakdown,True,12,12,0,1,107,132.75533396517858
-single,30,local,7,breakdown (perm),30,0.02,0,45,breakdown,True,16,16,0,1,513,892.4107499769889
-single,30,local,8,breakdown (perm),30,0.02,0,63,breakdown,True,11,12,1,4,635,660.0351250381209
-single,30,solo,2,breakdown (perm),30,0.02,0,19,breakdown,True,6,6,0,1,55,21.774624998215586
-single,30,solo,1,breakdown (perm),30,0.02,0,62,breakdown,True,12,12,0,1,46,79.18724999763072
-single,30,solo,3,breakdown (perm),30,0.02,0,64,breakdown,True,6,6,0,1,18,11.236374964937568
-single,30,local,4,breakdown (perm),30,0.02,0,23,breakdown,True,11,11,0,3,524,1781.706249981653
-single,30,solo,4,breakdown (perm),30,0.02,0,23,breakdown,True,11,11,0,1,60,218.00091699697077
-single,30,solo,5,breakdown (perm),30,0.02,0,46,breakdown,True,13,13,0,1,47,150.70912503870204
-single,30,solo,7,breakdown (perm),30,0.02,0,45,breakdown,True,16,16,0,1,77,88.05979101452976
-single,30,solo,6,breakdown (perm),30,0.02,0,24,breakdown,True,16,16,0,1,95,420.87291699135676
-single,30,local,9,breakdown (perm),30,0.02,0,34,breakdown,True,11,12,1,2,600,1661.69625002658
-single,30,solo,9,breakdown (perm),30,0.02,0,34,breakdown,True,11,11,0,1,96,100.75224994216114
-single,30,local,6,breakdown (perm),30,0.02,0,24,breakdown,True,16,19,3,3,503,2314.9423750001006
-single,30,solo,8,breakdown (perm),30,0.02,0,63,breakdown,True,11,16,5,4,270,332.4333749478683
-single,30,full,1,breakdown (perm),30,0.02,0,62,breakdown,True,12,29,17,5,72,119.58654102636501
-single,30,full,0,breakdown (perm),30,0.02,0,18,breakdown,True,12,27,15,5,109,256.195708992891
-single,30,full,2,breakdown (perm),30,0.02,0,19,breakdown,True,6,28,22,5,91,221.654666995164
-single,30,full,4,breakdown (perm),30,0.02,0,23,breakdown,True,11,28,17,5,79,302.5550419697538
-single,30,full,3,breakdown (perm),30,0.02,0,64,breakdown,True,6,24,18,5,63,145.3936669859104
-single,30,full,5,breakdown (perm),30,0.02,0,46,breakdown,True,13,29,16,5,64,154.8078330233693
-single,30,local,0,breakdown (perm),30,0.02,0,18,breakdown,True,12,12,0,1,595,3155.1944579696283
-single,30,full,7,breakdown (perm),30,0.02,0,45,breakdown,True,16,28,12,5,84,305.37054204614833
-single,30,full,6,breakdown (perm),30,0.02,0,24,breakdown,True,16,30,14,5,97,447.143875004258
-single,30,local,0,emergency,30,0.02,0,83,emergency,True,1,1,0,1,40,20.545875013340265
-single,30,local,1,emergency,30,0.02,0,135,emergency,True,1,1,0,1,13,0.7943329983390868
-single,30,full,9,breakdown (perm),30,0.02,0,34,breakdown,True,11,30,19,5,103,204.89645894849673
-single,30,full,8,breakdown (perm),30,0.02,0,63,breakdown,True,11,30,19,5,92,174.80916698696092
-single,30,local,4,emergency,30,0.02,0,122,emergency,True,1,1,0,1,49,17.36616698326543
-single,30,local,2,emergency,30,0.02,0,62,emergency,True,1,1,0,1,79,325.12729201698676
-single,30,local,7,emergency,30,0.02,0,77,emergency,True,1,1,0,1,84,74.9013329623267
-single,30,local,9,emergency,30,0.02,0,113,emergency,True,1,1,0,1,32,1.1309999972581863
-single,30,local,6,emergency,30,0.02,0,26,emergency,True,1,1,0,1,49,289.2976669827476
-single,30,local,8,emergency,30,0.02,0,75,emergency,True,1,1,0,1,24,13.025625026784837
-single,30,solo,0,emergency,30,0.02,0,83,emergency,True,1,1,0,1,6,2.135500020813197
-single,30,solo,2,emergency,30,0.02,0,62,emergency,True,1,1,0,1,1,7.030041015241295
-single,30,solo,1,emergency,30,0.02,0,135,emergency,True,1,1,0,1,1,0.7628750172443688
-single,30,solo,4,emergency,30,0.02,0,122,emergency,True,1,1,0,1,7,7.201500004157424
-single,30,solo,6,emergency,30,0.02,0,26,emergency,True,1,1,0,1,3,14.172833994962275
-single,30,solo,5,emergency,30,0.02,0,13,emergency,True,1,1,0,1,4,30.061082972679287
-single,30,solo,3,emergency,30,0.02,0,33,emergency,True,1,1,0,1,2,64.1207080334425
-single,30,solo,7,emergency,30,0.02,0,77,emergency,True,1,1,0,1,2,8.413041010499
-single,30,solo,9,emergency,30,0.02,0,113,emergency,True,1,1,0,1,4,1.066416036337614
-single,30,local,5,emergency,30,0.02,0,13,emergency,True,1,1,0,1,106,998.9694160176441
-single,30,solo,8,emergency,30,0.02,0,75,emergency,True,1,1,0,1,4,6.832041952293366
-single,30,local,3,emergency,30,0.02,0,33,emergency,True,1,1,0,1,86,1255.571499990765
-single,30,full,1,emergency,30,0.02,0,135,emergency,True,1,21,20,5,60,14.953290985431522
-single,30,full,2,emergency,30,0.02,0,62,emergency,True,1,26,25,5,60,77.34441600041464
-single,30,full,0,emergency,30,0.02,0,83,emergency,True,1,22,21,5,60,54.55087497830391
-single,30,full,4,emergency,30,0.02,0,122,emergency,True,1,19,18,5,60,21.109500026796013
-single,20,local,0,blockage (temp),20,0.02,0,117,blockage,False,1,1,0,1,1,0.47720898874104023
-single,20,local,1,blockage (temp),20,0.02,0,95,blockage,False,3,3,0,1,49,32.87925000768155
-single,30,full,9,emergency,30,0.02,0,113,emergency,True,1,7,6,5,60,6.783999968320131
-single,30,full,6,emergency,30,0.02,0,26,emergency,True,1,28,27,5,60,295.6496669794433
-single,30,full,3,emergency,30,0.02,0,33,emergency,True,1,24,23,5,60,310.8642500010319
-single,20,local,4,blockage (temp),20,0.02,0,12,blockage,False,1,1,0,1,5,2.597499988041818
-single,30,full,7,emergency,30,0.02,0,77,emergency,True,1,26,25,5,60,111.59637500531971
-single,20,local,2,blockage (temp),20,0.02,0,57,blockage,False,1,1,0,1,38,39.9500000057742
-single,30,full,5,emergency,30,0.02,0,13,emergency,True,1,25,24,5,60,386.273332987912
-single,20,local,5,blockage (temp),20,0.02,0,60,blockage,False,1,1,0,1,18,1.7126669990830123
-single,30,full,8,emergency,30,0.02,0,75,emergency,True,1,26,25,5,60,75.16808400396258
-single,20,local,3,blockage (temp),20,0.02,0,18,blockage,False,2,2,0,1,45,103.82833401672542
-single,20,local,8,blockage (temp),20,0.02,0,92,blockage,False,4,5,1,1,158,30.158291978295892
-single,20,local,6,blockage (temp),20,0.02,0,72,blockage,False,1,1,0,1,34,17.36612501554191
-single,20,local,7,blockage (temp),20,0.02,0,95,blockage,False,1,1,0,1,2,5.045583995524794
-single,20,solo,2,blockage (temp),20,0.02,0,57,blockage,False,1,1,0,1,4,2.615500008687377
-single,20,local,9,blockage (temp),20,0.02,0,79,blockage,False,3,3,0,1,61,8.533749962225556
-single,20,solo,4,blockage (temp),20,0.02,0,12,blockage,False,1,1,0,1,5,1.114875019993633
-single,20,solo,0,blockage (temp),20,0.02,0,117,blockage,False,1,1,0,1,1,0.45016699004918337
-single,20,solo,1,blockage (temp),20,0.02,0,95,blockage,False,3,3,0,1,11,4.894500016234815
-single,20,solo,3,blockage (temp),20,0.02,0,18,blockage,False,2,2,0,1,7,24.890209024306387
-single,20,solo,5,blockage (temp),20,0.02,0,60,blockage,False,1,1,0,1,2,1.7369589768350124
-single,20,solo,6,blockage (temp),20,0.02,0,72,blockage,False,1,1,0,1,4,4.831583995837718
-single,20,solo,8,blockage (temp),20,0.02,0,92,blockage,False,4,5,1,1,48,15.74462599819526
-single,20,solo,7,blockage (temp),20,0.02,0,95,blockage,False,1,1,0,1,2,1.2976250145584345
-single,20,solo,9,blockage (temp),20,0.02,0,79,blockage,False,3,3,0,1,13,3.8560000248253345
-single,20,full,2,blockage (temp),20,0.02,0,57,blockage,False,1,12,11,5,40,21.10920799896121
-single,20,full,1,blockage (temp),20,0.02,0,95,blockage,False,3,15,12,5,40,14.543541998136789
-single,20,full,5,blockage (temp),20,0.02,0,60,blockage,False,1,3,2,5,40,24.24045803491026
-single,20,full,4,blockage (temp),20,0.02,0,12,blockage,False,1,9,8,5,40,95.2288749977015
-single,20,full,3,blockage (temp),20,0.02,0,18,blockage,False,2,13,11,5,40,104.41162501228973
-single,20,full,0,blockage (temp),20,0.02,0,117,blockage,False,1,8,7,5,40,5.211332987528294
-single,20,full,6,blockage (temp),20,0.02,0,72,blockage,False,1,11,10,5,40,21.872874989639968
-single,20,full,7,blockage (temp),20,0.02,0,95,blockage,False,1,13,12,5,40,6.293917016591877
-single,20,full,8,blockage (temp),20,0.02,0,92,blockage,False,4,12,8,5,40,15.877208032179624
-single,20,local,2,blockage (perm),20,0.02,0,57,blockage,True,6,7,1,2,81,59.7697920165956
-single,20,full,9,blockage (temp),20,0.02,0,79,blockage,False,3,13,10,5,40,14.382791006937623
-single,20,local,1,blockage (perm),20,0.02,0,62,blockage,True,3,3,0,1,8,4.692457965575159
-single,20,local,5,blockage (perm),20,0.02,0,60,blockage,True,2,2,0,1,69,20.00758401118219
-single,20,local,0,blockage (perm),20,0.02,0,117,blockage,True,4,4,0,1,19,3.552249982021749
-single,20,local,7,blockage (perm),20,0.02,0,95,blockage,True,4,4,0,1,29,27.27054199203849
-single,20,local,6,blockage (perm),20,0.02,0,72,blockage,True,4,5,1,2,47,37.493167037609965
-single,20,local,9,blockage (perm),20,0.02,0,79,blockage,True,7,8,1,3,84,49.043457955121994
-single,20,solo,1,blockage (perm),20,0.02,0,62,blockage,True,3,3,0,1,8,4.712667025160044
-single,20,local,8,blockage (perm),20,0.02,0,92,blockage,True,5,5,0,1,190,120.37195899756625
-single,20,solo,0,blockage (perm),20,0.02,0,117,blockage,True,4,4,0,1,7,3.9291249704547226
-single,20,solo,2,blockage (perm),20,0.02,0,57,blockage,True,6,6,0,1,13,21.69337501982227
-single,20,solo,5,blockage (perm),20,0.02,0,60,blockage,True,2,2,0,1,7,4.635917022824287
-single,20,solo,4,blockage (perm),20,0.02,0,12,blockage,True,7,7,0,1,22,44.888417003676295
-single,20,solo,3,blockage (perm),20,0.02,0,18,blockage,True,9,9,0,1,36,88.47920899279416
-single,20,local,4,blockage (perm),20,0.02,0,12,blockage,True,7,7,0,1,192,482.7227499918081
-single,20,solo,6,blockage (perm),20,0.02,0,72,blockage,True,4,4,0,1,9,23.040125030092895
-single,20,solo,7,blockage (perm),20,0.02,0,95,blockage,True,4,4,0,1,9,18.999582971446216
-single,20,solo,8,blockage (perm),20,0.02,0,92,blockage,True,5,5,0,1,48,40.81979097099975
-single,20,local,3,blockage (perm),20,0.02,0,18,blockage,True,9,11,2,3,302,610.2805840200745
-single,20,solo,9,blockage (perm),20,0.02,0,79,blockage,True,7,7,0,1,23,39.633375010453165
-single,20,full,2,blockage (perm),20,0.02,0,57,blockage,True,6,19,13,5,40,35.481334023643285
-single,20,full,0,blockage (perm),20,0.02,0,117,blockage,True,4,9,5,5,40,9.587916953023523
-single,20,full,1,blockage (perm),20,0.02,0,62,blockage,True,3,14,11,5,40,37.74850000627339
-single,20,full,8,blockage (perm),20,0.02,0,92,blockage,True,5,12,7,5,40,28.651166998315603
-single,20,full,5,blockage (perm),20,0.02,0,60,blockage,True,2,4,2,5,40,111.55904101906344
-single,20,full,3,blockage (perm),20,0.02,0,18,blockage,True,9,16,7,5,40,142.37504097400233
-single,20,full,4,blockage (perm),20,0.02,0,12,blockage,True,7,19,12,5,40,177.050500002224
-single,20,full,6,blockage (perm),20,0.02,0,72,blockage,True,4,14,10,5,40,40.814749954734
-single,20,full,7,blockage (perm),20,0.02,0,95,blockage,True,4,11,7,5,40,23.358167032711208
-single,20,local,2,breakdown (temp),20,0.02,0,58,breakdown,False,2,2,0,1,30,7.334667025133967
-single,20,local,0,breakdown (temp),20,0.02,0,26,breakdown,False,1,1,0,1,1,25.224875018466264
-single,20,full,9,blockage (perm),20,0.02,0,79,blockage,True,7,18,11,5,40,19.349958980455995
-single,20,local,4,breakdown (temp),20,0.02,0,35,breakdown,False,2,2,0,1,28,27.637624996714294
-single,20,local,5,breakdown (temp),20,0.02,0,88,breakdown,False,1,1,0,1,6,0.30866696033626795
-single,20,local,1,breakdown (temp),20,0.02,0,96,breakdown,False,1,1,0,1,5,0.8561660069972277
-single,20,local,3,breakdown (temp),20,0.02,0,87,breakdown,False,4,4,0,1,54,26.38537500752136
-single,20,local,6,breakdown (temp),20,0.02,0,76,breakdown,False,1,1,0,1,1,3.0890829511918128
-single,20,local,8,breakdown (temp),20,0.02,0,61,breakdown,False,4,4,0,1,61,8.598583983257413
-single,20,solo,2,breakdown (temp),20,0.02,0,58,breakdown,False,2,2,0,1,8,5.3649169858545065
-single,20,solo,4,breakdown (temp),20,0.02,0,35,breakdown,False,2,2,0,1,4,8.963208005297929
-single,20,local,9,breakdown (temp),20,0.02,0,73,breakdown,False,1,1,0,1,0,1.3140829978510737
-single,20,solo,3,breakdown (temp),20,0.02,0,87,breakdown,False,4,4,0,1,16,10.579959023743868
-single,20,solo,0,breakdown (temp),20,0.02,0,26,breakdown,False,1,1,0,1,1,10.897915984969586
-single,20,solo,1,breakdown (temp),20,0.02,0,96,breakdown,False,1,1,0,1,5,0.8847499848343432
-single,20,solo,5,breakdown (temp),20,0.02,0,88,breakdown,False,1,1,0,1,6,0.3209160058759153
-single,20,solo,8,breakdown (temp),20,0.02,0,61,breakdown,False,4,4,0,1,11,8.924207999370992
-single,20,local,7,breakdown (temp),20,0.02,0,37,breakdown,False,3,3,0,1,64,178.1724999891594
-single,20,solo,6,breakdown (temp),20,0.02,0,76,breakdown,False,1,1,0,1,1,3.061208000872284
-single,20,solo,9,breakdown (temp),20,0.02,0,73,breakdown,False,1,1,0,1,0,1.288625004235655
-single,20,solo,7,breakdown (temp),20,0.02,0,37,breakdown,False,3,3,0,1,8,42.188874969724566
-single,20,full,2,breakdown (temp),20,0.02,0,58,breakdown,False,2,16,14,5,40,42.31045802589506
-single,20,full,1,breakdown (temp),20,0.02,0,96,breakdown,False,1,13,12,5,40,10.647332994267344
-single,20,full,3,breakdown (temp),20,0.02,0,87,breakdown,False,4,12,8,5,40,22.854042006656528
-single,20,full,4,breakdown (temp),20,0.02,0,35,breakdown,False,2,16,14,5,40,68.33683303557336
-single,20,full,5,breakdown (temp),20,0.02,0,88,breakdown,False,1,2,1,5,40,20.560165983624756
-single,20,full,8,breakdown (temp),20,0.02,0,61,breakdown,False,4,18,14,5,40,24.93083296576515
-single,20,full,6,breakdown (temp),20,0.02,0,76,breakdown,False,1,13,12,5,40,21.156416973099113
-single,20,full,7,breakdown (temp),20,0.02,0,37,breakdown,False,3,18,15,5,40,81.76162495510653
-single,20,full,0,breakdown (temp),20,0.02,0,26,breakdown,False,1,17,16,5,40,151.18120796978474
-single,20,full,9,breakdown (temp),20,0.02,0,73,breakdown,False,1,16,15,5,40,20.838583004660904
-single,20,local,3,breakdown (perm),20,0.02,0,57,breakdown,True,4,4,0,1,109,57.9085840145126
-single,20,local,5,breakdown (perm),20,0.02,0,40,breakdown,True,8,10,2,3,235,104.19733298476785
-single,20,local,8,breakdown (perm),20,0.02,0,55,breakdown,True,5,6,1,3,123,80.79095795983449
-single,20,local,2,breakdown (perm),20,0.02,0,15,breakdown,True,8,8,0,3,213,251.63399998564273
-single,20,local,6,breakdown (perm),20,0.02,0,23,breakdown,True,7,9,2,3,158,109.07825001049787
-single,20,local,9,breakdown (perm),20,0.02,0,36,breakdown,True,5,6,1,3,93,48.560667026322335
-single,20,solo,2,breakdown (perm),20,0.02,0,15,breakdown,True,8,8,0,1,58,59.35404199408367
-single,20,solo,1,breakdown (perm),20,0.02,0,53,breakdown,True,7,7,0,1,25,51.521833054721355
-single,20,local,1,breakdown (perm),20,0.02,0,53,breakdown,True,7,7,0,3,131,442.06237501930445
-single,20,local,4,breakdown (perm),20,0.02,0,19,breakdown,True,12,14,2,3,273,532.5305829755962
-single,20,solo,3,breakdown (perm),20,0.02,0,57,breakdown,True,4,4,0,1,23,20.831291971262544
-single,20,solo,4,breakdown (perm),20,0.02,0,19,breakdown,True,12,12,0,1,51,95.45708302175626
-single,20,solo,5,breakdown (perm),20,0.02,0,40,breakdown,True,8,8,0,1,81,40.07175000151619
-single,20,solo,6,breakdown (perm),20,0.02,0,23,breakdown,True,7,7,0,1,53,40.65420798724517
-single,20,solo,0,breakdown (perm),20,0.02,0,20,breakdown,True,9,9,0,1,27,270.0256670359522
-single,20,solo,8,breakdown (perm),20,0.02,0,55,breakdown,True,5,5,0,1,24,16.105999995488673
-single,20,solo,7,breakdown (perm),20,0.02,0,39,breakdown,True,8,8,0,1,33,96.83612495427951
-single,20,full,3,breakdown (perm),20,0.02,0,57,breakdown,True,4,17,13,5,49,46.71604203758761
-single,20,solo,9,breakdown (perm),20,0.02,0,36,breakdown,True,5,5,0,1,33,70.07529103429988
-single,20,full,4,breakdown (perm),20,0.02,0,19,breakdown,True,12,18,6,5,65,104.90249999566004
-single,20,full,2,breakdown (perm),20,0.02,0,15,breakdown,True,8,18,10,5,71,126.37066701427102
-single,20,full,1,breakdown (perm),20,0.02,0,53,breakdown,True,7,14,7,5,48,88.09708303306252
-single,20,local,7,breakdown (perm),20,0.02,0,39,breakdown,True,8,8,0,1,195,934.3908749870025
-single,20,full,5,breakdown (perm),20,0.02,0,40,breakdown,True,8,19,11,5,89,67.11025000549853
-single,20,full,0,breakdown (perm),20,0.02,0,20,breakdown,True,9,20,11,5,47,253.301625023596
-single,20,full,8,breakdown (perm),20,0.02,0,55,breakdown,True,5,17,12,5,52,78.60112498747185
-single,20,full,6,breakdown (perm),20,0.02,0,23,breakdown,True,7,19,12,5,71,99.26312504103407
-single,20,full,7,breakdown (perm),20,0.02,0,39,breakdown,True,8,20,12,5,53,102.04645805060863
-single,20,full,9,breakdown (perm),20,0.02,0,36,breakdown,True,5,17,12,5,59,62.14425002690405
-single,20,local,2,emergency,20,0.02,0,47,emergency,True,1,1,0,1,3,1.328042009845376
-single,20,local,4,emergency,20,0.02,0,102,emergency,True,1,1,0,1,54,18.715958984103054
-single,20,local,1,emergency,20,0.02,0,114,emergency,True,1,1,0,1,18,1.2799170217476785
-single,20,local,0,emergency,20,0.02,0,92,emergency,True,1,1,0,1,19,8.666292007546872
-single,20,local,3,emergency,20,0.02,0,29,emergency,True,1,1,0,1,27,38.48129202378914
-single,20,local,5,emergency,20,0.02,0,11,emergency,True,1,2,1,2,19,78.21208296809345
-single,20,local,8,emergency,20,0.02,0,66,emergency,True,1,1,0,1,16,1.240084005985409
-single,20,local,6,emergency,20,0.02,0,25,emergency,True,1,2,1,3,34,31.061916961334646
-single,20,local,7,emergency,20,0.02,0,65,emergency,True,1,1,0,1,31,54.18141698464751
-single,20,local,0,breakdown (perm),20,0.02,0,20,breakdown,True,9,11,2,2,232,1466.7402500053868
-single,20,local,9,emergency,20,0.02,0,120,emergency,True,1,1,0,1,30,7.076709007378668
-single,20,solo,2,emergency,20,0.02,0,47,emergency,True,1,1,0,1,3,1.2363750138320029
-single,20,solo,0,emergency,20,0.02,0,92,emergency,True,1,1,0,1,1,2.0373750012367964
-single,20,solo,4,emergency,20,0.02,0,102,emergency,True,1,1,0,1,2,1.8117079744115472
-single,20,solo,1,emergency,20,0.02,0,114,emergency,True,1,1,0,1,2,2.05370900221169
-single,20,solo,3,emergency,20,0.02,0,29,emergency,True,1,1,0,1,3,1.3846660149283707
-single,20,solo,8,emergency,20,0.02,0,66,emergency,True,1,1,0,1,2,1.1514999787323177
-single,20,solo,7,emergency,20,0.02,0,65,emergency,True,1,1,0,1,1,2.9997500241734087
-single,20,solo,6,emergency,20,0.02,0,25,emergency,True,1,1,0,1,4,15.2232910040766
-single,20,solo,5,emergency,20,0.02,0,11,emergency,True,1,1,0,1,4,16.767417022492737
-single,20,solo,9,emergency,20,0.02,0,120,emergency,True,1,1,0,1,4,2.5539170019328594
-single,20,full,4,emergency,20,0.02,0,102,emergency,True,1,7,6,5,40,4.242875031195581
-single,20,full,2,emergency,20,0.02,0,47,emergency,True,1,17,16,5,40,47.76229098206386
-single,20,full,1,emergency,20,0.02,0,114,emergency,True,1,15,14,5,40,10.928208008408546
-single,10,local,0,blockage (temp),10,0.02,0,111,blockage,False,1,1,0,1,4,3.960917005315423
-single,20,full,0,emergency,20,0.02,0,92,emergency,True,1,15,14,5,40,19.59408400580287
-single,10,local,1,blockage (temp),10,0.02,0,89,blockage,False,1,1,0,1,11,0.925124972127378
-single,20,full,8,emergency,20,0.02,0,66,emergency,True,1,12,11,5,40,37.9259999608621
-single,10,local,2,blockage (temp),10,0.02,0,51,blockage,False,1,1,0,1,19,10.93254197621718
-single,20,full,3,emergency,20,0.02,0,29,emergency,True,1,18,17,5,40,118.46199998399243
-single,10,local,4,blockage (temp),10,0.02,0,13,blockage,False,1,1,0,1,1,3.3986250055022538
-single,10,local,5,blockage (temp),10,0.02,0,74,blockage,False,1,1,0,1,9,2.4807080044411123
-single,10,local,3,blockage (temp),10,0.02,0,15,blockage,False,3,3,0,1,12,3.794624994043261
-single,10,local,6,blockage (temp),10,0.02,0,70,blockage,False,1,1,0,1,0,0.6074580014683306
-single,10,local,8,blockage (temp),10,0.02,0,86,blockage,False,3,3,0,1,3,1.729832962155342
-single,10,local,7,blockage (temp),10,0.02,0,94,blockage,False,1,2,1,3,17,2.2216669749468565
-single,20,full,7,emergency,20,0.02,0,65,emergency,True,1,17,16,5,40,43.38154202559963
-single,20,full,6,emergency,20,0.02,0,25,emergency,True,1,17,16,5,40,63.99366701953113
-single,20,full,9,emergency,20,0.02,0,120,emergency,True,1,5,4,5,40,8.079749997705221
-single,10,local,9,blockage (temp),10,0.02,0,73,blockage,False,1,1,0,1,13,4.2552080121822655
-single,10,solo,0,blockage (temp),10,0.02,0,111,blockage,False,1,1,0,1,0,1.3470409903675318
-single,10,solo,4,blockage (temp),10,0.02,0,13,blockage,False,1,1,0,1,1,1.310958992689848
-single,10,solo,2,blockage (temp),10,0.02,0,51,blockage,False,1,1,0,1,1,2.0815000170841813
-single,10,solo,3,blockage (temp),10,0.02,0,15,blockage,False,3,3,0,1,2,4.439292009919882
-single,10,solo,7,blockage (temp),10,0.02,0,94,blockage,False,1,1,0,1,1,1.4774169540032744
-single,10,solo,5,blockage (temp),10,0.02,0,74,blockage,False,1,1,0,1,1,2.373416966293007
-single,10,solo,9,blockage (temp),10,0.02,0,73,blockage,False,1,1,0,1,1,1.6238749958574772
-single,10,solo,6,blockage (temp),10,0.02,0,70,blockage,False,1,1,0,1,0,0.5814589676447213
-single,20,full,5,emergency,20,0.02,0,11,emergency,True,1,19,18,5,40,191.24904100317508
-single,10,solo,8,blockage (temp),10,0.02,0,86,blockage,False,3,3,0,1,3,4.659915983211249
-single,10,solo,1,blockage (temp),10,0.02,0,89,blockage,False,1,1,0,1,1,0.8227499783970416
-single,10,full,0,blockage (temp),10,0.02,0,111,blockage,False,1,1,0,5,20,2.6186250033788383
-single,10,full,8,blockage (temp),10,0.02,0,86,blockage,False,3,4,1,5,20,2.4623750359751284
-single,10,full,4,blockage (temp),10,0.02,0,13,blockage,False,1,1,0,5,20,9.56187502015382
-single,10,full,7,blockage (temp),10,0.02,0,94,blockage,False,1,4,3,5,20,8.479666023049504
-single,10,full,2,blockage (temp),10,0.02,0,51,blockage,False,1,2,1,5,20,6.762999983038753
-single,10,full,5,blockage (temp),10,0.02,0,74,blockage,False,1,5,4,5,20,9.613750036805868
-single,10,full,3,blockage (temp),10,0.02,0,15,blockage,False,3,4,1,5,20,25.87137499358505
-single,10,full,6,blockage (temp),10,0.02,0,70,blockage,False,1,3,2,5,20,6.0120829730294645
-single,10,full,9,blockage (temp),10,0.02,0,73,blockage,False,1,3,2,5,20,5.559208046179265
-single,10,full,1,blockage (temp),10,0.02,0,89,blockage,False,1,2,1,5,20,21.129417000338435
-single,10,local,0,blockage (perm),10,0.02,0,111,blockage,True,5,5,0,1,8,11.022749997209758
-single,10,local,5,blockage (perm),10,0.02,0,74,blockage,True,2,2,0,1,10,3.835874958895147
-single,10,local,2,blockage (perm),10,0.02,0,51,blockage,True,4,4,0,1,16,28.585916035808623
-single,10,local,1,blockage (perm),10,0.02,0,58,blockage,True,3,3,0,1,3,4.296166996937245
-single,10,local,7,blockage (perm),10,0.02,0,94,blockage,True,2,2,0,1,1,4.416040959767997
-single,10,local,8,blockage (perm),10,0.02,0,86,blockage,True,3,3,0,1,3,3.480917017441243
-single,10,local,6,blockage (perm),10,0.02,0,70,blockage,True,5,5,0,1,8,18.832167028449476
-single,10,local,4,blockage (perm),10,0.02,0,13,blockage,True,7,7,0,3,22,48.09983400627971
-single,10,local,3,blockage (perm),10,0.02,0,15,blockage,True,5,7,2,3,35,63.194833986926824
-single,10,local,9,blockage (perm),10,0.02,0,73,blockage,True,3,3,0,1,2,7.947749982122332
-single,10,solo,0,blockage (perm),10,0.02,0,111,blockage,True,5,5,0,1,4,7.090500032063574
-single,10,solo,3,blockage (perm),10,0.02,0,15,blockage,True,5,5,0,1,3,17.281832988373935
-single,10,solo,8,blockage (perm),10,0.02,0,86,blockage,True,3,3,0,1,3,2.928333997260779
-single,10,solo,7,blockage (perm),10,0.02,0,94,blockage,True,2,2,0,1,1,4.455499991308898
-single,10,solo,1,blockage (perm),10,0.02,0,58,blockage,True,3,3,0,1,3,8.420041995123029
-single,10,solo,2,blockage (perm),10,0.02,0,51,blockage,True,4,4,0,1,4,21.123416954651475
-single,10,solo,9,blockage (perm),10,0.02,0,73,blockage,True,3,3,0,1,2,6.071874988265336
-single,10,solo,6,blockage (perm),10,0.02,0,70,blockage,True,5,5,0,1,2,22.39299996290356
-single,10,full,0,blockage (perm),10,0.02,0,111,blockage,True,5,8,3,5,20,20.071165985427797
-single,10,solo,4,blockage (perm),10,0.02,0,13,blockage,True,7,7,0,1,6,54.3978750356473
-single,10,full,2,blockage (perm),10,0.02,0,51,blockage,True,4,5,1,5,20,17.08924997365102
-single,10,full,1,blockage (perm),10,0.02,0,58,blockage,True,3,5,2,5,20,11.34362502489239
-single,10,solo,5,blockage (perm),10,0.02,0,74,blockage,True,2,2,0,1,2,12.449540954548866
-single,10,full,3,blockage (perm),10,0.02,0,15,blockage,True,5,6,1,5,20,18.68375000776723
-single,10,full,5,blockage (perm),10,0.02,0,74,blockage,True,2,5,3,5,20,4.626917012501508
-single,10,full,8,blockage (perm),10,0.02,0,86,blockage,True,3,4,1,5,20,3.896875015925616
-single,10,full,7,blockage (perm),10,0.02,0,94,blockage,True,2,4,2,5,20,3.2683329773135483
-single,10,full,9,blockage (perm),10,0.02,0,73,blockage,True,3,7,4,5,20,5.221125029493123
-single,10,full,4,blockage (perm),10,0.02,0,13,blockage,True,7,8,1,5,20,49.40066603012383
-single,10,local,3,breakdown (temp),10,0.02,0,75,breakdown,False,1,1,0,1,1,0.3947909572161734
-single,10,local,4,breakdown (temp),10,0.02,0,36,breakdown,False,2,2,0,1,14,1.7779170302674174
-single,10,local,2,breakdown (temp),10,0.02,0,52,breakdown,False,2,2,0,1,16,8.65529099246487
-single,10,full,6,blockage (perm),10,0.02,0,70,blockage,True,5,7,2,5,20,27.643624984193593
-single,10,local,0,breakdown (temp),10,0.02,0,25,breakdown,False,1,1,0,1,2,1.0588750010356307
-single,10,local,5,breakdown (temp),10,0.02,0,107,breakdown,False,1,1,0,1,1,0.7221669657155871
-single,10,local,1,breakdown (temp),10,0.02,0,90,breakdown,False,1,1,0,1,1,0.46908302465453744
-single,10,local,6,breakdown (temp),10,0.02,0,73,breakdown,False,1,1,0,1,1,0.9673330350778997
-single,10,local,7,breakdown (temp),10,0.02,0,37,breakdown,False,2,2,0,1,14,1.5854579978622496
-single,10,local,8,breakdown (temp),10,0.02,0,57,breakdown,False,2,2,0,1,5,1.8186249653808773
-single,10,local,9,breakdown (temp),10,0.02,0,67,breakdown,False,2,2,0,1,0,3.485292021650821
-single,10,solo,0,breakdown (temp),10,0.02,0,25,breakdown,False,1,1,0,1,2,1.0279160342179239
-single,10,solo,4,breakdown (temp),10,0.02,0,36,breakdown,False,2,2,0,1,4,1.7336659948341548
-single,10,solo,3,breakdown (temp),10,0.02,0,75,breakdown,False,1,1,0,1,1,0.39595802081748843
-single,10,solo,2,breakdown (temp),10,0.02,0,52,breakdown,False,2,2,0,1,2,4.5370829757303
-single,10,solo,8,breakdown (temp),10,0.02,0,57,breakdown,False,2,2,0,1,5,1.7844169633463025
-single,10,solo,5,breakdown (temp),10,0.02,0,107,breakdown,False,1,1,0,1,1,1.3277499820105731
-single,10,solo,7,breakdown (temp),10,0.02,0,37,breakdown,False,2,2,0,1,4,2.6710829697549343
-single,10,solo,6,breakdown (temp),10,0.02,0,73,breakdown,False,1,1,0,1,1,0.8762499783188105
-single,10,solo,9,breakdown (temp),10,0.02,0,67,breakdown,False,2,2,0,1,0,1.576750015374273
-single,10,solo,1,breakdown (temp),10,0.02,0,90,breakdown,False,1,1,0,1,1,0.4363330081105232
-single,10,full,2,breakdown (temp),10,0.02,0,52,breakdown,False,2,7,5,5,20,8.518084010574967
-single,10,full,5,breakdown (temp),10,0.02,0,107,breakdown,False,1,2,1,5,20,1.9476250163279474
-single,10,full,4,breakdown (temp),10,0.02,0,36,breakdown,False,2,7,5,5,20,12.8026669844985
-single,10,full,1,breakdown (temp),10,0.02,0,90,breakdown,False,1,5,4,5,20,4.552165977656841
-single,10,full,7,breakdown (temp),10,0.02,0,37,breakdown,False,2,5,3,5,20,12.410625000484288
-single,10,full,8,breakdown (temp),10,0.02,0,57,breakdown,False,2,5,3,5,20,4.274041973985732
-single,10,full,3,breakdown (temp),10,0.02,0,75,breakdown,False,1,5,4,5,20,6.105582986492664
-single,10,full,0,breakdown (temp),10,0.02,0,25,breakdown,False,1,8,7,5,20,21.5537499752827
-single,10,full,9,breakdown (temp),10,0.02,0,67,breakdown,False,2,4,2,5,20,7.886167033575475
-single,10,full,6,breakdown (temp),10,0.02,0,73,breakdown,False,1,5,4,5,20,6.017500010784715
-single,10,local,4,breakdown (perm),10,0.02,0,20,breakdown,True,6,6,0,3,63,8.341250009834766
-single,10,local,0,breakdown (perm),10,0.02,0,19,breakdown,True,6,6,0,1,40,12.808708008378744
-single,10,local,7,breakdown (perm),10,0.02,0,39,breakdown,True,4,4,0,1,36,18.766499997582287
-single,10,local,8,breakdown (perm),10,0.02,0,51,breakdown,True,5,5,0,1,34,7.129042001906782
-single,10,local,1,breakdown (perm),10,0.02,0,49,breakdown,True,4,4,0,1,15,3.928749996703118
-single,10,local,5,breakdown (perm),10,0.02,0,49,breakdown,True,5,5,0,1,47,25.264125026296824
-single,10,local,3,breakdown (perm),10,0.02,0,49,breakdown,True,8,8,0,1,57,42.61179198510945
-single,10,local,2,breakdown (perm),10,0.02,0,13,breakdown,True,5,5,0,1,41,63.55725001776591
-single,10,local,9,breakdown (perm),10,0.02,0,34,breakdown,True,6,6,0,2,43,28.027874999679625
-single,10,solo,3,breakdown (perm),10,0.02,0,49,breakdown,True,8,8,0,1,17,8.01641697762534
-single,10,solo,0,breakdown (perm),10,0.02,0,19,breakdown,True,6,6,0,1,22,11.144959018565714
-single,10,solo,4,breakdown (perm),10,0.02,0,20,breakdown,True,6,6,0,1,27,7.257749966811389
-single,10,solo,5,breakdown (perm),10,0.02,0,49,breakdown,True,5,5,0,1,9,7.293917005881667
-single,10,solo,8,breakdown (perm),10,0.02,0,51,breakdown,True,5,5,0,1,16,10.886124975513667
-single,10,solo,1,breakdown (perm),10,0.02,0,49,breakdown,True,4,4,0,1,15,10.399042046628892
-single,10,solo,7,breakdown (perm),10,0.02,0,39,breakdown,True,4,4,0,1,20,23.646958055905998
-single,10,solo,2,breakdown (perm),10,0.02,0,13,breakdown,True,5,5,0,1,17,60.11462502647191
-single,10,local,6,breakdown (perm),10,0.02,0,23,breakdown,True,7,7,0,3,61,81.83595899026841
-single,10,solo,9,breakdown (perm),10,0.02,0,34,breakdown,True,6,6,0,1,25,26.00245800567791
-single,10,solo,6,breakdown (perm),10,0.02,0,23,breakdown,True,7,7,0,1,25,46.52666696347296
-single,10,full,4,breakdown (perm),10,0.02,0,20,breakdown,True,6,8,2,5,36,6.767124985344708
-single,10,full,3,breakdown (perm),10,0.02,0,49,breakdown,True,8,8,0,5,24,12.50808301847428
-single,10,full,5,breakdown (perm),10,0.02,0,49,breakdown,True,5,9,4,5,24,9.523125016130507
-single,10,full,8,breakdown (perm),10,0.02,0,51,breakdown,True,5,6,1,5,28,9.345375001430511
-single,10,full,2,breakdown (perm),10,0.02,0,13,breakdown,True,5,8,3,5,27,23.652000003494322
-single,10,full,6,breakdown (perm),10,0.02,0,23,breakdown,True,7,9,2,5,33,21.37208398198709
-single,10,full,0,breakdown (perm),10,0.02,0,19,breakdown,True,6,9,3,5,33,18.438416998833418
-single,10,full,7,breakdown (perm),10,0.02,0,39,breakdown,True,4,8,4,5,33,33.35179097484797
-single,10,local,0,emergency,10,0.02,0,87,emergency,True,1,1,0,1,11,3.5299579612910748
-single,10,local,2,emergency,10,0.02,0,43,emergency,True,1,1,0,1,14,1.1728329700417817
-single,10,local,4,emergency,10,0.02,0,104,emergency,True,1,1,0,1,2,0.6324159912765026
-single,10,full,9,breakdown (perm),10,0.02,0,34,breakdown,True,6,7,1,5,33,29.44862499134615
-single,10,local,3,emergency,10,0.02,0,25,emergency,True,1,1,0,1,0,4.819374997168779
-single,10,local,8,emergency,10,0.02,0,61,emergency,True,1,1,0,1,1,1.044207951053977
-single,10,full,1,breakdown (perm),10,0.02,0,49,breakdown,True,4,9,5,5,28,55.161917000077665
-single,10,local,7,emergency,10,0.02,0,65,emergency,True,1,1,0,1,1,1.9137909985147417
-single,10,local,9,emergency,10,0.02,0,111,emergency,True,1,1,0,1,0,0.788999954238534
-single,10,local,1,emergency,10,0.02,0,107,emergency,True,1,1,0,1,17,2.7960410225205123
-single,10,solo,0,emergency,10,0.02,0,87,emergency,True,1,1,0,1,1,8.184082980733365
-single,10,solo,2,emergency,10,0.02,0,43,emergency,True,1,1,0,1,2,1.1077499948441982
-single,10,solo,3,emergency,10,0.02,0,25,emergency,True,1,1,0,1,0,1.4590410282835364
-single,10,solo,4,emergency,10,0.02,0,104,emergency,True,1,1,0,1,2,1.4125410234555602
-single,10,solo,1,emergency,10,0.02,0,107,emergency,True,1,1,0,1,1,0.6339999963529408
-single,10,local,6,emergency,10,0.02,0,25,emergency,True,1,1,0,1,8,4.219209018629044
-single,10,solo,7,emergency,10,0.02,0,65,emergency,True,1,1,0,1,1,0.6991660338826478
-single,10,solo,8,emergency,10,0.02,0,61,emergency,True,1,1,0,1,1,0.9623329970054328
-single,10,solo,9,emergency,10,0.02,0,111,emergency,True,1,1,0,1,0,1.1563340085558593
-single,10,solo,6,emergency,10,0.02,0,25,emergency,True,1,1,0,1,0,1.8039169954136014
-single,10,full,0,emergency,10,0.02,0,87,emergency,True,1,4,3,5,20,3.8241249858401716
-single,10,full,2,emergency,10,0.02,0,43,emergency,True,1,3,2,5,20,5.7461250107735395
-single,10,full,4,emergency,10,0.02,0,104,emergency,True,1,2,1,5,20,1.591874985024333
-single,10,full,3,emergency,10,0.02,0,25,emergency,True,1,10,9,5,20,13.900207995902747
-single,10,full,7,emergency,10,0.02,0,65,emergency,True,1,1,0,5,20,4.220000002533197
-single,10,full,8,emergency,10,0.02,0,61,emergency,True,1,4,3,5,20,4.08362498274073
-single,10,full,9,emergency,10,0.02,0,111,emergency,True,1,3,2,5,20,1.7392909503541887
-single,10,solo,5,emergency,10,0.02,0,14,emergency,True,1,1,0,1,2,19.66712501598522
-single,10,full,6,emergency,10,0.02,0,25,emergency,True,1,10,9,5,20,17.470041988417506
-single,10,full,5,emergency,10,0.02,0,14,emergency,True,1,8,7,5,20,38.36537501774728
-single,10,full,1,emergency,10,0.02,0,107,emergency,True,1,4,3,5,20,2.775416010990739
-single,10,local,5,emergency,10,0.02,0,14,emergency,True,1,1,0,1,78,276.73850004794076
-single,50,solo,5,breakdown (perm),50,0.02,0,40,breakdown,True,16,50,34,4,6067566,59785.05570767447
+sweep,x,strategy,seed,dtype,n_agents,density,alter_penalty,id,t,kind,permanent,direct,altered,collateral,max_tier,chain_depth,group_replan,messages,cpu_ms
+single,50,local,2,blockage (temp),50,0.02,3.0,0,69,blockage,False,1,1,0,1,0,False,35,12.45162499253638
+single,50,local,5,blockage (temp),50,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,39,125.11308300599921
+single,50,local,8,blockage (temp),50,0.02,3.0,0,118,blockage,False,4,4,0,1,0,False,129,29.085916001349688
+single,50,local,7,blockage (temp),50,0.02,3.0,0,91,blockage,False,6,6,0,1,0,False,348,186.95295900397468
+single,50,local,6,blockage (temp),50,0.02,3.0,0,98,blockage,False,2,2,0,1,0,False,80,12.115999998059124
+single,50,local,0,blockage (temp),50,0.02,3.0,0,117,blockage,False,2,2,0,1,0,False,137,40.73554099886678
+single,50,local,1,blockage (temp),50,0.02,3.0,0,93,blockage,False,4,4,0,1,0,False,182,73.0759589932859
+single,50,local-flat,2,blockage (temp),50,0.02,3.0,0,69,blockage,False,1,1,0,1,0,False,35,12.987167006940581
+single,50,local-flat,1,blockage (temp),50,0.02,3.0,0,93,blockage,False,4,4,0,1,0,False,182,45.48441599763464
+single,50,local-flat,0,blockage (temp),50,0.02,3.0,0,117,blockage,False,2,2,0,1,0,False,131,30.103375000180677
+single,50,local-flat,5,blockage (temp),50,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,39,104.0502079995349
+single,50,local,9,blockage (temp),50,0.02,3.0,0,77,blockage,False,4,4,0,1,0,False,197,182.39745899336413
+single,50,local-flat,6,blockage (temp),50,0.02,3.0,0,98,blockage,False,2,2,0,1,0,False,80,12.331125006312504
+single,50,local-flat,7,blockage (temp),50,0.02,3.0,0,91,blockage,False,6,6,0,1,0,False,308,91.28162499109749
+single,50,local-flat,8,blockage (temp),50,0.02,3.0,0,118,blockage,False,4,4,0,1,0,False,129,29.671832991880365
+single,50,solo,0,blockage (temp),50,0.02,3.0,0,117,blockage,False,2,2,0,1,0,False,7,2.255458995932713
+single,50,local-flat,9,blockage (temp),50,0.02,3.0,0,77,blockage,False,4,4,0,1,0,False,175,85.04099999845494
+single,50,solo,2,blockage (temp),50,0.02,3.0,0,69,blockage,False,1,1,0,1,0,False,3,2.6350840053055435
+single,50,solo,1,blockage (temp),50,0.02,3.0,0,93,blockage,False,4,4,0,1,0,False,26,11.944292011321522
+single,50,solo,3,blockage (temp),50,0.02,3.0,0,18,blockage,False,5,5,0,1,0,False,27,132.28795799659565
+single,50,solo,5,blockage (temp),50,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,3,11.442959003034048
+single,50,solo,4,blockage (temp),50,0.02,3.0,0,12,blockage,False,3,3,0,1,0,False,32,37.06908300227951
+single,50,solo,7,blockage (temp),50,0.02,3.0,0,91,blockage,False,6,6,0,1,0,False,38,26.37666600639932
+single,50,local-flat,4,blockage (temp),50,0.02,3.0,0,12,blockage,False,3,3,0,1,0,False,350,2908.859624993056
+single,50,solo,6,blockage (temp),50,0.02,3.0,0,98,blockage,False,2,2,0,1,0,False,14,3.3774999901652336
+single,50,local-flat,3,blockage (temp),50,0.02,3.0,0,18,blockage,False,5,8,3,3,1,False,454,3376.4415420009755
+single,50,solo,8,blockage (temp),50,0.02,3.0,0,118,blockage,False,4,4,0,1,0,False,23,4.962082995916717
+single,50,solo,9,blockage (temp),50,0.02,3.0,0,77,blockage,False,4,4,0,1,0,False,13,12.232167006004602
+single,50,full,0,blockage (temp),50,0.02,3.0,0,117,blockage,False,2,43,41,5,0,False,100,67.62633299513254
+single,50,full,2,blockage (temp),50,0.02,3.0,0,69,blockage,False,1,42,41,5,0,False,100,458.86716699169483
+single,50,full,1,blockage (temp),50,0.02,3.0,0,93,blockage,False,4,45,41,5,0,False,100,138.2667500001844
+single,50,full,5,blockage (temp),50,0.02,3.0,0,60,blockage,False,1,44,43,5,0,False,100,394.380124998861
+single,50,full,6,blockage (temp),50,0.02,3.0,0,98,blockage,False,2,44,42,5,0,False,100,64.6499159920495
+single,50,full,7,blockage (temp),50,0.02,3.0,0,91,blockage,False,6,45,39,5,0,False,100,141.02137499139644
+single,50,full,3,blockage (temp),50,0.02,3.0,0,18,blockage,False,5,41,36,5,0,False,100,799.3175410083495
+single,50,full,8,blockage (temp),50,0.02,3.0,0,118,blockage,False,4,41,37,5,0,False,100,78.00916601263452
+single,50,full,4,blockage (temp),50,0.02,3.0,0,12,blockage,False,3,47,44,5,0,False,100,1006.0852080059703
+single,50,full,9,blockage (temp),50,0.02,3.0,0,77,blockage,False,4,47,43,5,0,False,100,310.79845799831674
+single,50,local,0,blockage (perm),50,0.02,3.0,0,117,blockage,True,7,9,2,3,1,False,553,313.23779199738055
+single,50,local,3,blockage (temp),50,0.02,3.0,0,18,blockage,False,5,8,3,3,1,False,628,8330.246792000253
+single,50,local,7,blockage (perm),50,0.02,3.0,0,91,blockage,True,8,8,0,1,0,False,459,195.87087399850134
+single,50,local,6,blockage (perm),50,0.02,3.0,0,98,blockage,True,2,2,0,1,0,False,137,102.5836249900749
+single,50,local,2,blockage (perm),50,0.02,3.0,0,69,blockage,True,23,24,1,3,1,False,1479,2306.105083989678
+single,50,local,5,blockage (perm),50,0.02,3.0,0,60,blockage,True,9,11,2,3,1,False,699,1872.4195409886306
+single,50,local,8,blockage (perm),50,0.02,3.0,0,118,blockage,True,6,7,1,3,1,False,202,34.14374998828862
+single,50,local-flat,0,blockage (perm),50,0.02,3.0,0,117,blockage,True,7,9,2,3,1,False,513,223.6983750044601
+single,50,local-flat,2,blockage (perm),50,0.02,3.0,0,69,blockage,True,23,24,1,3,1,False,1373,1482.013916989672
+single,50,local,9,blockage (perm),50,0.02,3.0,0,77,blockage,True,13,16,3,3,2,False,1118,2070.1998750009807
+single,50,local,3,blockage (perm),50,0.02,3.0,0,18,blockage,True,7,13,6,3,2,False,857,5273.700125006144
+single,50,local,1,blockage (perm),50,0.02,3.0,0,61,blockage,True,21,22,1,3,1,False,1633,5289.194166005473
+single,50,local-flat,6,blockage (perm),50,0.02,3.0,0,98,blockage,True,2,2,0,1,0,False,137,111.1348749982426
+single,50,local-flat,7,blockage (perm),50,0.02,3.0,0,91,blockage,True,8,8,0,1,0,False,451,220.13745899312198
+single,50,local-flat,8,blockage (perm),50,0.02,3.0,0,118,blockage,True,6,7,1,3,1,False,202,35.586958008934744
+single,50,local-flat,3,blockage (perm),50,0.02,3.0,0,18,blockage,True,7,13,6,3,1,False,728,3497.5403749995166
+single,50,local-flat,5,blockage (perm),50,0.02,3.0,0,60,blockage,True,9,11,2,3,1,False,637,1500.125124992337
+single,50,local-flat,1,blockage (perm),50,0.02,3.0,0,61,blockage,True,21,22,1,3,1,False,1425,3556.3185420032823
+single,50,solo,2,blockage (perm),50,0.02,3.0,0,69,blockage,True,23,23,0,1,0,False,159,236.48304099333473
+single,50,solo,0,blockage (perm),50,0.02,3.0,0,117,blockage,True,7,7,0,1,0,False,55,20.730415999423712
+single,50,solo,1,blockage (perm),50,0.02,3.0,0,61,blockage,True,21,21,0,1,0,False,132,176.6062079987023
+single,50,solo,3,blockage (perm),50,0.02,3.0,0,18,blockage,True,7,7,0,1,0,False,66,207.76025000668596
+single,50,local-flat,9,blockage (perm),50,0.02,3.0,0,77,blockage,True,13,15,2,3,1,False,946,1276.8319169990718
+single,50,solo,4,blockage (perm),50,0.02,3.0,0,12,blockage,True,18,18,0,1,0,False,136,463.06575000926387
+single,50,solo,5,blockage (perm),50,0.02,3.0,0,60,blockage,True,9,9,0,1,0,False,64,50.96991700702347
+single,50,solo,6,blockage (perm),50,0.02,3.0,0,98,blockage,True,2,2,0,1,0,False,7,5.7916670048143715
+single,50,solo,7,blockage (perm),50,0.02,3.0,0,91,blockage,True,8,8,0,1,0,False,107,96.53174999402836
+single,50,solo,8,blockage (perm),50,0.02,3.0,0,118,blockage,True,6,6,0,1,0,False,34,7.600583994644694
+single,50,local,4,blockage (temp),50,0.02,3.0,0,12,blockage,False,3,3,0,1,0,False,798,16894.81075000367
+single,50,solo,9,blockage (perm),50,0.02,3.0,0,77,blockage,True,13,13,0,1,0,False,83,148.3327080059098
+single,50,full,0,blockage (perm),50,0.02,3.0,0,117,blockage,True,7,45,38,5,0,False,100,56.64354100008495
+single,50,full,2,blockage (perm),50,0.02,3.0,0,69,blockage,True,23,48,25,5,0,False,100,486.4475840004161
+single,50,full,1,blockage (perm),50,0.02,3.0,0,61,blockage,True,21,47,26,5,0,False,100,392.934832998435
+single,50,full,5,blockage (perm),50,0.02,3.0,0,60,blockage,True,9,48,39,5,0,False,100,466.058999998495
+single,50,full,7,blockage (perm),50,0.02,3.0,0,91,blockage,True,8,48,40,5,0,False,100,182.85449998802505
+single,50,full,6,blockage (perm),50,0.02,3.0,0,98,blockage,True,2,44,42,5,0,False,100,94.80120798980352
+single,50,full,4,blockage (perm),50,0.02,3.0,0,12,blockage,True,18,50,32,5,0,False,100,875.5445419956231
+single,50,full,8,blockage (perm),50,0.02,3.0,0,118,blockage,True,6,44,38,5,0,False,100,108.86133300664369
+single,50,local-flat,4,blockage (perm),50,0.02,3.0,0,12,blockage,True,18,23,5,3,1,False,1178,7776.3910420035245
+single,50,full,9,blockage (perm),50,0.02,3.0,0,77,blockage,True,13,46,33,5,0,False,100,445.2150419965619
+single,50,local,0,breakdown (temp),50,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,2,43.016833005822264
+single,50,local,2,breakdown (temp),50,0.02,3.0,0,70,breakdown,False,2,2,0,1,0,False,161,377.2632499894826
+single,50,local,1,breakdown (temp),50,0.02,3.0,0,95,breakdown,False,3,3,0,1,0,False,87,71.86587499745656
+single,50,local,3,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,4,1.0195420036325231
+single,50,local,5,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,3,3,0,1,0,False,250,135.63291700847913
+single,50,local,4,breakdown (temp),50,0.02,3.0,0,34,breakdown,False,1,1,0,1,0,False,6,41.27520800102502
+single,50,full,3,blockage (perm),50,0.02,3.0,0,18,blockage,True,7,50,43,5,0,False,100,2774.6172080078395
+single,50,local,6,breakdown (temp),50,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,5,0.6567500095115975
+single,50,local,8,breakdown (temp),50,0.02,3.0,0,79,breakdown,False,4,4,0,1,0,False,186,195.39887500286568
+single,50,local-flat,2,breakdown (temp),50,0.02,3.0,0,70,breakdown,False,2,2,0,1,0,False,121,112.4499999859836
+single,50,local,9,breakdown (temp),50,0.02,3.0,0,71,breakdown,False,2,2,0,1,0,False,62,29.74079099658411
+single,50,local-flat,1,breakdown (temp),50,0.02,3.0,0,95,breakdown,False,3,3,0,1,0,False,71,13.925084000220522
+single,50,local-flat,0,breakdown (temp),50,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,2,57.128166998154484
+single,50,local-flat,3,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,4,0.9911250090226531
+single,50,local-flat,4,breakdown (temp),50,0.02,3.0,0,34,breakdown,False,1,1,0,1,0,False,6,30.821457999991253
+single,50,local-flat,5,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,3,3,0,1,0,False,250,159.49862499837764
+single,50,local-flat,6,breakdown (temp),50,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,5,0.7727079937467352
+single,50,local-flat,8,breakdown (temp),50,0.02,3.0,0,79,breakdown,False,4,4,0,1,0,False,186,217.1663330082083
+single,50,local-flat,9,breakdown (temp),50,0.02,3.0,0,71,breakdown,False,2,2,0,1,0,False,62,28.624124999623746
+single,50,solo,2,breakdown (temp),50,0.02,3.0,0,70,breakdown,False,2,2,0,1,0,False,11,18.458874998032115
+single,50,solo,0,breakdown (temp),50,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,2,54.460542000015266
+single,50,solo,1,breakdown (temp),50,0.02,3.0,0,95,breakdown,False,3,3,0,1,0,False,7,6.5452920098323375
+single,50,solo,3,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,4,1.0241249983664602
+single,50,solo,4,breakdown (temp),50,0.02,3.0,0,34,breakdown,False,1,1,0,1,0,False,6,32.77029200398829
+single,50,solo,5,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,3,3,0,1,0,False,32,10.059584004920907
+single,50,solo,6,breakdown (temp),50,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,5,0.6912909884704277
+single,50,solo,7,breakdown (temp),50,0.02,3.0,0,35,breakdown,False,8,8,0,1,0,False,92,157.0250840013614
+single,50,solo,8,breakdown (temp),50,0.02,3.0,0,79,breakdown,False,4,4,0,1,0,False,22,24.541207996662706
+single,50,solo,9,breakdown (temp),50,0.02,3.0,0,71,breakdown,False,2,2,0,1,0,False,12,23.544208001112565
+single,50,full,1,breakdown (temp),50,0.02,3.0,0,95,breakdown,False,3,50,47,5,0,False,100,225.24258399789687
+single,50,full,2,breakdown (temp),50,0.02,3.0,0,70,breakdown,False,2,48,46,5,0,False,100,572.3884999897564
+single,50,full,3,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,1,47,46,5,0,False,100,160.48891699756496
+single,50,full,5,breakdown (temp),50,0.02,3.0,0,88,breakdown,False,3,46,43,5,0,False,100,195.76625000627246
+single,50,local,4,blockage (perm),50,0.02,3.0,0,12,blockage,True,18,23,5,3,1,False,1568,18559.888207993936
+single,50,full,4,breakdown (temp),50,0.02,3.0,0,34,breakdown,False,1,49,48,5,0,False,100,608.3288340014406
+single,50,local-flat,7,breakdown (temp),50,0.02,3.0,0,35,breakdown,False,8,10,2,2,1,False,898,4294.421291007893
+single,50,full,0,breakdown (temp),50,0.02,3.0,0,26,breakdown,False,1,50,49,5,0,False,100,1578.0055000068387
+single,50,full,6,breakdown (temp),50,0.02,3.0,0,103,breakdown,False,1,44,43,5,0,False,100,73.62045800255146
+single,50,full,8,breakdown (temp),50,0.02,3.0,0,79,breakdown,False,4,47,43,5,0,False,100,208.06900000025053
+single,50,full,7,breakdown (temp),50,0.02,3.0,0,35,breakdown,False,8,50,42,5,0,False,100,773.9697090000845
+single,50,full,9,breakdown (temp),50,0.02,3.0,0,71,breakdown,False,2,42,40,5,0,False,100,178.68700000690296
+single,50,local,7,breakdown (temp),50,0.02,3.0,0,35,breakdown,False,8,10,2,2,1,False,1332,7596.7994579987135
+single,50,local,3,breakdown (perm),50,0.02,3.0,0,58,breakdown,True,11,18,7,3,2,False,769,2685.0545839988627
+single,50,local,8,breakdown (perm),50,0.02,3.0,0,71,breakdown,True,16,27,11,3,2,False,1461,3615.38349998591
+single,50,local,5,breakdown (perm),50,0.02,3.0,0,40,breakdown,True,16,30,14,3,2,False,1755,10620.954874000745
+single,50,local,0,breakdown (perm),50,0.02,3.0,0,20,breakdown,True,14,19,5,3,1,False,1132,12148.011583994958
+single,50,local,7,breakdown (perm),50,0.02,3.0,0,37,breakdown,True,21,22,1,3,1,False,2032,11239.538458001334
+single,50,local-flat,0,breakdown (perm),50,0.02,3.0,0,20,breakdown,True,14,19,5,3,1,False,942,5835.846208006842
+single,50,local,4,breakdown (perm),50,0.02,3.0,0,19,breakdown,True,19,27,8,3,1,False,1825,13538.57383299328
+single,50,local-flat,3,breakdown (perm),50,0.02,3.0,0,58,breakdown,True,11,15,4,3,1,False,649,1625.716916998499
+single,50,local,6,breakdown (perm),50,0.02,3.0,0,32,breakdown,True,17,19,2,2,1,False,1776,15130.348416991183
+single,50,local,2,breakdown (perm),50,0.02,3.0,0,17,breakdown,True,18,25,7,3,2,False,1471,16152.821374998894
+single,50,local-flat,8,breakdown (perm),50,0.02,3.0,0,71,breakdown,True,16,27,11,3,1,False,1470,2678.346499989857
+single,50,local-flat,2,breakdown (perm),50,0.02,3.0,0,17,breakdown,True,18,24,6,3,1,False,1141,7472.9544580040965
+single,50,local-flat,4,breakdown (perm),50,0.02,3.0,0,19,breakdown,True,19,27,8,3,1,False,1569,7615.772999997716
+single,50,local-flat,6,breakdown (perm),50,0.02,3.0,0,32,breakdown,True,17,19,2,2,1,False,1212,5090.315624998766
+single,50,solo,0,breakdown (perm),50,0.02,3.0,0,20,breakdown,True,14,14,0,1,0,False,137,439.23429198912345
+single,50,solo,2,breakdown (perm),50,0.02,3.0,0,17,breakdown,True,18,18,0,1,0,False,148,461.3629579980625
+single,50,local-flat,7,breakdown (perm),50,0.02,3.0,0,37,breakdown,True,21,22,1,3,1,False,1788,6097.390917013399
+single,50,solo,3,breakdown (perm),50,0.02,3.0,0,58,breakdown,True,11,11,0,1,0,False,101,101.7247080017114
+single,50,solo,1,breakdown (perm),50,0.02,3.0,0,52,breakdown,True,22,38,16,4,1,False,822,2095.5172070098342
+single,50,local-flat,1,breakdown (perm),50,0.02,3.0,0,52,breakdown,True,22,39,17,4,1,False,4506,12421.537249014364
+single,50,solo,4,breakdown (perm),50,0.02,3.0,0,19,breakdown,True,19,26,7,2,1,False,257,959.1232080128975
+single,50,solo,6,breakdown (perm),50,0.02,3.0,0,32,breakdown,True,17,17,0,1,0,False,142,244.2338330001803
+single,50,solo,7,breakdown (perm),50,0.02,3.0,0,37,breakdown,True,21,21,0,1,0,False,258,222.31487500539515
+single,50,solo,8,breakdown (perm),50,0.02,3.0,0,71,breakdown,True,16,22,6,2,1,False,199,428.48425000556745
+single,50,local,9,breakdown (perm),50,0.02,3.0,0,35,breakdown,True,20,22,2,3,1,False,2036,21910.00770800747
+single,50,solo,9,breakdown (perm),50,0.02,3.0,0,35,breakdown,True,20,20,0,1,0,False,204,290.415875002509
+single,50,full,1,breakdown (perm),50,0.02,3.0,0,52,breakdown,True,22,48,26,5,0,False,128,663.0755409860285
+single,50,full,3,breakdown (perm),50,0.02,3.0,0,58,breakdown,True,11,50,39,5,0,False,140,676.6682919987943
+single,50,full,2,breakdown (perm),50,0.02,3.0,0,17,breakdown,True,18,50,32,5,0,False,137,1755.1347910048207
+single,50,full,0,breakdown (perm),50,0.02,3.0,0,20,breakdown,True,14,50,36,5,0,False,143,2733.9565419970313
+single,50,local-flat,9,breakdown (perm),50,0.02,3.0,0,35,breakdown,True,20,22,2,3,1,False,1486,8541.474041994661
+single,50,full,4,breakdown (perm),50,0.02,3.0,0,19,breakdown,True,19,50,31,5,0,False,161,1709.0104579983745
+single,50,full,5,breakdown (perm),50,0.02,3.0,0,40,breakdown,True,16,50,34,5,0,False,136,1264.5788750087377
+single,50,full,6,breakdown (perm),50,0.02,3.0,0,32,breakdown,True,17,49,32,5,0,False,149,527.3602079978446
+single,50,full,7,breakdown (perm),50,0.02,3.0,0,37,breakdown,True,21,50,29,5,0,False,197,790.5054579896387
+single,50,local,1,breakdown (perm),50,0.02,3.0,0,52,breakdown,True,22,41,19,4,1,False,5809,30631.788791986764
+single,50,full,8,breakdown (perm),50,0.02,3.0,0,71,breakdown,True,16,50,34,5,0,False,116,668.5742500121705
+single,50,local,2,emergency,50,0.02,3.0,0,57,emergency,True,1,1,0,1,0,False,85,354.9630000052275
+single,50,local,0,emergency,50,0.02,3.0,0,91,emergency,True,1,1,0,1,0,False,138,290.5121250078082
+single,50,local,1,emergency,50,0.02,3.0,0,112,emergency,True,1,1,0,1,0,False,120,77.66720799554605
+single,50,full,9,breakdown (perm),50,0.02,3.0,0,35,breakdown,True,20,49,29,5,0,False,161,557.6047079957789
+single,50,local,4,emergency,50,0.02,3.0,0,99,emergency,True,1,2,1,3,1,False,61,8.899209002265707
+single,50,local,3,emergency,50,0.02,3.0,0,30,emergency,True,1,2,1,2,1,False,47,439.6672500006389
+single,50,local,5,emergency,50,0.02,3.0,0,11,emergency,True,1,1,0,1,0,False,31,302.8503340028692
+single,50,local,7,emergency,50,0.02,3.0,0,63,emergency,True,1,3,2,2,2,False,44,83.85291699960362
+single,50,local,8,emergency,50,0.02,3.0,0,84,emergency,True,1,3,2,3,1,False,57,90.45287499611732
+single,50,local,9,emergency,50,0.02,3.0,0,117,emergency,True,1,1,0,1,0,False,39,5.206042013014667
+single,50,local-flat,2,emergency,50,0.02,3.0,0,57,emergency,True,1,1,0,1,0,False,61,143.31050000328105
+single,50,local-flat,1,emergency,50,0.02,3.0,0,112,emergency,True,1,1,0,1,0,False,86,17.212625010870397
+single,50,local,6,emergency,50,0.02,3.0,0,34,emergency,True,1,1,0,1,0,False,200,877.0191670046188
+single,50,local-flat,0,emergency,50,0.02,3.0,0,91,emergency,True,1,1,0,1,0,False,122,192.58608399832156
+single,50,local-flat,3,emergency,50,0.02,3.0,0,30,emergency,True,1,2,1,2,1,False,31,158.249790998525
+single,50,local-flat,4,emergency,50,0.02,3.0,0,99,emergency,True,1,2,1,3,1,False,61,8.690957998624071
+single,50,local-flat,5,emergency,50,0.02,3.0,0,11,emergency,True,1,1,0,1,0,False,23,106.51800000050571
+single,50,local-flat,8,emergency,50,0.02,3.0,0,84,emergency,True,1,3,2,3,1,False,47,46.89479200169444
+single,50,local-flat,6,emergency,50,0.02,3.0,0,34,emergency,True,1,1,0,1,0,False,120,428.01474999578204
+single,50,local-flat,7,emergency,50,0.02,3.0,0,63,emergency,True,1,1,0,1,0,False,193,548.3162919990718
+single,50,solo,2,emergency,50,0.02,3.0,0,57,emergency,True,1,1,0,1,0,False,3,10.411832990939729
+single,50,local-flat,9,emergency,50,0.02,3.0,0,117,emergency,True,1,1,0,1,0,False,31,0.8926249865908176
+single,50,solo,1,emergency,50,0.02,3.0,0,112,emergency,True,1,1,0,1,0,False,6,1.4060410030651838
+single,50,solo,0,emergency,50,0.02,3.0,0,91,emergency,True,1,1,0,1,0,False,6,7.615999988047406
+single,50,solo,3,emergency,50,0.02,3.0,0,30,emergency,True,1,1,0,1,0,False,6,25.568917000782676
+single,50,solo,5,emergency,50,0.02,3.0,0,11,emergency,True,1,1,0,1,0,False,1,60.28637499548495
+single,50,solo,4,emergency,50,0.02,3.0,0,99,emergency,True,1,1,0,1,0,False,4,1.4295830042101443
+single,50,solo,7,emergency,50,0.02,3.0,0,63,emergency,True,1,1,0,1,0,False,9,12.719999998807907
+single,50,solo,6,emergency,50,0.02,3.0,0,34,emergency,True,1,1,0,1,0,False,8,7.39433299168013
+single,50,solo,8,emergency,50,0.02,3.0,0,84,emergency,True,1,1,0,1,0,False,3,10.250458988593891
+single,50,solo,9,emergency,50,0.02,3.0,0,117,emergency,True,1,1,0,1,0,False,3,2.1065839973744005
+single,50,full,1,emergency,50,0.02,3.0,0,112,emergency,True,1,45,44,5,0,False,100,72.17658299487084
+single,50,full,4,emergency,50,0.02,3.0,0,99,emergency,True,1,47,46,5,0,False,100,109.95104200264905
+single,50,full,0,emergency,50,0.02,3.0,0,91,emergency,True,1,49,48,5,0,False,100,324.1054590034764
+single,50,full,2,emergency,50,0.02,3.0,0,57,emergency,True,1,1,0,1,0,False,53,1179.489125002874
+single,50,full,3,emergency,50,0.02,3.0,0,30,emergency,True,1,49,48,5,0,False,100,781.5886250027688
+single,50,full,5,emergency,50,0.02,3.0,0,11,emergency,True,1,45,44,5,0,False,100,986.6922919900389
+single,50,full,7,emergency,50,0.02,3.0,0,63,emergency,True,1,45,44,5,0,False,100,257.20549999095965
+single,50,full,6,emergency,50,0.02,3.0,0,34,emergency,True,1,50,49,5,0,False,100,669.7673330054386
+single,40,local,0,blockage (temp),40,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,38,22.53483299864456
+single,50,full,8,emergency,50,0.02,3.0,0,84,emergency,True,1,46,45,5,0,False,100,276.62425000744406
+single,50,full,9,emergency,50,0.02,3.0,0,117,emergency,True,1,45,44,5,0,False,100,118.98820901114959
+single,40,local,2,blockage (temp),40,0.02,3.0,0,61,blockage,False,2,2,0,1,0,False,198,675.3797499986831
+single,40,local,5,blockage (temp),40,0.02,3.0,0,71,blockage,False,1,1,0,1,0,False,70,179.46295799629297
+single,40,local,6,blockage (temp),40,0.02,3.0,0,93,blockage,False,3,3,0,1,0,False,358,559.9996670061955
+single,40,local,7,blockage (temp),40,0.02,3.0,0,115,blockage,False,4,4,0,1,0,False,73,6.114666990470141
+single,40,local,8,blockage (temp),40,0.02,3.0,0,109,blockage,False,5,5,0,1,0,False,71,16.598459013039246
+single,40,local,3,blockage (temp),40,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,123,1385.9260000026552
+single,40,local-flat,0,blockage (temp),40,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,38,15.203374990960583
+single,40,local,9,blockage (temp),40,0.02,3.0,0,80,blockage,False,2,2,0,1,0,False,140,364.48258299787994
+single,40,local-flat,2,blockage (temp),40,0.02,3.0,0,61,blockage,False,2,2,0,1,0,False,144,431.9535420072498
+single,40,local-flat,3,blockage (temp),40,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,87,512.1883340034401
+single,40,local-flat,5,blockage (temp),40,0.02,3.0,0,71,blockage,False,1,1,0,1,0,False,66,102.49537500203587
+single,40,local-flat,6,blockage (temp),40,0.02,3.0,0,93,blockage,False,3,3,0,1,0,False,342,242.90870800905395
+single,40,local-flat,1,blockage (temp),40,0.02,3.0,0,105,blockage,False,3,34,31,3,1,False,2102,1132.1722510183463
+single,40,local,1,blockage (temp),40,0.02,3.0,0,105,blockage,False,3,34,31,3,1,False,2611,3157.9571260226658
+single,40,local-flat,8,blockage (temp),40,0.02,3.0,0,109,blockage,False,5,5,0,1,0,False,71,17.218083987245336
+single,40,local-flat,7,blockage (temp),40,0.02,3.0,0,115,blockage,False,4,4,0,1,0,False,73,6.774374996894039
+single,40,solo,0,blockage (temp),40,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,4,3.210334005416371
+single,40,local,4,blockage (temp),40,0.02,3.0,0,15,blockage,False,2,2,0,1,0,False,282,3392.509750003228
+single,40,solo,3,blockage (temp),40,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,3,21.10366699344013
+single,40,solo,2,blockage (temp),40,0.02,3.0,0,61,blockage,False,2,2,0,1,0,False,14,23.05304199398961
+single,40,local-flat,9,blockage (temp),40,0.02,3.0,0,80,blockage,False,2,2,0,1,0,False,120,298.1458339927485
+single,40,local-flat,4,blockage (temp),40,0.02,3.0,0,15,blockage,False,2,2,0,1,0,False,210,1639.3099580018315
+single,40,solo,6,blockage (temp),40,0.02,3.0,0,93,blockage,False,3,3,0,1,0,False,20,4.210458995657973
+single,40,solo,4,blockage (temp),40,0.02,3.0,0,15,blockage,False,2,2,0,1,0,False,8,59.387750006862916
+single,40,solo,9,blockage (temp),40,0.02,3.0,0,80,blockage,False,2,2,0,1,0,False,4,10.865165997529402
+single,40,solo,5,blockage (temp),40,0.02,3.0,0,71,blockage,False,1,1,0,1,0,False,6,19.4892089930363
+single,40,solo,8,blockage (temp),40,0.02,3.0,0,109,blockage,False,5,5,0,1,0,False,17,5.837624994455837
+single,40,solo,7,blockage (temp),40,0.02,3.0,0,115,blockage,False,4,4,0,1,0,False,15,7.409166995785199
+single,50,local-flat,5,breakdown (perm),50,0.02,3.0,0,40,breakdown,True,16,50,34,4,1,False,4216,28570.674874004908
+single,40,solo,1,blockage (temp),40,0.02,3.0,0,105,blockage,False,3,34,31,3,1,False,556,766.4424589893315
+single,40,full,0,blockage (temp),40,0.02,3.0,0,111,blockage,False,1,25,24,5,0,False,80,53.84929200226907
+single,40,full,1,blockage (temp),40,0.02,3.0,0,105,blockage,False,3,35,32,5,0,False,80,107.90012500365265
+single,40,full,6,blockage (temp),40,0.02,3.0,0,93,blockage,False,3,34,31,5,0,False,80,123.6165829905076
+single,40,full,3,blockage (temp),40,0.02,3.0,0,18,blockage,False,2,33,31,5,0,False,80,497.0545830001356
+single,40,full,2,blockage (temp),40,0.02,3.0,0,61,blockage,False,2,39,37,5,0,False,80,467.33070799382403
+single,40,full,8,blockage (temp),40,0.02,3.0,0,109,blockage,False,5,34,29,5,0,False,80,21.991708999848925
+single,40,full,7,blockage (temp),40,0.02,3.0,0,115,blockage,False,4,25,21,5,0,False,80,51.50058399885893
+single,40,full,5,blockage (temp),40,0.02,3.0,0,71,blockage,False,1,31,30,5,0,False,80,230.88287499558646
+single,40,full,4,blockage (temp),40,0.02,3.0,0,15,blockage,False,2,40,38,5,0,False,80,712.7607500005979
+single,40,full,9,blockage (temp),40,0.02,3.0,0,80,blockage,False,2,32,30,5,0,False,80,47.376667003845796
+single,40,local,0,blockage (perm),40,0.02,3.0,0,111,blockage,True,3,4,1,2,1,False,24,6.242083996767178
+single,40,local,8,blockage (perm),40,0.02,3.0,0,109,blockage,True,7,7,0,1,0,False,77,15.145625002332963
+single,40,local,7,blockage (perm),40,0.02,3.0,0,115,blockage,True,5,5,0,1,0,False,250,108.83612500037998
+single,40,local,6,blockage (perm),40,0.02,3.0,0,93,blockage,True,6,6,0,1,0,False,508,772.5875420001103
+single,40,local,2,blockage (perm),40,0.02,3.0,0,61,blockage,True,13,15,2,3,2,False,793,1141.2572499975795
+single,40,local-flat,0,blockage (perm),40,0.02,3.0,0,111,blockage,True,3,4,1,2,1,False,24,8.766375001869164
+single,40,local,1,blockage (perm),40,0.02,3.0,0,68,blockage,True,11,11,0,2,1,False,685,1490.0929170107702
+single,40,local,5,blockage (perm),40,0.02,3.0,0,71,blockage,True,12,15,3,3,1,False,758,1529.7337080119178
+single,40,local-flat,1,blockage (perm),40,0.02,3.0,0,68,blockage,True,11,11,0,2,1,False,511,629.0178749914048
+single,40,local,9,blockage (perm),40,0.02,3.0,0,80,blockage,True,10,10,0,2,1,False,493,1594.3304170068586
+single,40,local-flat,2,blockage (perm),40,0.02,3.0,0,61,blockage,True,13,15,2,3,1,False,871,1357.517291995464
+single,40,local-flat,6,blockage (perm),40,0.02,3.0,0,93,blockage,True,6,6,0,1,0,False,486,408.79512499668635
+single,40,local-flat,7,blockage (perm),40,0.02,3.0,0,115,blockage,True,5,5,0,1,0,False,194,58.91320800583344
+single,40,local-flat,8,blockage (perm),40,0.02,3.0,0,109,blockage,True,7,7,0,1,0,False,77,18.610792001709342
+single,40,local-flat,5,blockage (perm),40,0.02,3.0,0,71,blockage,True,12,15,3,3,1,False,722,1175.3300419950392
+single,40,solo,0,blockage (perm),40,0.02,3.0,0,111,blockage,True,3,3,0,1,0,False,12,4.742042001453228
+single,40,solo,1,blockage (perm),40,0.02,3.0,0,68,blockage,True,11,11,0,1,0,False,55,53.20120899705216
+single,40,solo,2,blockage (perm),40,0.02,3.0,0,61,blockage,True,13,13,0,1,0,False,95,181.1185839906102
+single,40,local-flat,9,blockage (perm),40,0.02,3.0,0,80,blockage,True,10,10,0,2,1,False,403,1147.4156249896623
+single,40,solo,3,blockage (perm),40,0.02,3.0,0,18,blockage,True,19,19,0,1,0,False,104,441.64266700681765
+single,40,solo,4,blockage (perm),40,0.02,3.0,0,15,blockage,True,13,13,0,1,0,False,78,334.1092920018127
+single,40,solo,6,blockage (perm),40,0.02,3.0,0,93,blockage,True,6,6,0,1,0,False,34,13.105791993439198
+single,40,solo,8,blockage (perm),40,0.02,3.0,0,109,blockage,True,7,7,0,1,0,False,23,10.061000008136034
+single,40,solo,7,blockage (perm),40,0.02,3.0,0,115,blockage,True,5,5,0,1,0,False,28,5.977250009891577
+single,40,solo,9,blockage (perm),40,0.02,3.0,0,80,blockage,True,10,10,0,1,0,False,42,111.58933400292881
+single,40,solo,5,blockage (perm),40,0.02,3.0,0,71,blockage,True,12,30,18,2,1,False,432,1049.408290986321
+single,40,full,0,blockage (perm),40,0.02,3.0,0,111,blockage,True,3,24,21,5,0,False,80,14.91679200262297
+single,40,full,1,blockage (perm),40,0.02,3.0,0,68,blockage,True,11,37,26,5,0,False,80,293.83837500063237
+single,40,full,2,blockage (perm),40,0.02,3.0,0,61,blockage,True,13,40,27,5,0,False,80,542.3206669947831
+single,40,full,3,blockage (perm),40,0.02,3.0,0,18,blockage,True,19,36,17,5,0,False,80,748.2302499993239
+single,40,full,6,blockage (perm),40,0.02,3.0,0,93,blockage,True,6,34,28,5,0,False,80,127.10929199238308
+single,40,full,5,blockage (perm),40,0.02,3.0,0,71,blockage,True,12,39,27,5,0,False,80,242.43549999664538
+single,40,full,8,blockage (perm),40,0.02,3.0,0,109,blockage,True,7,34,27,5,0,False,80,39.33104200405069
+single,40,full,7,blockage (perm),40,0.02,3.0,0,115,blockage,True,5,25,20,5,0,False,80,33.12300000106916
+single,40,full,4,blockage (perm),40,0.02,3.0,0,15,blockage,True,13,39,26,5,0,False,80,1569.641917012632
+single,40,full,9,blockage (perm),40,0.02,3.0,0,80,blockage,True,10,37,27,5,0,False,80,106.90929098927882
+single,40,local,0,breakdown (temp),40,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,40.6157079996774
+single,40,local,1,breakdown (temp),40,0.02,3.0,0,106,breakdown,False,1,1,0,1,0,False,1,0.9548329981043935
+single,40,local,3,breakdown (temp),40,0.02,3.0,0,88,breakdown,False,6,6,0,2,1,False,303,180.86487500113435
+single,40,local,6,breakdown (temp),40,0.02,3.0,0,97,breakdown,False,2,2,0,1,0,False,11,1.0013749997597188
+single,40,local,2,breakdown (temp),40,0.02,3.0,0,62,breakdown,False,2,2,0,1,0,False,319,654.4190419954248
+single,40,local,5,breakdown (temp),40,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,7,3.5679169959621504
+single,40,local,7,breakdown (temp),40,0.02,3.0,0,45,breakdown,False,1,1,0,1,0,False,5,12.26291700731963
+single,40,local,9,breakdown (temp),40,0.02,3.0,0,74,breakdown,False,4,4,0,1,0,False,260,345.6355420057662
+single,40,local,8,breakdown (temp),40,0.02,3.0,0,73,breakdown,False,3,3,0,1,0,False,193,691.2367499899119
+single,40,local-flat,0,breakdown (temp),40,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,34.712291992036626
+single,40,local,4,breakdown (temp),40,0.02,3.0,0,40,breakdown,False,4,4,0,2,1,False,250,1541.389583988348
+single,40,local-flat,4,blockage (perm),40,0.02,3.0,0,15,blockage,True,13,15,2,3,1,False,1225,9331.974959000945
+single,40,local-flat,1,breakdown (temp),40,0.02,3.0,0,106,breakdown,False,1,1,0,1,0,False,1,0.9771250042831525
+single,40,local-flat,2,breakdown (temp),40,0.02,3.0,0,62,breakdown,False,2,2,0,1,0,False,211,216.87795799516607
+single,40,local-flat,3,breakdown (temp),40,0.02,3.0,0,88,breakdown,False,6,6,0,2,1,False,301,202.7660419989843
+single,40,local-flat,6,breakdown (temp),40,0.02,3.0,0,97,breakdown,False,2,2,0,1,0,False,11,1.014333000057377
+single,40,local-flat,5,breakdown (temp),40,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,7,5.442875000881031
+single,40,local-flat,8,breakdown (temp),40,0.02,3.0,0,73,breakdown,False,3,3,0,1,0,False,137,107.0489170087967
+single,40,local-flat,7,breakdown (temp),40,0.02,3.0,0,45,breakdown,False,1,1,0,1,0,False,5,10.370458010584116
+single,40,solo,0,breakdown (temp),40,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,38.21420900931116
+single,40,local-flat,4,breakdown (temp),40,0.02,3.0,0,40,breakdown,False,4,4,0,2,1,False,202,1081.1398749938235
+single,40,local-flat,9,breakdown (temp),40,0.02,3.0,0,74,breakdown,False,4,4,0,1,0,False,260,346.2193329905858
+single,40,solo,2,breakdown (temp),40,0.02,3.0,0,62,breakdown,False,2,2,0,1,0,False,25,12.192209003842436
+single,40,solo,3,breakdown (temp),40,0.02,3.0,0,88,breakdown,False,6,6,0,1,0,False,45,21.708957996452227
+single,40,solo,1,breakdown (temp),40,0.02,3.0,0,106,breakdown,False,1,1,0,1,0,False,1,0.9762919944478199
+single,40,local-flat,3,blockage (perm),40,0.02,3.0,0,18,blockage,True,19,22,3,3,1,False,1687,11763.506332994439
+single,40,solo,4,breakdown (temp),40,0.02,3.0,0,40,breakdown,False,4,4,0,1,0,False,24,58.10391700651962
+single,40,solo,5,breakdown (temp),40,0.02,3.0,0,103,breakdown,False,1,1,0,1,0,False,7,2.9957500082673505
+single,40,solo,6,breakdown (temp),40,0.02,3.0,0,97,breakdown,False,2,2,0,1,0,False,11,2.1109590015839785
+single,40,solo,8,breakdown (temp),40,0.02,3.0,0,73,breakdown,False,3,3,0,1,0,False,17,7.406375007121824
+single,40,solo,9,breakdown (temp),40,0.02,3.0,0,74,breakdown,False,4,4,0,1,0,False,22,27.178958000149578
+single,40,solo,7,breakdown (temp),40,0.02,3.0,0,45,breakdown,False,1,1,0,1,0,False,5,11.908917003893293
+single,40,full,0,breakdown (temp),40,0.02,3.0,0,25,breakdown,False,1,39,38,5,0,False,80,282.96654199948534
+single,40,full,2,breakdown (temp),40,0.02,3.0,0,62,breakdown,False,2,40,38,5,0,False,80,199.77050001034513
+single,40,full,1,breakdown (temp),40,0.02,3.0,0,106,breakdown,False,1,28,27,5,0,False,80,117.8819999913685
+single,40,full,3,breakdown (temp),40,0.02,3.0,0,88,breakdown,False,6,6,0,1,0,False,85,406.6863750049379
+single,40,full,6,breakdown (temp),40,0.02,3.0,0,97,breakdown,False,2,37,35,5,0,False,80,92.98987500369549
+single,40,full,5,breakdown (temp),40,0.02,3.0,0,103,breakdown,False,1,30,29,5,0,False,80,93.58633399824612
+single,40,full,4,breakdown (temp),40,0.02,3.0,0,40,breakdown,False,4,40,36,5,0,False,80,709.3298749969108
+single,40,full,8,breakdown (temp),40,0.02,3.0,0,73,breakdown,False,3,38,35,5,0,False,80,150.72687499923632
+single,40,full,9,breakdown (temp),40,0.02,3.0,0,74,breakdown,False,4,38,34,5,0,False,80,201.4785000064876
+single,40,full,7,breakdown (temp),40,0.02,3.0,0,45,breakdown,False,1,33,32,5,0,False,80,322.24679199862294
+single,40,local,4,blockage (perm),40,0.02,3.0,0,15,blockage,True,13,15,2,3,1,False,1429,16560.397334003937
+single,40,local,3,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,11,12,1,2,1,False,988,2082.2627500165254
+single,40,local,5,breakdown (perm),40,0.02,3.0,0,46,breakdown,True,19,23,4,3,1,False,881,3183.748374998686
+single,40,local,8,breakdown (perm),40,0.02,3.0,0,65,breakdown,True,11,11,0,1,0,False,416,371.6186249948805
+single,40,local,7,breakdown (perm),40,0.02,3.0,0,47,breakdown,True,14,17,3,3,1,False,848,3038.9137500023935
+single,40,local,2,breakdown (perm),40,0.02,3.0,0,15,breakdown,True,11,13,2,3,1,False,910,6303.085833002115
+single,40,local,3,blockage (perm),40,0.02,3.0,0,18,blockage,True,19,22,3,3,1,False,2051,22516.948333010077
+single,40,local,0,breakdown (perm),40,0.02,3.0,0,19,breakdown,True,14,17,3,3,1,False,1140,8805.900375009514
+single,40,local,4,breakdown (perm),40,0.02,3.0,0,22,breakdown,True,14,15,1,3,1,False,1089,8220.111707996693
+single,40,local-flat,2,breakdown (perm),40,0.02,3.0,0,15,breakdown,True,11,13,2,3,1,False,794,3055.014249999658
+single,40,local-flat,3,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,11,12,1,2,1,False,884,1335.0010409922106
+single,40,local-flat,0,breakdown (perm),40,0.02,3.0,0,19,breakdown,True,14,17,3,3,1,False,932,3995.58854100178
+single,40,local,9,breakdown (perm),40,0.02,3.0,0,37,breakdown,True,9,10,1,3,1,False,1059,5306.327708007302
+single,40,local-flat,8,breakdown (perm),40,0.02,3.0,0,65,breakdown,True,11,11,0,1,0,False,410,305.8637919893954
+single,40,local,6,breakdown (perm),40,0.02,3.0,0,30,breakdown,True,15,16,1,3,1,False,1737,11112.674207994132
+single,40,local,1,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,15,32,17,4,1,False,2494,12805.084040999645
+single,40,solo,0,breakdown (perm),40,0.02,3.0,0,19,breakdown,True,14,14,0,1,0,False,125,335.0137499946868
+single,40,local-flat,7,breakdown (perm),40,0.02,3.0,0,47,breakdown,True,14,17,3,3,1,False,764,2085.1578330039047
+single,40,local-flat,4,breakdown (perm),40,0.02,3.0,0,22,breakdown,True,14,15,1,3,1,False,953,4370.266249999986
+single,40,solo,2,breakdown (perm),40,0.02,3.0,0,15,breakdown,True,11,11,0,1,0,False,89,102.57179201289546
+single,40,local-flat,5,breakdown (perm),40,0.02,3.0,0,46,breakdown,True,19,23,4,3,1,False,873,2883.2145409978693
+single,40,solo,3,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,11,11,0,1,0,False,201,260.6244170019636
+single,40,solo,4,breakdown (perm),40,0.02,3.0,0,22,breakdown,True,14,14,0,1,0,False,138,152.4787920061499
+single,40,solo,1,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,15,35,20,3,1,False,349,1041.8147910095286
+single,40,solo,6,breakdown (perm),40,0.02,3.0,0,30,breakdown,True,15,15,0,1,0,False,133,202.29883400315885
+single,40,local-flat,1,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,15,32,17,4,1,False,2133,7633.887833013432
+single,40,solo,8,breakdown (perm),40,0.02,3.0,0,65,breakdown,True,11,11,0,1,0,False,92,74.43370900000446
+single,40,solo,5,breakdown (perm),40,0.02,3.0,0,46,breakdown,True,19,19,0,1,0,False,104,315.27945800917223
+single,40,solo,7,breakdown (perm),40,0.02,3.0,0,47,breakdown,True,14,14,0,1,0,False,117,152.53020799718797
+single,40,solo,9,breakdown (perm),40,0.02,3.0,0,37,breakdown,True,9,9,0,1,0,False,54,112.76225000619888
+single,40,local-flat,9,breakdown (perm),40,0.02,3.0,0,37,breakdown,True,9,10,1,3,1,False,843,3179.929584002821
+single,40,full,3,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,11,40,29,5,0,False,108,326.9532080012141
+single,40,full,1,breakdown (perm),40,0.02,3.0,0,58,breakdown,True,15,40,25,5,0,False,100,348.4036250010831
+single,40,full,2,breakdown (perm),40,0.02,3.0,0,15,breakdown,True,11,39,28,5,0,False,117,458.18791700003203
+single,40,full,5,breakdown (perm),40,0.02,3.0,0,46,breakdown,True,19,39,20,5,0,False,88,198.66133300820366
+single,40,full,4,breakdown (perm),40,0.02,3.0,0,22,breakdown,True,14,39,25,5,0,False,135,536.5089999977499
+single,40,full,0,breakdown (perm),40,0.02,3.0,0,19,breakdown,True,14,40,26,5,0,False,129,1095.7971669995459
+single,40,full,8,breakdown (perm),40,0.02,3.0,0,65,breakdown,True,11,39,28,5,0,False,108,172.95841599116102
+single,40,full,9,breakdown (perm),40,0.02,3.0,0,37,breakdown,True,9,36,27,5,0,False,99,284.2845829873113
+single,40,full,6,breakdown (perm),40,0.02,3.0,0,30,breakdown,True,15,40,25,5,0,False,123,1064.5422910019988
+single,40,local,0,emergency,40,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,74,63.17170801048633
+single,40,full,7,breakdown (perm),40,0.02,3.0,0,47,breakdown,True,14,40,26,5,0,False,108,312.5342499988619
+single,40,local,1,emergency,40,0.02,3.0,0,126,emergency,True,1,1,0,1,0,False,62,7.643000004463829
+single,40,local,2,emergency,40,0.02,3.0,0,51,emergency,True,1,1,0,1,0,False,64,36.7752079910133
+single,40,local-flat,6,breakdown (perm),40,0.02,3.0,0,30,breakdown,True,15,16,1,3,1,False,1383,6093.955916992854
+single,40,local,3,emergency,40,0.02,3.0,0,30,emergency,True,1,2,1,3,1,False,61,83.63658300368115
+single,40,local,4,emergency,40,0.02,3.0,0,115,emergency,True,1,1,0,1,0,False,4,1.3069999986328185
+single,40,local,8,emergency,40,0.02,3.0,0,78,emergency,True,1,1,0,1,0,False,52,36.75420899526216
+single,40,local,9,emergency,40,0.02,3.0,0,122,emergency,True,1,4,3,3,1,False,83,58.465666996198706
+single,40,local-flat,0,emergency,40,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,50,21.087667002575472
+single,40,local,7,emergency,40,0.02,3.0,0,79,emergency,True,1,1,0,1,0,False,33,55.45512499520555
+single,40,local-flat,1,emergency,40,0.02,3.0,0,126,emergency,True,1,1,0,1,0,False,54,1.138666004408151
+single,40,local-flat,2,emergency,40,0.02,3.0,0,51,emergency,True,1,1,0,1,0,False,56,5.663375006406568
+single,40,local-flat,3,emergency,40,0.02,3.0,0,30,emergency,True,1,2,1,3,1,False,61,78.93016700109001
+single,40,local-flat,4,emergency,40,0.02,3.0,0,115,emergency,True,1,1,0,1,0,False,4,1.2435000098776072
+single,40,local,6,emergency,40,0.02,3.0,0,33,emergency,True,1,1,0,1,0,False,163,899.9133329925826
+single,40,local-flat,8,emergency,40,0.02,3.0,0,78,emergency,True,1,1,0,1,0,False,44,3.411790996324271
+single,40,local-flat,6,emergency,40,0.02,3.0,0,33,emergency,True,1,1,0,1,0,False,91,385.3940840053838
+single,40,local-flat,9,emergency,40,0.02,3.0,0,122,emergency,True,1,1,0,1,0,False,75,38.980834011454135
+single,40,solo,0,emergency,40,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,6,5.166374990949407
+single,40,local-flat,7,emergency,40,0.02,3.0,0,79,emergency,True,1,1,0,1,0,False,25,16.382375004468486
+single,40,solo,1,emergency,40,0.02,3.0,0,126,emergency,True,1,1,0,1,0,False,6,1.0192920017288998
+single,40,solo,2,emergency,40,0.02,3.0,0,51,emergency,True,1,1,0,1,0,False,6,2.9967500013299286
+single,40,solo,3,emergency,40,0.02,3.0,0,30,emergency,True,1,1,0,1,0,False,6,9.362042008433491
+single,40,solo,6,emergency,40,0.02,3.0,0,33,emergency,True,1,1,0,1,0,False,7,12.794084002962336
+single,40,solo,4,emergency,40,0.02,3.0,0,115,emergency,True,1,1,0,1,0,False,4,1.262917008716613
+single,40,local-flat,5,emergency,40,0.02,3.0,0,13,emergency,True,1,1,0,1,0,False,158,1048.8232080097077
+single,40,solo,5,emergency,40,0.02,3.0,0,13,emergency,True,1,1,0,1,0,False,8,17.08370899723377
+single,40,solo,9,emergency,40,0.02,3.0,0,122,emergency,True,1,1,0,1,0,False,7,3.7467079964699224
+single,40,solo,8,emergency,40,0.02,3.0,0,78,emergency,True,1,1,0,1,0,False,4,1.5572920092381537
+single,40,solo,7,emergency,40,0.02,3.0,0,79,emergency,True,1,1,0,1,0,False,1,7.179124993854202
+single,40,full,0,emergency,40,0.02,3.0,0,87,emergency,True,1,35,34,5,0,False,80,42.15291600849014
+single,40,full,1,emergency,40,0.02,3.0,0,126,emergency,True,1,20,19,5,0,False,80,44.896667008288205
+single,40,full,2,emergency,40,0.02,3.0,0,51,emergency,True,1,39,38,5,0,False,80,200.59062499785796
+single,40,full,4,emergency,40,0.02,3.0,0,115,emergency,True,1,36,35,5,0,False,80,116.51150000398047
+single,40,full,3,emergency,40,0.02,3.0,0,30,emergency,True,1,38,37,5,0,False,80,380.3957909985911
+single,40,full,6,emergency,40,0.02,3.0,0,33,emergency,True,1,37,36,5,0,False,80,405.3282079985365
+single,40,full,9,emergency,40,0.02,3.0,0,122,emergency,True,1,24,23,5,0,False,80,9.665707999374717
+single,30,local,1,blockage (temp),30,0.02,3.0,0,112,blockage,False,2,2,0,1,0,False,39,5.371333012590185
+single,30,local,0,blockage (temp),30,0.02,3.0,0,106,blockage,False,1,1,0,1,0,False,7,0.5283329956000671
+single,40,full,7,emergency,40,0.02,3.0,0,79,emergency,True,1,32,31,5,0,False,80,179.4051250035409
+single,40,full,8,emergency,40,0.02,3.0,0,78,emergency,True,1,36,35,5,0,False,80,132.01604200003203
+single,30,local,2,blockage (temp),30,0.02,3.0,0,75,blockage,False,1,1,0,1,0,False,42,26.227875001495704
+single,30,local,4,blockage (temp),30,0.02,3.0,0,15,blockage,False,1,1,0,1,0,False,4,2.1950840018689632
+single,30,local,7,blockage (temp),30,0.02,3.0,0,111,blockage,False,2,2,0,1,0,False,5,1.0500829957891256
+single,30,local,5,blockage (temp),30,0.02,3.0,0,71,blockage,False,7,7,0,1,0,False,281,164.6751249936642
+single,30,local,9,blockage (temp),30,0.02,3.0,0,75,blockage,False,2,2,0,1,0,False,34,6.754000001819804
+single,30,local,8,blockage (temp),30,0.02,3.0,0,105,blockage,False,4,5,1,3,1,False,96,37.22012499929406
+single,30,local-flat,1,blockage (temp),30,0.02,3.0,0,112,blockage,False,2,2,0,1,0,False,39,5.22554200142622
+single,30,local-flat,0,blockage (temp),30,0.02,3.0,0,106,blockage,False,1,1,0,1,0,False,7,0.5295830051181838
+single,30,local-flat,2,blockage (temp),30,0.02,3.0,0,75,blockage,False,1,1,0,1,0,False,42,33.12854201067239
+single,30,local-flat,4,blockage (temp),30,0.02,3.0,0,15,blockage,False,1,1,0,1,0,False,4,2.285499998833984
+single,30,local,6,blockage (temp),30,0.02,3.0,0,74,blockage,False,3,6,3,1,0,False,477,773.6728329909965
+single,30,local-flat,5,blockage (temp),30,0.02,3.0,0,71,blockage,False,7,7,0,1,0,False,277,150.56333401298616
+single,30,local-flat,6,blockage (temp),30,0.02,3.0,0,74,blockage,False,3,6,3,1,0,False,391,238.71620900172275
+single,30,local-flat,7,blockage (temp),30,0.02,3.0,0,111,blockage,False,2,2,0,1,0,False,5,1.0477920004632324
+single,40,full,5,emergency,40,0.02,3.0,0,13,emergency,True,1,40,39,5,0,False,80,1966.4607500017155
+single,30,local-flat,8,blockage (temp),30,0.02,3.0,0,105,blockage,False,4,5,1,3,1,False,96,29.06712501135189
+single,30,local-flat,9,blockage (temp),30,0.02,3.0,0,75,blockage,False,2,2,0,1,0,False,34,11.275832992396317
+single,30,solo,1,blockage (temp),30,0.02,3.0,0,112,blockage,False,2,2,0,1,0,False,7,2.405499995802529
+single,30,solo,0,blockage (temp),30,0.02,3.0,0,106,blockage,False,1,1,0,1,0,False,7,0.52208399574738
+single,40,local,5,emergency,40,0.02,3.0,0,13,emergency,True,1,1,0,1,0,False,298,5022.371874991222
+single,30,solo,2,blockage (temp),30,0.02,3.0,0,75,blockage,False,1,1,0,1,0,False,4,2.589666997664608
+single,30,local,3,blockage (temp),30,0.02,3.0,0,20,blockage,False,3,3,0,3,1,False,233,1496.177583001554
+single,30,solo,4,blockage (temp),30,0.02,3.0,0,15,blockage,False,1,1,0,1,0,False,4,2.2967500117374584
+single,30,solo,5,blockage (temp),30,0.02,3.0,0,71,blockage,False,7,7,0,1,0,False,31,11.345749997417443
+single,30,solo,6,blockage (temp),30,0.02,3.0,0,74,blockage,False,3,6,3,1,0,False,97,71.9213749980554
+single,30,solo,7,blockage (temp),30,0.02,3.0,0,111,blockage,False,2,2,0,1,0,False,5,1.0347079951316118
+single,30,solo,3,blockage (temp),30,0.02,3.0,0,20,blockage,False,3,3,0,1,0,False,5,105.30037499847822
+single,30,solo,9,blockage (temp),30,0.02,3.0,0,75,blockage,False,2,2,0,1,0,False,4,9.890707995509729
+single,30,local-flat,3,blockage (temp),30,0.02,3.0,0,20,blockage,False,3,3,0,3,1,False,177,1046.8622500047786
+single,30,solo,8,blockage (temp),30,0.02,3.0,0,105,blockage,False,4,4,0,1,0,False,10,6.440875004045665
+single,30,full,1,blockage (temp),30,0.02,3.0,0,112,blockage,False,2,22,20,5,0,False,60,12.765082996338606
+single,30,full,2,blockage (temp),30,0.02,3.0,0,75,blockage,False,1,19,18,5,0,False,60,53.997625000192784
+single,30,full,0,blockage (temp),30,0.02,3.0,0,106,blockage,False,1,17,16,5,0,False,60,23.28420800040476
+single,30,full,6,blockage (temp),30,0.02,3.0,0,74,blockage,False,3,27,24,5,0,False,60,65.83366698760074
+single,30,full,5,blockage (temp),30,0.02,3.0,0,71,blockage,False,7,28,21,5,0,False,60,85.37924999836832
+single,30,full,7,blockage (temp),30,0.02,3.0,0,111,blockage,False,2,9,7,5,0,False,60,19.699916010722518
+single,30,full,4,blockage (temp),30,0.02,3.0,0,15,blockage,False,1,19,18,5,0,False,60,264.0977080009179
+single,30,full,9,blockage (temp),30,0.02,3.0,0,75,blockage,False,2,17,15,5,0,False,60,34.562375003588386
+single,30,full,8,blockage (temp),30,0.02,3.0,0,105,blockage,False,4,20,16,5,0,False,60,19.550208991859108
+single,30,full,3,blockage (temp),30,0.02,3.0,0,20,blockage,False,3,25,22,5,0,False,60,224.15087500121444
+single,30,local,0,blockage (perm),30,0.02,3.0,0,106,blockage,True,5,5,0,2,1,False,180,85.25358300539665
+single,30,local,7,blockage (perm),30,0.02,3.0,0,111,blockage,True,6,6,0,1,0,False,50,20.5177919997368
+single,30,local,1,blockage (perm),30,0.02,3.0,0,73,blockage,True,9,9,0,2,1,False,208,229.25920800480526
+single,30,local,8,blockage (perm),30,0.02,3.0,0,105,blockage,True,4,5,1,3,1,False,96,37.12500000256114
+single,30,local,6,blockage (perm),30,0.02,3.0,0,74,blockage,True,6,6,0,1,0,False,381,393.7107080128044
+single,30,local-flat,0,blockage (perm),30,0.02,3.0,0,106,blockage,True,5,5,0,2,1,False,172,99.23220799828414
+single,30,local,9,blockage (perm),30,0.02,3.0,0,75,blockage,True,10,11,1,3,1,False,377,220.20870899723377
+single,30,local,5,blockage (perm),30,0.02,3.0,0,71,blockage,True,9,9,0,3,1,False,434,632.8404579980997
+single,30,local-flat,1,blockage (perm),30,0.02,3.0,0,73,blockage,True,9,9,0,2,1,False,204,204.78541699412744
+single,30,local,4,blockage (perm),30,0.02,3.0,0,15,blockage,True,12,14,2,2,1,False,367,989.1225000028498
+single,30,local,2,blockage (perm),30,0.02,3.0,0,75,blockage,True,8,11,3,2,2,False,301,1086.7052500107093
+single,30,local-flat,7,blockage (perm),30,0.02,3.0,0,111,blockage,True,6,6,0,1,0,False,50,17.635417010751553
+single,30,local-flat,6,blockage (perm),30,0.02,3.0,0,74,blockage,True,6,6,0,1,0,False,355,171.34537499805447
+single,30,local-flat,5,blockage (perm),30,0.02,3.0,0,71,blockage,True,9,9,0,3,1,False,398,393.31358298659325
+single,30,local-flat,2,blockage (perm),30,0.02,3.0,0,75,blockage,True,8,9,1,3,1,False,269,832.4872089870041
+single,30,local-flat,8,blockage (perm),30,0.02,3.0,0,105,blockage,True,4,5,1,3,1,False,96,37.20854100538418
+single,30,solo,0,blockage (perm),30,0.02,3.0,0,106,blockage,True,5,5,0,1,0,False,17,21.646957990014926
+single,30,solo,1,blockage (perm),30,0.02,3.0,0,73,blockage,True,9,9,0,1,0,False,36,31.32216600351967
+single,30,local-flat,4,blockage (perm),30,0.02,3.0,0,15,blockage,True,12,14,2,2,1,False,345,817.3846669960767
+single,30,solo,2,blockage (perm),30,0.02,3.0,0,75,blockage,True,8,8,0,1,0,False,36,75.69800000055693
+single,30,local-flat,9,blockage (perm),30,0.02,3.0,0,75,blockage,True,10,11,1,3,1,False,377,211.9145829929039
+single,30,solo,6,blockage (perm),30,0.02,3.0,0,74,blockage,True,6,6,0,1,0,False,97,49.60687599668745
+single,30,solo,5,blockage (perm),30,0.02,3.0,0,71,blockage,True,9,9,0,1,0,False,37,26.568417000817135
+single,30,solo,4,blockage (perm),30,0.02,3.0,0,15,blockage,True,12,12,0,1,0,False,50,139.89183299418073
+single,30,solo,3,blockage (perm),30,0.02,3.0,0,20,blockage,True,11,11,0,1,0,False,44,222.30120799213182
+single,30,solo,7,blockage (perm),30,0.02,3.0,0,111,blockage,True,6,6,0,1,0,False,14,8.483707992127165
+single,30,solo,8,blockage (perm),30,0.02,3.0,0,105,blockage,True,4,4,0,1,0,False,10,14.59600000816863
+single,30,solo,9,blockage (perm),30,0.02,3.0,0,75,blockage,True,10,10,0,1,0,False,45,69.22070799919311
+single,30,full,0,blockage (perm),30,0.02,3.0,0,106,blockage,True,5,19,14,5,0,False,60,24.802041007205844
+single,30,full,2,blockage (perm),30,0.02,3.0,0,75,blockage,True,8,25,17,5,0,False,60,77.37537499633618
+single,30,full,1,blockage (perm),30,0.02,3.0,0,73,blockage,True,9,29,20,5,0,False,60,65.67004200769588
+single,30,full,4,blockage (perm),30,0.02,3.0,0,15,blockage,True,12,29,17,5,0,False,60,248.72637499356642
+single,30,full,5,blockage (perm),30,0.02,3.0,0,71,blockage,True,9,27,18,5,0,False,60,78.08274999842979
+single,30,full,6,blockage (perm),30,0.02,3.0,0,74,blockage,True,6,27,21,5,0,False,60,95.30450000602286
+single,30,full,7,blockage (perm),30,0.02,3.0,0,111,blockage,True,6,13,7,5,0,False,60,31.33295899897348
+single,30,full,8,blockage (perm),30,0.02,3.0,0,105,blockage,True,4,20,16,5,0,False,60,30.97150000394322
+single,30,full,3,blockage (perm),30,0.02,3.0,0,20,blockage,True,11,26,15,5,0,False,60,509.373124994454
+single,30,local,2,breakdown (temp),30,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,8,2.015791993471794
+single,30,local,1,breakdown (temp),30,0.02,3.0,0,114,breakdown,False,4,4,0,1,0,False,78,8.085458001005463
+single,30,full,9,blockage (perm),30,0.02,3.0,0,75,blockage,True,10,22,12,5,0,False,60,78.7865000020247
+single,30,local,0,breakdown (temp),30,0.02,3.0,0,23,breakdown,False,2,2,0,1,0,False,55,35.682583999005146
+single,30,local,4,breakdown (temp),30,0.02,3.0,0,43,breakdown,False,2,2,0,1,0,False,8,6.494834000477567
+single,30,local,3,breakdown (temp),30,0.02,3.0,0,98,breakdown,False,1,1,0,1,0,False,1,0.19991700537502766
+single,30,local,6,breakdown (temp),30,0.02,3.0,0,77,breakdown,False,2,2,0,1,0,False,85,38.78741699736565
+single,30,local,5,breakdown (temp),30,0.02,3.0,0,103,breakdown,False,2,2,0,1,0,False,35,13.030875008553267
+single,30,local,9,breakdown (temp),30,0.02,3.0,0,68,breakdown,False,3,3,0,1,0,False,48,20.448541006771848
+single,30,local-flat,2,breakdown (temp),30,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,8,5.215124998358078
+single,30,local-flat,1,breakdown (temp),30,0.02,3.0,0,114,breakdown,False,4,4,0,1,0,False,78,2.703874997678213
+single,30,local-flat,0,breakdown (temp),30,0.02,3.0,0,23,breakdown,False,2,2,0,1,0,False,55,13.646709005115554
+single,30,local,8,breakdown (temp),30,0.02,3.0,0,70,breakdown,False,5,5,0,2,1,False,226,241.79724999703467
+single,30,local-flat,4,breakdown (temp),30,0.02,3.0,0,43,breakdown,False,2,2,0,1,0,False,8,4.2356670019216835
+single,30,local-flat,6,breakdown (temp),30,0.02,3.0,0,77,breakdown,False,2,2,0,1,0,False,85,31.553374996292405
+single,30,local-flat,5,breakdown (temp),30,0.02,3.0,0,103,breakdown,False,2,2,0,1,0,False,35,7.472042008885182
+single,30,local-flat,3,breakdown (temp),30,0.02,3.0,0,98,breakdown,False,1,1,0,1,0,False,1,0.4418749886099249
+single,30,local,7,breakdown (temp),30,0.02,3.0,0,44,breakdown,False,2,2,0,1,0,False,197,867.8192080114968
+single,30,local-flat,3,blockage (perm),30,0.02,3.0,0,20,blockage,True,11,14,3,3,1,False,670,3471.424165996723
+single,30,local-flat,9,breakdown (temp),30,0.02,3.0,0,68,breakdown,False,3,3,0,1,0,False,48,30.838916994980536
+single,30,solo,1,breakdown (temp),30,0.02,3.0,0,114,breakdown,False,4,4,0,1,0,False,28,3.6091660003876314
+single,30,solo,0,breakdown (temp),30,0.02,3.0,0,23,breakdown,False,2,2,0,1,0,False,11,14.104667003266513
+single,30,solo,2,breakdown (temp),30,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,8,1.9956670003011823
+single,30,solo,4,breakdown (temp),30,0.02,3.0,0,43,breakdown,False,2,2,0,1,0,False,8,6.839291003416292
+single,30,local-flat,8,breakdown (temp),30,0.02,3.0,0,70,breakdown,False,5,5,0,2,1,False,216,180.87329200352542
+single,30,local-flat,7,breakdown (temp),30,0.02,3.0,0,44,breakdown,False,2,2,0,1,0,False,99,324.4840830011526
+single,30,solo,5,breakdown (temp),30,0.02,3.0,0,103,breakdown,False,2,2,0,1,0,False,5,2.394750001258217
+single,30,solo,6,breakdown (temp),30,0.02,3.0,0,77,breakdown,False,2,2,0,1,0,False,11,4.858166998019442
+single,30,solo,3,breakdown (temp),30,0.02,3.0,0,98,breakdown,False,1,1,0,1,0,False,1,0.17487499280832708
+single,30,solo,7,breakdown (temp),30,0.02,3.0,0,44,breakdown,False,2,2,0,1,0,False,11,16.96283300407231
+single,30,solo,9,breakdown (temp),30,0.02,3.0,0,68,breakdown,False,3,3,0,1,0,False,8,10.026874995674007
+single,30,full,2,breakdown (temp),30,0.02,3.0,0,76,breakdown,False,1,17,16,5,0,False,60,59.33799999183975
+single,30,full,1,breakdown (temp),30,0.02,3.0,0,114,breakdown,False,4,23,19,5,0,False,60,9.376667003380135
+single,30,solo,8,breakdown (temp),30,0.02,3.0,0,70,breakdown,False,5,5,0,1,0,False,28,11.431917009758763
+single,30,full,4,breakdown (temp),30,0.02,3.0,0,43,breakdown,False,2,24,22,5,0,False,60,82.90533399849664
+single,30,full,3,breakdown (temp),30,0.02,3.0,0,98,breakdown,False,1,24,23,5,0,False,60,77.64395799313206
+single,30,full,5,breakdown (temp),30,0.02,3.0,0,103,breakdown,False,2,19,17,5,0,False,60,24.669417005497962
+single,30,full,6,breakdown (temp),30,0.02,3.0,0,77,breakdown,False,2,28,26,5,0,False,60,78.91858399671037
+single,30,full,0,breakdown (temp),30,0.02,3.0,0,23,breakdown,False,2,29,27,5,0,False,60,317.8695410024375
+single,30,full,9,breakdown (temp),30,0.02,3.0,0,68,breakdown,False,3,25,22,5,0,False,60,65.42895799793769
+single,30,full,8,breakdown (temp),30,0.02,3.0,0,70,breakdown,False,5,30,25,5,0,False,60,116.02304200641811
+single,30,full,7,breakdown (temp),30,0.02,3.0,0,44,breakdown,False,2,24,22,5,0,False,60,327.5403750012629
+single,30,local,3,breakdown (perm),30,0.02,3.0,0,64,breakdown,True,6,6,0,1,0,False,56,76.0910000099102
+single,30,local,1,breakdown (perm),30,0.02,3.0,0,62,breakdown,True,12,12,0,1,0,False,368,469.1651670000283
+single,30,local,2,breakdown (perm),30,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,233,432.68154200632125
+single,30,local,3,blockage (perm),30,0.02,3.0,0,20,blockage,True,11,14,3,3,1,False,778,6313.382417007233
+single,30,local,5,breakdown (perm),30,0.02,3.0,0,46,breakdown,True,13,15,2,3,1,False,383,798.4154169971589
+single,30,local,7,breakdown (perm),30,0.02,3.0,0,45,breakdown,True,16,16,0,1,0,False,517,858.2302919967333
+single,30,local-flat,1,breakdown (perm),30,0.02,3.0,0,62,breakdown,True,12,12,0,1,0,False,368,480.7703330006916
+single,30,local-flat,2,breakdown (perm),30,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,227,353.1829590065172
+single,30,local,4,breakdown (perm),30,0.02,3.0,0,23,breakdown,True,11,11,0,3,1,False,582,1864.2960830038646
+single,30,local,8,breakdown (perm),30,0.02,3.0,0,63,breakdown,True,11,12,1,4,1,False,749,1408.851375002996
+single,30,local-flat,3,breakdown (perm),30,0.02,3.0,0,64,breakdown,True,6,6,0,1,0,False,56,64.88137500127777
+single,30,local,6,breakdown (perm),30,0.02,3.0,0,24,breakdown,True,16,19,3,3,1,False,519,2268.3739999920363
+single,30,local-flat,5,breakdown (perm),30,0.02,3.0,0,46,breakdown,True,13,15,2,3,1,False,383,801.9854580052197
+single,30,local-flat,7,breakdown (perm),30,0.02,3.0,0,45,breakdown,True,16,16,0,1,0,False,513,699.8029590031365
+single,30,local-flat,0,breakdown (perm),30,0.02,3.0,0,18,breakdown,True,12,12,0,1,0,False,595,2458.7849999952596
+single,30,local-flat,8,breakdown (perm),30,0.02,3.0,0,63,breakdown,True,11,12,1,4,1,False,635,536.1990410019644
+single,30,local,9,breakdown (perm),30,0.02,3.0,0,34,breakdown,True,11,12,1,2,1,False,688,2968.792667001253
+single,30,local-flat,4,breakdown (perm),30,0.02,3.0,0,23,breakdown,True,11,11,0,3,1,False,524,1509.5192500011763
+single,30,solo,1,breakdown (perm),30,0.02,3.0,0,62,breakdown,True,12,12,0,1,0,False,46,51.18133300857153
+single,30,solo,2,breakdown (perm),30,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,55,24.879125005099922
+single,30,solo,0,breakdown (perm),30,0.02,3.0,0,18,breakdown,True,12,12,0,1,0,False,107,92.8216249885736
+single,30,solo,5,breakdown (perm),30,0.02,3.0,0,46,breakdown,True,13,13,0,1,0,False,47,92.90229200269096
+single,30,solo,3,breakdown (perm),30,0.02,3.0,0,64,breakdown,True,6,6,0,1,0,False,18,9.889207998639904
+single,30,solo,4,breakdown (perm),30,0.02,3.0,0,23,breakdown,True,11,11,0,1,0,False,60,162.93412499362603
+single,30,solo,7,breakdown (perm),30,0.02,3.0,0,45,breakdown,True,16,16,0,1,0,False,77,47.08308298722841
+single,30,local-flat,6,breakdown (perm),30,0.02,3.0,0,24,breakdown,True,16,19,3,3,1,False,503,1793.525041997782
+single,30,solo,6,breakdown (perm),30,0.02,3.0,0,24,breakdown,True,16,16,0,1,0,False,95,338.365541989333
+single,30,solo,9,breakdown (perm),30,0.02,3.0,0,34,breakdown,True,11,11,0,1,0,False,96,99.1029580036411
+single,30,full,1,breakdown (perm),30,0.02,3.0,0,62,breakdown,True,12,29,17,5,0,False,72,110.34862499218434
+single,30,full,0,breakdown (perm),30,0.02,3.0,0,18,breakdown,True,12,27,15,5,0,False,109,215.51062499929685
+single,30,full,2,breakdown (perm),30,0.02,3.0,0,19,breakdown,True,6,28,22,5,0,False,91,226.0408330039354
+single,30,solo,8,breakdown (perm),30,0.02,3.0,0,63,breakdown,True,11,16,5,4,1,False,270,297.99316500429995
+single,30,full,3,breakdown (perm),30,0.02,3.0,0,64,breakdown,True,6,24,18,5,0,False,63,111.5114169951994
+single,30,local-flat,9,breakdown (perm),30,0.02,3.0,0,34,breakdown,True,11,12,1,2,1,False,600,1426.1562499887077
+single,30,full,4,breakdown (perm),30,0.02,3.0,0,23,breakdown,True,11,28,17,5,0,False,79,241.47499998798594
+single,30,full,5,breakdown (perm),30,0.02,3.0,0,46,breakdown,True,13,29,16,5,0,False,64,140.89154200337362
+single,30,local,1,emergency,30,0.02,3.0,0,135,emergency,True,1,1,0,1,0,False,17,1.9705410086316988
+single,30,local,0,breakdown (perm),30,0.02,3.0,0,18,breakdown,True,12,12,0,1,0,False,781,5343.415041003027
+single,30,full,7,breakdown (perm),30,0.02,3.0,0,45,breakdown,True,16,28,12,5,0,False,84,256.1180000047898
+single,30,local,0,emergency,30,0.02,3.0,0,83,emergency,True,1,1,0,1,0,False,48,32.79875000589527
+single,30,full,6,breakdown (perm),30,0.02,3.0,0,24,breakdown,True,16,30,14,5,0,False,97,366.39770900364965
+single,30,local,2,emergency,30,0.02,3.0,0,62,emergency,True,1,3,2,2,2,False,11,34.600709012011066
+single,30,full,8,breakdown (perm),30,0.02,3.0,0,63,breakdown,True,11,30,19,5,0,False,92,156.3918749889126
+single,30,full,9,breakdown (perm),30,0.02,3.0,0,34,breakdown,True,11,30,19,5,0,False,103,229.5087090024026
+single,30,local,4,emergency,30,0.02,3.0,0,122,emergency,True,1,1,0,1,0,False,93,48.39795800216962
+single,30,local,7,emergency,30,0.02,3.0,0,77,emergency,True,1,1,0,1,0,False,100,88.15066699753515
+single,30,local,9,emergency,30,0.02,3.0,0,113,emergency,True,1,1,0,1,0,False,40,4.742290999274701
+single,30,local,5,emergency,30,0.02,3.0,0,13,emergency,True,1,2,1,3,1,False,63,205.31375000427943
+single,30,local-flat,0,emergency,30,0.02,3.0,0,83,emergency,True,1,1,0,1,0,False,40,19.218417000956833
+single,30,local,8,emergency,30,0.02,3.0,0,75,emergency,True,1,1,0,1,0,False,30,30.09954100707546
+single,30,local-flat,1,emergency,30,0.02,3.0,0,135,emergency,True,1,1,0,1,0,False,13,0.8475829963572323
+single,30,local-flat,4,emergency,30,0.02,3.0,0,122,emergency,True,1,1,0,1,0,False,49,22.33712500310503
+single,30,local,3,emergency,30,0.02,3.0,0,33,emergency,True,1,2,1,3,1,False,53,524.1891659970861
+single,30,local-flat,2,emergency,30,0.02,3.0,0,62,emergency,True,1,1,0,1,0,False,79,234.11537500214763
+single,30,local-flat,7,emergency,30,0.02,3.0,0,77,emergency,True,1,1,0,1,0,False,84,61.513082997407764
+single,30,local,6,emergency,30,0.02,3.0,0,26,emergency,True,1,1,0,1,0,False,101,741.8962920055492
+single,30,local-flat,6,emergency,30,0.02,3.0,0,26,emergency,True,1,1,0,1,0,False,49,233.56004200468305
+single,30,local-flat,9,emergency,30,0.02,3.0,0,113,emergency,True,1,1,0,1,0,False,32,1.1646659986581653
+single,30,local-flat,8,emergency,30,0.02,3.0,0,75,emergency,True,1,1,0,1,0,False,24,8.195916001568548
+single,30,solo,2,emergency,30,0.02,3.0,0,62,emergency,True,1,1,0,1,0,False,1,5.634208006085828
+single,30,solo,0,emergency,30,0.02,3.0,0,83,emergency,True,1,1,0,1,0,False,6,4.848291995585896
+single,30,solo,1,emergency,30,0.02,3.0,0,135,emergency,True,1,1,0,1,0,False,1,0.8038749947445467
+single,30,solo,4,emergency,30,0.02,3.0,0,122,emergency,True,1,1,0,1,0,False,7,2.7442079881438985
+single,30,solo,6,emergency,30,0.02,3.0,0,26,emergency,True,1,1,0,1,0,False,3,12.541292002424598
+single,30,solo,5,emergency,30,0.02,3.0,0,13,emergency,True,1,1,0,1,0,False,4,24.41158400324639
+single,30,solo,7,emergency,30,0.02,3.0,0,77,emergency,True,1,1,0,1,0,False,2,5.77487499685958
+single,30,solo,3,emergency,30,0.02,3.0,0,33,emergency,True,1,1,0,1,0,False,2,42.393750001792796
+single,30,solo,8,emergency,30,0.02,3.0,0,75,emergency,True,1,1,0,1,0,False,4,11.3991249963874
+single,30,local-flat,5,emergency,30,0.02,3.0,0,13,emergency,True,1,1,0,1,0,False,106,872.9804159956984
+single,30,solo,9,emergency,30,0.02,3.0,0,113,emergency,True,1,1,0,1,0,False,4,1.0365409980295226
+single,30,full,1,emergency,30,0.02,3.0,0,135,emergency,True,1,21,20,5,0,False,60,12.416958008543588
+single,30,local-flat,3,emergency,30,0.02,3.0,0,33,emergency,True,1,1,0,1,0,False,86,995.9161659935489
+single,30,full,2,emergency,30,0.02,3.0,0,62,emergency,True,1,26,25,5,0,False,60,78.27529199130367
+single,30,full,0,emergency,30,0.02,3.0,0,83,emergency,True,1,22,21,5,0,False,60,59.28750000020955
+single,30,full,4,emergency,30,0.02,3.0,0,122,emergency,True,1,19,18,5,0,False,60,13.25524999992922
+single,20,local,1,blockage (temp),20,0.02,3.0,0,95,blockage,False,3,3,0,1,0,False,49,25.983667001128197
+single,20,local,0,blockage (temp),20,0.02,3.0,0,117,blockage,False,1,1,0,1,0,False,1,1.1302500060992315
+single,30,full,3,emergency,30,0.02,3.0,0,33,emergency,True,1,24,23,5,0,False,60,244.99333299172577
+single,30,full,6,emergency,30,0.02,3.0,0,26,emergency,True,1,28,27,5,0,False,60,236.3069999992149
+single,20,local,2,blockage (temp),20,0.02,3.0,0,57,blockage,False,1,1,0,1,0,False,38,30.309582987683825
+single,30,full,9,emergency,30,0.02,3.0,0,113,emergency,True,1,7,6,5,0,False,60,6.57974999921862
+single,30,full,7,emergency,30,0.02,3.0,0,77,emergency,True,1,26,25,5,0,False,60,121.41675000020768
+single,20,local,4,blockage (temp),20,0.02,3.0,0,12,blockage,False,1,1,0,1,0,False,5,2.3095409997040406
+single,30,full,5,emergency,30,0.02,3.0,0,13,emergency,True,1,25,24,5,0,False,60,317.69541700487025
+single,20,local,3,blockage (temp),20,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,45,110.9188330010511
+single,20,local,5,blockage (temp),20,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,18,1.6115829930640757
+single,50,solo,5,breakdown (perm),50,0.02,3.0,0,40,breakdown,True,16,50,34,4,0,False,13251610,73748.24496367364
+single,20,local,7,blockage (temp),20,0.02,3.0,0,95,blockage,False,1,1,0,1,0,False,2,2.5612909957999364
+single,30,full,8,emergency,30,0.02,3.0,0,75,emergency,True,1,26,25,5,0,False,60,56.16895901039243
+single,20,local,8,blockage (temp),20,0.02,3.0,0,92,blockage,False,4,5,1,1,0,False,165,17.66841700009536
+single,20,local,6,blockage (temp),20,0.02,3.0,0,72,blockage,False,1,1,0,1,0,False,34,19.34699999401346
+single,20,local-flat,4,blockage (temp),20,0.02,3.0,0,12,blockage,False,1,1,0,1,0,False,5,0.9403749863849953
+single,20,local,9,blockage (temp),20,0.02,3.0,0,79,blockage,False,3,3,0,1,0,False,61,12.358541003777646
+single,20,local-flat,5,blockage (temp),20,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,18,1.6275840025627986
+single,20,local-flat,2,blockage (temp),20,0.02,3.0,0,57,blockage,False,1,1,0,1,0,False,38,28.63112499471754
+single,20,local-flat,1,blockage (temp),20,0.02,3.0,0,95,blockage,False,3,3,0,1,0,False,49,23.79033299803268
+single,20,local-flat,7,blockage (temp),20,0.02,3.0,0,95,blockage,False,1,1,0,1,0,False,2,1.2471670052036643
+single,20,local-flat,0,blockage (temp),20,0.02,3.0,0,117,blockage,False,1,1,0,1,0,False,1,1.1081659904448316
+single,20,local-flat,6,blockage (temp),20,0.02,3.0,0,72,blockage,False,1,1,0,1,0,False,34,17.84616700024344
+single,20,local-flat,3,blockage (temp),20,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,45,92.71100000478327
+single,20,local-flat,8,blockage (temp),20,0.02,3.0,0,92,blockage,False,4,5,1,1,0,False,158,20.515707990853116
+single,20,solo,2,blockage (temp),20,0.02,3.0,0,57,blockage,False,1,1,0,1,0,False,4,2.5700840051285923
+single,20,solo,4,blockage (temp),20,0.02,3.0,0,12,blockage,False,1,1,0,1,0,False,5,1.959957997314632
+single,20,local-flat,9,blockage (temp),20,0.02,3.0,0,79,blockage,False,3,3,0,1,0,False,61,7.159665998187847
+single,20,solo,5,blockage (temp),20,0.02,3.0,0,60,blockage,False,1,1,0,1,0,False,2,3.1468340021092445
+single,20,solo,3,blockage (temp),20,0.02,3.0,0,18,blockage,False,2,2,0,1,0,False,7,20.428541000001132
+single,20,solo,7,blockage (temp),20,0.02,3.0,0,95,blockage,False,1,1,0,1,0,False,2,1.221999991685152
+single,20,solo,1,blockage (temp),20,0.02,3.0,0,95,blockage,False,3,3,0,1,0,False,11,4.490749997785315
+single,20,solo,6,blockage (temp),20,0.02,3.0,0,72,blockage,False,1,1,0,1,0,False,4,4.690374989877455
+single,20,solo,0,blockage (temp),20,0.02,3.0,0,117,blockage,False,1,1,0,1,0,False,1,1.1719579924829304
+single,20,solo,8,blockage (temp),20,0.02,3.0,0,92,blockage,False,4,5,1,1,0,False,48,13.003290994674899
+single,20,solo,9,blockage (temp),20,0.02,3.0,0,79,blockage,False,3,3,0,1,0,False,13,4.5087500038789585
+single,20,full,2,blockage (temp),20,0.02,3.0,0,57,blockage,False,1,12,11,5,0,False,40,20.58116601256188
+single,20,full,5,blockage (temp),20,0.02,3.0,0,60,blockage,False,1,3,2,5,0,False,40,27.960042003542185
+single,20,full,4,blockage (temp),20,0.02,3.0,0,12,blockage,False,1,9,8,5,0,False,40,71.77187500928994
+single,20,full,1,blockage (temp),20,0.02,3.0,0,95,blockage,False,3,15,12,5,0,False,40,10.613958002068102
+single,20,full,7,blockage (temp),20,0.02,3.0,0,95,blockage,False,1,13,12,5,0,False,40,8.339749998413026
+single,20,full,0,blockage (temp),20,0.02,3.0,0,117,blockage,False,1,8,7,5,0,False,40,7.437125008436851
+single,20,full,6,blockage (temp),20,0.02,3.0,0,72,blockage,False,1,11,10,5,0,False,40,22.70591699925717
+single,20,full,3,blockage (temp),20,0.02,3.0,0,18,blockage,False,2,13,11,5,0,False,40,94.36337499937508
+single,20,full,8,blockage (temp),20,0.02,3.0,0,92,blockage,False,4,12,8,5,0,False,40,13.536582991946489
+single,20,full,9,blockage (temp),20,0.02,3.0,0,79,blockage,False,3,13,10,5,0,False,40,15.112082997802645
+single,20,local,1,blockage (perm),20,0.02,3.0,0,62,blockage,True,3,3,0,1,0,False,8,4.391541006043553
+single,20,local,5,blockage (perm),20,0.02,3.0,0,60,blockage,True,2,2,0,1,0,False,69,23.444666003342718
+single,20,local,7,blockage (perm),20,0.02,3.0,0,95,blockage,True,4,4,0,1,0,False,29,23.381916995276697
+single,20,local,2,blockage (perm),20,0.02,3.0,0,57,blockage,True,6,7,1,2,1,False,81,65.32404100289568
+single,20,local,0,blockage (perm),20,0.02,3.0,0,117,blockage,True,4,4,0,1,0,False,19,3.436416998738423
+single,20,local,6,blockage (perm),20,0.02,3.0,0,72,blockage,True,4,5,1,2,1,False,47,26.063834011438303
+single,20,local,9,blockage (perm),20,0.02,3.0,0,79,blockage,True,7,8,1,3,1,False,84,62.19779200910125
+single,20,local,8,blockage (perm),20,0.02,3.0,0,92,blockage,True,5,5,0,1,0,False,196,78.56020900362637
+single,20,local-flat,0,blockage (perm),20,0.02,3.0,0,117,blockage,True,4,4,0,1,0,False,19,5.80370900570415
+single,20,local-flat,2,blockage (perm),20,0.02,3.0,0,57,blockage,True,6,7,1,2,1,False,81,49.296875004074536
+single,20,local-flat,1,blockage (perm),20,0.02,3.0,0,62,blockage,True,3,3,0,1,0,False,8,6.789750012103468
+single,20,local-flat,5,blockage (perm),20,0.02,3.0,0,60,blockage,True,2,2,0,1,0,False,69,18.998625004314817
+single,20,local,3,blockage (perm),20,0.02,3.0,0,18,blockage,True,9,12,3,3,2,False,233,359.2780830076663
+single,20,local-flat,7,blockage (perm),20,0.02,3.0,0,95,blockage,True,4,4,0,1,0,False,29,14.087791001657024
+single,20,local-flat,6,blockage (perm),20,0.02,3.0,0,72,blockage,True,4,5,1,2,1,False,47,26.75983299559448
+single,20,local-flat,9,blockage (perm),20,0.02,3.0,0,79,blockage,True,7,8,1,3,1,False,84,31.852542000706308
+single,20,local-flat,8,blockage (perm),20,0.02,3.0,0,92,blockage,True,5,5,0,1,0,False,190,90.14720800041687
+single,20,solo,2,blockage (perm),20,0.02,3.0,0,57,blockage,True,6,6,0,1,0,False,13,22.488250004244037
+single,20,solo,0,blockage (perm),20,0.02,3.0,0,117,blockage,True,4,4,0,1,0,False,7,3.2181660062633455
+single,20,solo,1,blockage (perm),20,0.02,3.0,0,62,blockage,True,3,3,0,1,0,False,8,4.562375004752539
+single,20,solo,5,blockage (perm),20,0.02,3.0,0,60,blockage,True,2,2,0,1,0,False,7,4.336375001003034
+single,20,solo,4,blockage (perm),20,0.02,3.0,0,12,blockage,True,7,7,0,1,0,False,22,49.374875001376495
+single,20,solo,3,blockage (perm),20,0.02,3.0,0,18,blockage,True,9,9,0,1,0,False,36,83.22754201071803
+single,20,solo,8,blockage (perm),20,0.02,3.0,0,92,blockage,True,5,5,0,1,0,False,48,24.78758298093453
+single,20,solo,6,blockage (perm),20,0.02,3.0,0,72,blockage,True,4,4,0,1,0,False,9,18.586667007184587
+single,20,local-flat,4,blockage (perm),20,0.02,3.0,0,12,blockage,True,7,7,0,1,0,False,192,451.40158299182076
+single,20,solo,7,blockage (perm),20,0.02,3.0,0,95,blockage,True,4,4,0,1,0,False,9,17.71812500373926
+single,20,local-flat,3,blockage (perm),20,0.02,3.0,0,18,blockage,True,9,11,2,3,1,False,302,492.75420799676795
+single,20,solo,9,blockage (perm),20,0.02,3.0,0,79,blockage,True,7,7,0,1,0,False,23,23.615625003003515
+single,20,full,0,blockage (perm),20,0.02,3.0,0,117,blockage,True,4,9,5,5,0,False,40,8.989499998278916
+single,20,full,2,blockage (perm),20,0.02,3.0,0,57,blockage,True,6,19,13,5,0,False,40,32.1528749918798
+single,20,full,5,blockage (perm),20,0.02,3.0,0,60,blockage,True,2,4,2,5,0,False,40,32.17312500055414
+single,20,local,4,blockage (perm),20,0.02,3.0,0,12,blockage,True,7,7,0,1,0,False,254,779.492791989469
+single,20,full,1,blockage (perm),20,0.02,3.0,0,62,blockage,True,3,14,11,5,0,False,40,22.543583007063717
+single,20,full,3,blockage (perm),20,0.02,3.0,0,18,blockage,True,9,16,7,5,0,False,40,111.05970799690112
+single,20,full,6,blockage (perm),20,0.02,3.0,0,72,blockage,True,4,14,10,5,0,False,40,22.441291002905928
+single,20,full,8,blockage (perm),20,0.02,3.0,0,92,blockage,True,5,12,7,5,0,False,40,30.54362500552088
+single,20,full,7,blockage (perm),20,0.02,3.0,0,95,blockage,True,4,11,7,5,0,False,40,21.411624999018386
+single,20,local,2,breakdown (temp),20,0.02,3.0,0,58,breakdown,False,2,2,0,1,0,False,30,4.5481670094886795
+single,20,full,4,blockage (perm),20,0.02,3.0,0,12,blockage,True,7,19,12,5,0,False,40,186.92687500151806
+single,20,full,9,blockage (perm),20,0.02,3.0,0,79,blockage,True,7,18,11,5,0,False,40,22.508207999635488
+single,20,local,4,breakdown (temp),20,0.02,3.0,0,35,breakdown,False,2,2,0,1,0,False,28,24.945041004684754
+single,20,local,1,breakdown (temp),20,0.02,3.0,0,96,breakdown,False,1,1,0,1,0,False,5,0.7998750079423189
+single,20,local,0,breakdown (temp),20,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,1,8.64204199751839
+single,20,local,5,breakdown (temp),20,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,6,0.8570419886382297
+single,20,local,3,breakdown (temp),20,0.02,3.0,0,87,breakdown,False,4,4,0,1,0,False,54,16.171916999155656
+single,20,local,6,breakdown (temp),20,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,1,2.7323749964125454
+single,20,local,8,breakdown (temp),20,0.02,3.0,0,61,breakdown,False,4,4,0,1,0,False,61,17.047457993612625
+single,20,local-flat,5,breakdown (temp),20,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,6,0.3108749951934442
+single,20,local-flat,4,breakdown (temp),20,0.02,3.0,0,35,breakdown,False,2,2,0,1,0,False,28,20.751000003656372
+single,20,local-flat,2,breakdown (temp),20,0.02,3.0,0,58,breakdown,False,2,2,0,1,0,False,30,8.323958012624644
+single,20,local-flat,1,breakdown (temp),20,0.02,3.0,0,96,breakdown,False,1,1,0,1,0,False,5,0.7659999973839149
+single,20,local-flat,3,breakdown (temp),20,0.02,3.0,0,87,breakdown,False,4,4,0,1,0,False,54,23.31679200869985
+single,20,local,9,breakdown (temp),20,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,0,1.2315840140217915
+single,20,local,7,breakdown (temp),20,0.02,3.0,0,37,breakdown,False,3,3,0,1,0,False,64,151.24170799390413
+single,20,local-flat,0,breakdown (temp),20,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,1,8.185582992155105
+single,20,local-flat,6,breakdown (temp),20,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,1,4.287500007194467
+single,20,local-flat,8,breakdown (temp),20,0.02,3.0,0,61,breakdown,False,4,4,0,1,0,False,61,7.209750008769333
+single,20,local-flat,9,breakdown (temp),20,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,0,1.2109589879401028
+single,20,solo,2,breakdown (temp),20,0.02,3.0,0,58,breakdown,False,2,2,0,1,0,False,8,4.423208010848612
+single,20,solo,4,breakdown (temp),20,0.02,3.0,0,35,breakdown,False,2,2,0,1,0,False,4,8.84879200020805
+single,20,solo,1,breakdown (temp),20,0.02,3.0,0,96,breakdown,False,1,1,0,1,0,False,5,0.821624998934567
+single,20,solo,3,breakdown (temp),20,0.02,3.0,0,87,breakdown,False,4,4,0,1,0,False,16,9.593208000296727
+single,20,solo,5,breakdown (temp),20,0.02,3.0,0,88,breakdown,False,1,1,0,1,0,False,6,0.3075829881709069
+single,20,solo,0,breakdown (temp),20,0.02,3.0,0,26,breakdown,False,1,1,0,1,0,False,1,9.552041999995708
+single,20,solo,6,breakdown (temp),20,0.02,3.0,0,76,breakdown,False,1,1,0,1,0,False,1,2.746333004324697
+single,20,local-flat,7,breakdown (temp),20,0.02,3.0,0,37,breakdown,False,3,3,0,1,0,False,64,135.7521669997368
+single,20,solo,8,breakdown (temp),20,0.02,3.0,0,61,breakdown,False,4,4,0,1,0,False,11,7.235583005240187
+single,20,solo,7,breakdown (temp),20,0.02,3.0,0,37,breakdown,False,3,3,0,1,0,False,8,30.006291999598034
+single,20,solo,9,breakdown (temp),20,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,0,1.2045839976053685
+single,20,full,2,breakdown (temp),20,0.02,3.0,0,58,breakdown,False,2,16,14,5,0,False,40,27.926833005039953
+single,20,full,5,breakdown (temp),20,0.02,3.0,0,88,breakdown,False,1,2,1,5,0,False,40,11.42654099385254
+single,20,full,3,breakdown (temp),20,0.02,3.0,0,87,breakdown,False,4,12,8,5,0,False,40,10.898666005232371
+single,20,full,1,breakdown (temp),20,0.02,3.0,0,96,breakdown,False,1,13,12,5,0,False,40,12.010416001430713
+single,20,full,4,breakdown (temp),20,0.02,3.0,0,35,breakdown,False,2,16,14,5,0,False,40,49.16354099987075
+single,20,full,8,breakdown (temp),20,0.02,3.0,0,61,breakdown,False,4,18,14,5,0,False,40,25.752332992851734
+single,20,full,6,breakdown (temp),20,0.02,3.0,0,76,breakdown,False,1,13,12,5,0,False,40,14.849583007162437
+single,20,full,7,breakdown (temp),20,0.02,3.0,0,37,breakdown,False,3,18,15,5,0,False,40,66.13249999645632
+single,20,full,9,breakdown (temp),20,0.02,3.0,0,73,breakdown,False,1,16,15,5,0,False,40,14.81637499819044
+single,20,full,0,breakdown (temp),20,0.02,3.0,0,26,breakdown,False,1,17,16,5,0,False,40,102.06633299821988
+single,20,local,3,breakdown (perm),20,0.02,3.0,0,57,breakdown,True,4,4,0,1,0,False,109,71.51133399747778
+single,20,local,5,breakdown (perm),20,0.02,3.0,0,40,breakdown,True,8,10,2,3,1,False,235,105.49233300844207
+single,20,local,6,breakdown (perm),20,0.02,3.0,0,23,breakdown,True,7,9,2,3,1,False,158,78.7298329960322
+single,20,local,2,breakdown (perm),20,0.02,3.0,0,15,breakdown,True,8,8,0,3,1,False,213,236.16291700454894
+single,20,local,9,breakdown (perm),20,0.02,3.0,0,36,breakdown,True,5,6,1,3,1,False,93,52.298624999821186
+single,20,local,8,breakdown (perm),20,0.02,3.0,0,55,breakdown,True,5,6,1,3,1,False,129,199.11691700690426
+single,20,local,1,breakdown (perm),20,0.02,3.0,0,53,breakdown,True,7,7,0,3,1,False,135,363.9882919960655
+single,20,local,4,breakdown (perm),20,0.02,3.0,0,19,breakdown,True,12,14,2,3,1,False,279,383.4027909906581
+single,20,local-flat,3,breakdown (perm),20,0.02,3.0,0,57,breakdown,True,4,4,0,1,0,False,109,66.51237500773277
+single,20,local-flat,2,breakdown (perm),20,0.02,3.0,0,15,breakdown,True,8,8,0,3,1,False,213,200.13887499226257
+single,20,local-flat,5,breakdown (perm),20,0.02,3.0,0,40,breakdown,True,8,10,2,3,1,False,235,79.49412499147002
+single,20,local-flat,6,breakdown (perm),20,0.02,3.0,0,23,breakdown,True,7,9,2,3,1,False,158,112.93412499071565
+single,20,local-flat,8,breakdown (perm),20,0.02,3.0,0,55,breakdown,True,5,6,1,3,1,False,123,61.614375008502975
+single,20,local-flat,1,breakdown (perm),20,0.02,3.0,0,53,breakdown,True,7,7,0,3,1,False,131,336.093041987624
+single,20,local-flat,9,breakdown (perm),20,0.02,3.0,0,36,breakdown,True,5,6,1,3,1,False,93,42.500124996877275
+single,20,local-flat,4,breakdown (perm),20,0.02,3.0,0,19,breakdown,True,12,14,2,3,1,False,273,427.4274159979541
+single,20,local,7,breakdown (perm),20,0.02,3.0,0,39,breakdown,True,8,8,0,1,0,False,195,699.4105829944601
+single,20,solo,2,breakdown (perm),20,0.02,3.0,0,15,breakdown,True,8,8,0,1,0,False,58,33.98887500225101
+single,20,solo,1,breakdown (perm),20,0.02,3.0,0,53,breakdown,True,7,7,0,1,0,False,25,51.28166699432768
+single,20,solo,3,breakdown (perm),20,0.02,3.0,0,57,breakdown,True,4,4,0,1,0,False,23,15.00050000322517
+single,20,solo,5,breakdown (perm),20,0.02,3.0,0,40,breakdown,True,8,8,0,1,0,False,81,45.28970899991691
+single,20,solo,4,breakdown (perm),20,0.02,3.0,0,19,breakdown,True,12,12,0,1,0,False,51,93.82066600664984
+single,20,solo,6,breakdown (perm),20,0.02,3.0,0,23,breakdown,True,7,7,0,1,0,False,53,28.20320799946785
+single,20,solo,8,breakdown (perm),20,0.02,3.0,0,55,breakdown,True,5,5,0,1,0,False,24,16.009624989237636
+single,20,solo,7,breakdown (perm),20,0.02,3.0,0,39,breakdown,True,8,8,0,1,0,False,33,71.34749999386258
+single,20,solo,0,breakdown (perm),20,0.02,3.0,0,20,breakdown,True,9,9,0,1,0,False,27,205.8977500128094
+single,20,solo,9,breakdown (perm),20,0.02,3.0,0,36,breakdown,True,5,5,0,1,0,False,33,37.375832995167
+single,20,full,3,breakdown (perm),20,0.02,3.0,0,57,breakdown,True,4,17,13,5,0,False,49,33.87350001139566
+single,20,full,4,breakdown (perm),20,0.02,3.0,0,19,breakdown,True,12,18,6,5,0,False,65,91.35162500024308
+single,20,full,2,breakdown (perm),20,0.02,3.0,0,15,breakdown,True,8,18,10,5,0,False,71,94.70358399266843
+single,20,full,1,breakdown (perm),20,0.02,3.0,0,53,breakdown,True,7,14,7,5,0,False,48,53.42908299644478
+single,20,local,0,breakdown (perm),20,0.02,3.0,0,20,breakdown,True,9,11,2,2,1,False,232,1234.884499994223
+single,20,local-flat,7,breakdown (perm),20,0.02,3.0,0,39,breakdown,True,8,8,0,1,0,False,195,730.8208330068737
+single,20,full,5,breakdown (perm),20,0.02,3.0,0,40,breakdown,True,8,19,11,5,0,False,89,61.787625003489666
+single,20,local-flat,0,breakdown (perm),20,0.02,3.0,0,20,breakdown,True,9,11,2,2,1,False,232,1064.368999999715
+single,20,full,6,breakdown (perm),20,0.02,3.0,0,23,breakdown,True,7,19,12,5,0,False,71,61.45016699156258
+single,20,full,0,breakdown (perm),20,0.02,3.0,0,20,breakdown,True,9,20,11,5,0,False,47,199.5121669897344
+single,20,full,8,breakdown (perm),20,0.02,3.0,0,55,breakdown,True,5,17,12,5,0,False,52,63.364916990394704
+single,20,full,9,breakdown (perm),20,0.02,3.0,0,36,breakdown,True,5,17,12,5,0,False,59,39.397957996698096
+single,20,full,7,breakdown (perm),20,0.02,3.0,0,39,breakdown,True,8,20,12,5,0,False,53,67.64633400598541
+single,20,local,0,emergency,20,0.02,3.0,0,92,emergency,True,1,2,1,2,1,False,7,4.520458009210415
+single,20,local,1,emergency,20,0.02,3.0,0,114,emergency,True,1,1,0,1,0,False,24,4.639749997295439
+single,20,local,2,emergency,20,0.02,3.0,0,47,emergency,True,1,1,0,1,0,False,3,1.291082997340709
+single,20,local,4,emergency,20,0.02,3.0,0,102,emergency,True,1,3,2,2,1,False,18,8.674374999827705
+single,20,local,8,emergency,20,0.02,3.0,0,66,emergency,True,1,1,0,1,0,False,21,4.9146249948535115
+single,20,local,6,emergency,20,0.02,3.0,0,25,emergency,True,1,2,1,3,1,False,34,20.403707996592857
+single,20,local,7,emergency,20,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,41,53.11370799608994
+single,20,local,3,emergency,20,0.02,3.0,0,29,emergency,True,1,1,0,1,0,False,38,86.76783299597446
+single,20,local-flat,2,emergency,20,0.02,3.0,0,47,emergency,True,1,1,0,1,0,False,3,1.3269580085761845
+single,20,local,9,emergency,20,0.02,3.0,0,120,emergency,True,1,1,0,1,0,False,35,6.612209006561898
+single,20,local,5,emergency,20,0.02,3.0,0,11,emergency,True,1,2,1,2,1,False,21,108.42541699821595
+single,20,local-flat,1,emergency,20,0.02,3.0,0,114,emergency,True,1,1,0,1,0,False,18,1.300666990573518
+single,20,local-flat,3,emergency,20,0.02,3.0,0,29,emergency,True,1,1,0,1,0,False,27,27.86487499543
+single,20,local-flat,0,emergency,20,0.02,3.0,0,92,emergency,True,1,1,0,1,0,False,19,7.947582998895086
+single,20,local-flat,4,emergency,20,0.02,3.0,0,102,emergency,True,1,1,0,1,0,False,54,22.78304200444836
+single,20,local-flat,8,emergency,20,0.02,3.0,0,66,emergency,True,1,1,0,1,0,False,16,1.2464579922379926
+single,20,local-flat,5,emergency,20,0.02,3.0,0,11,emergency,True,1,2,1,2,1,False,19,62.86266600363888
+single,20,local-flat,6,emergency,20,0.02,3.0,0,25,emergency,True,1,2,1,3,1,False,34,22.143416994367726
+single,20,local-flat,7,emergency,20,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,31,40.93400000419933
+single,20,local-flat,9,emergency,20,0.02,3.0,0,120,emergency,True,1,1,0,1,0,False,30,2.574584010289982
+single,20,solo,3,emergency,20,0.02,3.0,0,29,emergency,True,1,1,0,1,0,False,3,1.431708995369263
+single,20,solo,1,emergency,20,0.02,3.0,0,114,emergency,True,1,1,0,1,0,False,2,1.2485000042943284
+single,20,solo,2,emergency,20,0.02,3.0,0,47,emergency,True,1,1,0,1,0,False,3,5.156833998626098
+single,20,solo,4,emergency,20,0.02,3.0,0,102,emergency,True,1,1,0,1,0,False,2,1.7380000062985346
+single,20,solo,0,emergency,20,0.02,3.0,0,92,emergency,True,1,1,0,1,0,False,1,3.5932080063503236
+single,20,solo,5,emergency,20,0.02,3.0,0,11,emergency,True,1,1,0,1,0,False,4,12.456083000870422
+single,20,solo,8,emergency,20,0.02,3.0,0,66,emergency,True,1,1,0,1,0,False,2,1.122917004977353
+single,20,solo,7,emergency,20,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,1,2.810833990224637
+single,20,solo,6,emergency,20,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,4,25.260207999963313
+single,20,full,4,emergency,20,0.02,3.0,0,102,emergency,True,1,7,6,5,0,False,40,3.954874991904944
+single,20,full,2,emergency,20,0.02,3.0,0,47,emergency,True,1,17,16,5,0,False,40,29.372707998845726
+single,20,solo,9,emergency,20,0.02,3.0,0,120,emergency,True,1,1,0,1,0,False,4,6.4931249944493175
+single,20,full,1,emergency,20,0.02,3.0,0,114,emergency,True,1,15,14,5,0,False,40,14.313624997157604
+single,20,full,0,emergency,20,0.02,3.0,0,92,emergency,True,1,15,14,5,0,False,40,11.396667003282346
+single,10,local,0,blockage (temp),10,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,4,3.4369170025456697
+single,20,full,8,emergency,20,0.02,3.0,0,66,emergency,True,1,12,11,5,0,False,40,24.146124997059815
+single,10,local,3,blockage (temp),10,0.02,3.0,0,15,blockage,False,3,3,0,1,0,False,12,3.6063750012544915
+single,10,local,4,blockage (temp),10,0.02,3.0,0,13,blockage,False,1,1,0,1,0,False,1,1.23066600644961
+single,10,local,1,blockage (temp),10,0.02,3.0,0,89,blockage,False,1,1,0,1,0,False,11,2.0656249980675057
+single,10,local,2,blockage (temp),10,0.02,3.0,0,51,blockage,False,1,1,0,1,0,False,19,19.438667004578747
+single,20,full,7,emergency,20,0.02,3.0,0,65,emergency,True,1,17,16,5,0,False,40,21.130665991222486
+single,20,full,3,emergency,20,0.02,3.0,0,29,emergency,True,1,18,17,5,0,False,40,100.08975000528153
+single,10,local,7,blockage (temp),10,0.02,3.0,0,94,blockage,False,1,2,1,3,1,False,17,2.3099159880075604
+single,10,local,5,blockage (temp),10,0.02,3.0,0,74,blockage,False,1,1,0,1,0,False,9,2.321499996469356
+single,10,local,6,blockage (temp),10,0.02,3.0,0,70,blockage,False,1,1,0,1,0,False,0,0.5549159977817908
+single,10,local,9,blockage (temp),10,0.02,3.0,0,73,blockage,False,1,1,0,1,0,False,13,7.110374994226731
+single,10,local,8,blockage (temp),10,0.02,3.0,0,86,blockage,False,3,3,0,1,0,False,3,1.6906660021049902
+single,10,local-flat,0,blockage (temp),10,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,4,3.8738329894840717
+single,20,full,5,emergency,20,0.02,3.0,0,11,emergency,True,1,19,18,5,0,False,40,143.3989590004785
+single,10,local-flat,4,blockage (temp),10,0.02,3.0,0,13,blockage,False,1,1,0,1,0,False,1,1.2444589956430718
+single,10,local-flat,3,blockage (temp),10,0.02,3.0,0,15,blockage,False,3,3,0,1,0,False,12,3.599249990656972
+single,10,local-flat,2,blockage (temp),10,0.02,3.0,0,51,blockage,False,1,1,0,1,0,False,19,11.417750007240102
+single,10,local-flat,5,blockage (temp),10,0.02,3.0,0,74,blockage,False,1,1,0,1,0,False,9,2.343000000109896
+single,10,local-flat,7,blockage (temp),10,0.02,3.0,0,94,blockage,False,1,2,1,3,1,False,17,2.132166991941631
+single,10,local-flat,8,blockage (temp),10,0.02,3.0,0,86,blockage,False,3,3,0,1,0,False,3,2.602749998914078
+single,10,local-flat,1,blockage (temp),10,0.02,3.0,0,89,blockage,False,1,1,0,1,0,False,11,0.854375000926666
+single,10,local-flat,9,blockage (temp),10,0.02,3.0,0,73,blockage,False,1,1,0,1,0,False,13,6.583958995179273
+single,10,local-flat,6,blockage (temp),10,0.02,3.0,0,70,blockage,False,1,1,0,1,0,False,0,0.5419160006567836
+single,20,full,9,emergency,20,0.02,3.0,0,120,emergency,True,1,5,4,5,0,False,40,7.5602500000968575
+single,10,solo,0,blockage (temp),10,0.02,3.0,0,111,blockage,False,1,1,0,1,0,False,0,1.1561249993974343
+single,10,solo,2,blockage (temp),10,0.02,3.0,0,51,blockage,False,1,1,0,1,0,False,1,2.121458004694432
+single,10,solo,3,blockage (temp),10,0.02,3.0,0,15,blockage,False,3,3,0,1,0,False,2,5.433458994957618
+single,10,solo,8,blockage (temp),10,0.02,3.0,0,86,blockage,False,3,3,0,1,0,False,3,1.6100420034490526
+single,20,full,6,emergency,20,0.02,3.0,0,25,emergency,True,1,17,16,5,0,False,40,60.61099999351427
+single,10,solo,4,blockage (temp),10,0.02,3.0,0,13,blockage,False,1,1,0,1,0,False,1,1.2502909958129749
+single,10,solo,1,blockage (temp),10,0.02,3.0,0,89,blockage,False,1,1,0,1,0,False,1,0.8062920096563175
+single,10,solo,5,blockage (temp),10,0.02,3.0,0,74,blockage,False,1,1,0,1,0,False,1,2.2867090010549873
+single,10,solo,9,blockage (temp),10,0.02,3.0,0,73,blockage,False,1,1,0,1,0,False,1,0.668707987642847
+single,10,solo,7,blockage (temp),10,0.02,3.0,0,94,blockage,False,1,1,0,1,0,False,1,4.580958004225977
+single,10,solo,6,blockage (temp),10,0.02,3.0,0,70,blockage,False,1,1,0,1,0,False,0,0.5591660010395572
+single,10,full,2,blockage (temp),10,0.02,3.0,0,51,blockage,False,1,2,1,5,0,False,20,6.4104579942068085
+single,10,full,4,blockage (temp),10,0.02,3.0,0,13,blockage,False,1,1,0,5,0,False,20,8.238416005042382
+single,10,full,8,blockage (temp),10,0.02,3.0,0,86,blockage,False,3,4,1,5,0,False,20,2.3813750012777746
+single,10,full,7,blockage (temp),10,0.02,3.0,0,94,blockage,False,1,4,3,5,0,False,20,5.048291990533471
+single,10,full,3,blockage (temp),10,0.02,3.0,0,15,blockage,False,3,4,1,5,0,False,20,11.89579199126456
+single,10,full,0,blockage (temp),10,0.02,3.0,0,111,blockage,False,1,1,0,5,0,False,20,2.6579170080367476
+single,10,full,5,blockage (temp),10,0.02,3.0,0,74,blockage,False,1,5,4,5,0,False,20,4.108374996576458
+single,10,full,6,blockage (temp),10,0.02,3.0,0,70,blockage,False,1,3,2,5,0,False,20,4.826624994166195
+single,10,full,9,blockage (temp),10,0.02,3.0,0,73,blockage,False,1,3,2,5,0,False,20,5.585250008152798
+single,10,local,5,blockage (perm),10,0.02,3.0,0,74,blockage,True,2,2,0,1,0,False,10,3.6162920005153865
+single,10,full,1,blockage (temp),10,0.02,3.0,0,89,blockage,False,1,2,1,5,0,False,20,15.41174999147188
+single,10,local,0,blockage (perm),10,0.02,3.0,0,111,blockage,True,5,5,0,1,0,False,8,11.075166999944486
+single,10,local,2,blockage (perm),10,0.02,3.0,0,51,blockage,True,4,4,0,1,0,False,16,14.833166991593316
+single,10,local,8,blockage (perm),10,0.02,3.0,0,86,blockage,True,3,3,0,1,0,False,3,6.473457993706688
+single,10,local,7,blockage (perm),10,0.02,3.0,0,94,blockage,True,2,2,0,1,0,False,1,9.468916992773302
+single,10,local,9,blockage (perm),10,0.02,3.0,0,73,blockage,True,3,3,0,1,0,False,2,3.8591670017922297
+single,10,local,4,blockage (perm),10,0.02,3.0,0,13,blockage,True,7,7,0,3,1,False,22,38.60737499780953
+single,10,local,1,blockage (perm),10,0.02,3.0,0,58,blockage,True,3,3,0,1,0,False,3,4.651541996281594
+single,10,local,3,blockage (perm),10,0.02,3.0,0,15,blockage,True,5,7,2,3,1,False,35,47.615624993341044
+single,10,local-flat,0,blockage (perm),10,0.02,3.0,0,111,blockage,True,5,5,0,1,0,False,8,13.095875008730218
+single,10,local,6,blockage (perm),10,0.02,3.0,0,70,blockage,True,5,5,0,1,0,False,8,21.77750000555534
+single,10,local-flat,5,blockage (perm),10,0.02,3.0,0,74,blockage,True,2,2,0,1,0,False,10,4.9298749945592135
+single,10,local-flat,8,blockage (perm),10,0.02,3.0,0,86,blockage,True,3,3,0,1,0,False,3,4.835708008613437
+single,10,local-flat,6,blockage (perm),10,0.02,3.0,0,70,blockage,True,5,5,0,1,0,False,8,17.20295799896121
+single,10,local-flat,2,blockage (perm),10,0.02,3.0,0,51,blockage,True,4,4,0,1,0,False,16,17.985583006520756
+single,10,local-flat,9,blockage (perm),10,0.02,3.0,0,73,blockage,True,3,3,0,1,0,False,2,3.9404159906553105
+single,10,local-flat,1,blockage (perm),10,0.02,3.0,0,58,blockage,True,3,3,0,1,0,False,3,4.291625009500422
+single,10,local-flat,7,blockage (perm),10,0.02,3.0,0,94,blockage,True,2,2,0,1,0,False,1,4.425082996021956
+single,10,solo,0,blockage (perm),10,0.02,3.0,0,111,blockage,True,5,5,0,1,0,False,4,7.705458992859349
+single,10,local-flat,3,blockage (perm),10,0.02,3.0,0,15,blockage,True,5,7,2,3,1,False,35,51.2139579950599
+single,10,solo,3,blockage (perm),10,0.02,3.0,0,15,blockage,True,5,5,0,1,0,False,3,15.340666999691166
+single,10,solo,2,blockage (perm),10,0.02,3.0,0,51,blockage,True,4,4,0,1,0,False,4,14.564500001142733
+single,10,solo,5,blockage (perm),10,0.02,3.0,0,74,blockage,True,2,2,0,1,0,False,2,3.4669590095290914
+single,10,local-flat,4,blockage (perm),10,0.02,3.0,0,13,blockage,True,7,7,0,3,1,False,22,64.77933301357552
+single,10,solo,8,blockage (perm),10,0.02,3.0,0,86,blockage,True,3,3,0,1,0,False,3,3.385791991604492
+single,10,solo,7,blockage (perm),10,0.02,3.0,0,94,blockage,True,2,2,0,1,0,False,1,8.137167009408586
+single,10,solo,6,blockage (perm),10,0.02,3.0,0,70,blockage,True,5,5,0,1,0,False,2,21.82345800974872
+single,10,solo,9,blockage (perm),10,0.02,3.0,0,73,blockage,True,3,3,0,1,0,False,2,4.076958997757174
+single,10,solo,1,blockage (perm),10,0.02,3.0,0,58,blockage,True,3,3,0,1,0,False,3,4.117457996471785
+single,10,solo,4,blockage (perm),10,0.02,3.0,0,13,blockage,True,7,7,0,1,0,False,6,53.8947500026552
+single,10,full,0,blockage (perm),10,0.02,3.0,0,111,blockage,True,5,8,3,5,0,False,20,11.509083007695153
+single,10,full,3,blockage (perm),10,0.02,3.0,0,15,blockage,True,5,6,1,5,0,False,20,14.958708008634858
+single,10,full,5,blockage (perm),10,0.02,3.0,0,74,blockage,True,2,5,3,5,0,False,20,9.092416003113613
+single,10,full,2,blockage (perm),10,0.02,3.0,0,51,blockage,True,4,5,1,5,0,False,20,13.9664579910459
+single,10,full,1,blockage (perm),10,0.02,3.0,0,58,blockage,True,3,5,2,5,0,False,20,15.226584000629373
+single,10,full,9,blockage (perm),10,0.02,3.0,0,73,blockage,True,3,7,4,5,0,False,20,4.922583000734448
+single,10,full,8,blockage (perm),10,0.02,3.0,0,86,blockage,True,3,4,1,5,0,False,20,7.926374993985519
+single,10,full,7,blockage (perm),10,0.02,3.0,0,94,blockage,True,2,4,2,5,0,False,20,7.977041008416563
+single,10,full,6,blockage (perm),10,0.02,3.0,0,70,blockage,True,5,7,2,5,0,False,20,21.989041997585446
+single,10,local,0,breakdown (temp),10,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,0.9837500110734254
+single,10,full,4,blockage (perm),10,0.02,3.0,0,13,blockage,True,7,8,1,5,0,False,20,45.06925000168849
+single,10,local,4,breakdown (temp),10,0.02,3.0,0,36,breakdown,False,2,2,0,1,0,False,14,1.7658330034464598
+single,10,local,3,breakdown (temp),10,0.02,3.0,0,75,breakdown,False,1,1,0,1,0,False,1,0.4447499959496781
+single,10,local,7,breakdown (temp),10,0.02,3.0,0,37,breakdown,False,2,2,0,1,0,False,14,1.4605409960495308
+single,10,local,2,breakdown (temp),10,0.02,3.0,0,52,breakdown,False,2,2,0,1,0,False,16,9.868624998489395
+single,10,local,5,breakdown (temp),10,0.02,3.0,0,107,breakdown,False,1,1,0,1,0,False,1,0.506583004607819
+single,10,local,8,breakdown (temp),10,0.02,3.0,0,57,breakdown,False,2,2,0,1,0,False,5,1.7141669959528372
+single,10,local,6,breakdown (temp),10,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,1,0.5258329911157489
+single,10,local,1,breakdown (temp),10,0.02,3.0,0,90,breakdown,False,1,1,0,1,0,False,1,0.45775000762660056
+single,10,local,9,breakdown (temp),10,0.02,3.0,0,67,breakdown,False,2,2,0,1,0,False,0,2.0908750011585653
+single,10,local-flat,0,breakdown (temp),10,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,0.9742919937707484
+single,10,local-flat,3,breakdown (temp),10,0.02,3.0,0,75,breakdown,False,1,1,0,1,0,False,1,1.0487499966984615
+single,10,local-flat,2,breakdown (temp),10,0.02,3.0,0,52,breakdown,False,2,2,0,1,0,False,16,4.379416990559548
+single,10,local-flat,6,breakdown (temp),10,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,1,0.5159580032341182
+single,10,local-flat,7,breakdown (temp),10,0.02,3.0,0,37,breakdown,False,2,2,0,1,0,False,14,1.5214580052997917
+single,10,local-flat,4,breakdown (temp),10,0.02,3.0,0,36,breakdown,False,2,2,0,1,0,False,14,4.542458002106287
+single,10,local-flat,5,breakdown (temp),10,0.02,3.0,0,107,breakdown,False,1,1,0,1,0,False,1,0.4384159983601421
+single,10,local-flat,8,breakdown (temp),10,0.02,3.0,0,57,breakdown,False,2,2,0,1,0,False,5,1.7314160068053752
+single,10,local-flat,9,breakdown (temp),10,0.02,3.0,0,67,breakdown,False,2,2,0,1,0,False,0,1.4407499984372407
+single,10,solo,4,breakdown (temp),10,0.02,3.0,0,36,breakdown,False,2,2,0,1,0,False,4,1.8168750102631748
+single,10,local-flat,1,breakdown (temp),10,0.02,3.0,0,90,breakdown,False,1,1,0,1,0,False,1,0.42279099579900503
+single,10,solo,5,breakdown (temp),10,0.02,3.0,0,107,breakdown,False,1,1,0,1,0,False,1,1.155124991782941
+single,10,solo,0,breakdown (temp),10,0.02,3.0,0,25,breakdown,False,1,1,0,1,0,False,2,2.5400409940630198
+single,10,solo,2,breakdown (temp),10,0.02,3.0,0,52,breakdown,False,2,2,0,1,0,False,2,4.4059170031687245
+single,10,solo,3,breakdown (temp),10,0.02,3.0,0,75,breakdown,False,1,1,0,1,0,False,1,2.246207994176075
+single,10,solo,7,breakdown (temp),10,0.02,3.0,0,37,breakdown,False,2,2,0,1,0,False,4,2.573292003944516
+single,10,solo,9,breakdown (temp),10,0.02,3.0,0,67,breakdown,False,2,2,0,1,0,False,0,1.421416993252933
+single,10,solo,8,breakdown (temp),10,0.02,3.0,0,57,breakdown,False,2,2,0,1,0,False,5,1.7558330000611022
+single,10,solo,1,breakdown (temp),10,0.02,3.0,0,90,breakdown,False,1,1,0,1,0,False,1,0.4579999949783087
+single,10,full,3,breakdown (temp),10,0.02,3.0,0,75,breakdown,False,1,5,4,5,0,False,20,2.1564159978879616
+single,10,full,2,breakdown (temp),10,0.02,3.0,0,52,breakdown,False,2,7,5,5,0,False,20,13.889750000089407
+single,10,solo,6,breakdown (temp),10,0.02,3.0,0,73,breakdown,False,1,1,0,1,0,False,1,0.5194999976083636
+single,10,full,1,breakdown (temp),10,0.02,3.0,0,90,breakdown,False,1,5,4,5,0,False,20,4.165166988968849
+single,10,full,4,breakdown (temp),10,0.02,3.0,0,36,breakdown,False,2,7,5,5,0,False,20,9.76583399460651
+single,10,full,7,breakdown (temp),10,0.02,3.0,0,37,breakdown,False,2,5,3,5,0,False,20,7.354625005973503
+single,10,full,5,breakdown (temp),10,0.02,3.0,0,107,breakdown,False,1,2,1,5,0,False,20,1.618499998585321
+single,10,full,8,breakdown (temp),10,0.02,3.0,0,57,breakdown,False,2,5,3,5,0,False,20,3.8391669950215146
+single,10,full,9,breakdown (temp),10,0.02,3.0,0,67,breakdown,False,2,4,2,5,0,False,20,7.153916987590492
+single,10,full,0,breakdown (temp),10,0.02,3.0,0,25,breakdown,False,1,8,7,5,0,False,20,23.44745800655801
+single,10,full,6,breakdown (temp),10,0.02,3.0,0,73,breakdown,False,1,5,4,5,0,False,20,3.0224999936763197
+single,10,local,0,breakdown (perm),10,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,40,13.631833993713371
+single,10,local,4,breakdown (perm),10,0.02,3.0,0,20,breakdown,True,6,6,0,3,1,False,63,7.611291002831422
+single,10,local,7,breakdown (perm),10,0.02,3.0,0,39,breakdown,True,4,4,0,1,0,False,36,9.628041996620595
+single,10,local,8,breakdown (perm),10,0.02,3.0,0,51,breakdown,True,5,5,0,1,0,False,34,10.194125003181398
+single,10,local,1,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,4,4,0,1,0,False,15,3.2464160030940548
+single,10,local,3,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,8,8,0,1,0,False,57,32.937666997895576
+single,10,local-flat,0,breakdown (perm),10,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,40,22.118124994449317
+single,10,local,5,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,5,5,0,1,0,False,47,40.69233300106134
+single,10,local,9,breakdown (perm),10,0.02,3.0,0,34,breakdown,True,6,6,0,2,1,False,43,22.73524999327492
+single,10,local,2,breakdown (perm),10,0.02,3.0,0,13,breakdown,True,5,5,0,1,0,False,41,67.72408400138374
+single,10,local-flat,1,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,4,4,0,1,0,False,15,3.204666994861327
+single,10,local-flat,4,breakdown (perm),10,0.02,3.0,0,20,breakdown,True,6,6,0,3,1,False,63,10.33912500133738
+single,10,local,6,breakdown (perm),10,0.02,3.0,0,23,breakdown,True,7,7,0,3,1,False,61,57.751500004087575
+single,10,local-flat,3,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,8,8,0,1,0,False,57,34.850124997319654
+single,10,local-flat,8,breakdown (perm),10,0.02,3.0,0,51,breakdown,True,5,5,0,1,0,False,34,5.894957997952588
+single,10,local-flat,7,breakdown (perm),10,0.02,3.0,0,39,breakdown,True,4,4,0,1,0,False,36,11.244666995480657
+single,10,local-flat,2,breakdown (perm),10,0.02,3.0,0,13,breakdown,True,5,5,0,1,0,False,41,57.2237090091221
+single,10,solo,0,breakdown (perm),10,0.02,3.0,0,19,breakdown,True,6,6,0,1,0,False,22,7.185916998423636
+single,10,local-flat,5,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,5,5,0,1,0,False,47,29.741125006694347
+single,10,solo,3,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,8,8,0,1,0,False,17,6.693542003631592
+single,10,solo,1,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,4,4,0,1,0,False,15,3.3848329912871122
+single,10,solo,4,breakdown (perm),10,0.02,3.0,0,20,breakdown,True,6,6,0,1,0,False,27,6.5233339992119
+single,10,solo,2,breakdown (perm),10,0.02,3.0,0,13,breakdown,True,5,5,0,1,0,False,17,23.144542006775737
+single,10,solo,8,breakdown (perm),10,0.02,3.0,0,51,breakdown,True,5,5,0,1,0,False,16,4.721875011455268
+single,10,solo,7,breakdown (perm),10,0.02,3.0,0,39,breakdown,True,4,4,0,1,0,False,20,13.56087499880232
+single,10,solo,5,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,5,5,0,1,0,False,9,15.044959000078961
+single,10,local-flat,6,breakdown (perm),10,0.02,3.0,0,23,breakdown,True,7,7,0,3,1,False,61,53.55333299667109
+single,10,solo,9,breakdown (perm),10,0.02,3.0,0,34,breakdown,True,6,6,0,1,0,False,25,18.807957996614277
+single,10,full,0,breakdown (perm),10,0.02,3.0,0,19,breakdown,True,6,9,3,5,0,False,33,15.832457997021265
+single,10,solo,6,breakdown (perm),10,0.02,3.0,0,23,breakdown,True,7,7,0,1,0,False,25,29.34008299780544
+single,10,full,3,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,8,8,0,5,0,False,24,5.876333001651801
+single,10,local-flat,9,breakdown (perm),10,0.02,3.0,0,34,breakdown,True,6,6,0,2,1,False,43,57.31437499343883
+single,10,full,2,breakdown (perm),10,0.02,3.0,0,13,breakdown,True,5,8,3,5,0,False,27,18.833124995580874
+single,10,full,4,breakdown (perm),10,0.02,3.0,0,20,breakdown,True,6,8,2,5,0,False,36,6.349542003590614
+single,10,full,5,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,5,9,4,5,0,False,24,8.804708006209694
+single,10,full,8,breakdown (perm),10,0.02,3.0,0,51,breakdown,True,5,6,1,5,0,False,28,4.166041995631531
+single,10,local,3,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,0,1.4740409969817847
+single,10,full,7,breakdown (perm),10,0.02,3.0,0,39,breakdown,True,4,8,4,5,0,False,33,15.565958005026914
+single,10,local,2,emergency,10,0.02,3.0,0,43,emergency,True,1,1,0,1,0,False,18,4.664166990551166
+single,10,full,6,breakdown (perm),10,0.02,3.0,0,23,breakdown,True,7,9,2,5,0,False,33,20.043665994307958
+single,10,local,0,emergency,10,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,14,7.063416996970773
+single,10,full,9,breakdown (perm),10,0.02,3.0,0,34,breakdown,True,6,7,1,5,0,False,33,27.60633299476467
+single,10,local,4,emergency,10,0.02,3.0,0,104,emergency,True,1,1,0,1,0,False,2,0.6747500010533258
+single,10,full,1,breakdown (perm),10,0.02,3.0,0,49,breakdown,True,4,9,5,5,0,False,28,35.12591699836776
+single,10,local,8,emergency,10,0.02,3.0,0,61,emergency,True,1,1,0,1,0,False,1,1.2165829975856468
+single,10,local,7,emergency,10,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,1,0.8229170052800328
+single,10,local-flat,2,emergency,10,0.02,3.0,0,43,emergency,True,1,1,0,1,0,False,14,1.2887500051874667
+single,10,local,1,emergency,10,0.02,3.0,0,107,emergency,True,1,1,0,1,0,False,22,1.781124999979511
+single,10,local,6,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,12,12.000458998954855
+single,10,local-flat,4,emergency,10,0.02,3.0,0,104,emergency,True,1,1,0,1,0,False,2,0.6556659936904907
+single,10,local,9,emergency,10,0.02,3.0,0,111,emergency,True,1,1,0,1,0,False,0,0.8420000085607171
+single,10,local-flat,0,emergency,10,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,11,3.2622500002617016
+single,10,local-flat,3,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,0,1.753290998749435
+single,10,local-flat,7,emergency,10,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,1,0.778750007157214
+single,10,local-flat,1,emergency,10,0.02,3.0,0,107,emergency,True,1,1,0,1,0,False,17,0.6832499930169433
+single,10,local-flat,8,emergency,10,0.02,3.0,0,61,emergency,True,1,1,0,1,0,False,1,1.0501659999135882
+single,10,local-flat,6,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,8,2.143917008652352
+single,10,solo,0,emergency,10,0.02,3.0,0,87,emergency,True,1,1,0,1,0,False,1,1.7594579985598102
+single,10,solo,2,emergency,10,0.02,3.0,0,43,emergency,True,1,1,0,1,0,False,2,1.1291669943602756
+single,10,solo,4,emergency,10,0.02,3.0,0,104,emergency,True,1,1,0,1,0,False,2,0.7190839969553053
+single,10,solo,3,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,0,2.993041998706758
+single,10,local-flat,9,emergency,10,0.02,3.0,0,111,emergency,True,1,1,0,1,0,False,0,4.650041999411769
+single,10,solo,7,emergency,10,0.02,3.0,0,65,emergency,True,1,1,0,1,0,False,1,0.7792920077918097
+single,10,solo,1,emergency,10,0.02,3.0,0,107,emergency,True,1,1,0,1,0,False,1,0.6179580086609349
+single,10,solo,6,emergency,10,0.02,3.0,0,25,emergency,True,1,1,0,1,0,False,0,1.9270409975433722
+single,10,solo,5,emergency,10,0.02,3.0,0,14,emergency,True,1,1,0,1,0,False,2,13.504249989637174
+single,10,solo,8,emergency,10,0.02,3.0,0,61,emergency,True,1,1,0,1,0,False,1,1.0481670033186674
+single,10,solo,9,emergency,10,0.02,3.0,0,111,emergency,True,1,1,0,1,0,False,0,0.9265419939765707
+single,10,full,2,emergency,10,0.02,3.0,0,43,emergency,True,1,3,2,5,0,False,20,7.400999995297752
+single,10,full,4,emergency,10,0.02,3.0,0,104,emergency,True,1,2,1,5,0,False,20,2.9304170020623133
+single,10,full,0,emergency,10,0.02,3.0,0,87,emergency,True,1,4,3,5,0,False,20,5.4894170025363564
+single,10,full,1,emergency,10,0.02,3.0,0,107,emergency,True,1,4,3,5,0,False,20,1.9256249943282455
+single,10,full,3,emergency,10,0.02,3.0,0,25,emergency,True,1,10,9,5,0,False,20,18.16024999425281
+single,10,full,7,emergency,10,0.02,3.0,0,65,emergency,True,1,1,0,5,0,False,20,6.117083001299761
+single,10,full,9,emergency,10,0.02,3.0,0,111,emergency,True,1,3,2,5,0,False,20,1.723708992358297
+single,10,full,8,emergency,10,0.02,3.0,0,61,emergency,True,1,4,3,5,0,False,20,3.948083001887426
+single,10,full,6,emergency,10,0.02,3.0,0,25,emergency,True,1,10,9,5,0,False,20,15.89883299311623
+single,10,full,5,emergency,10,0.02,3.0,0,14,emergency,True,1,8,7,5,0,False,20,28.5410829965258
+single,10,local-flat,5,emergency,10,0.02,3.0,0,14,emergency,True,1,1,0,1,0,False,78,280.07133399660233
+single,10,local,5,emergency,10,0.02,3.0,0,14,emergency,True,1,1,0,1,0,False,134,517.6177090033889

@@ -22,9 +22,12 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 `--strategy` accepts:
-- `local`: the proposed method
+- `local`: the proposed method (v2): chained negotiation, a local group replan for urgent robots, and emergency deadlines
+- `local-flat`: the v1 method (flat coalitions only), kept for comparison
 - `solo`: an ablation with no negotiation
 - `full`: the baseline that replans everything from scratch
+
+Add `--live` to replay the finished run in an interactive window (`--fps` sets the speed).
 
 Add `--viz --out results/demo` to write the visuals:
 - `disruption_XX_*.png`: before/after snapshot of each disruption
@@ -43,8 +46,24 @@ Add `--viz --out results/demo` to write the visuals:
 | `agents` | robots: 5, 10, 20, 30, 40, 50 | 3% dynamic obstacle density, 2 breakdowns, 2 emergencies per run |
 | `density` | dynamic obstacle density: 0–15% of free cells | 20 robots |
 | `single` | exactly one disruption per run, for each type (temporary or permanent blockage or breakdown, emergency) | 10–50 robots. This gives the number of plans altered to handle a single disruption. |
+| `lambda` | alter penalty λ: 0, 1, 3, 6, 12 (`local` vs `local-flat`) | 20 and 40 robots. Shows the trade-off between robots altered and extra time. |
 
-Every configuration is run with all 3 strategies on the same seeds.
+Every configuration is run with `local`, `local-flat`, `solo` and `full` on the same seeds. The `agents` sweep also runs `local-nochain` (v2 without chained negotiation).
+
+## Results (v2 vs v1)
+
+Full tables: `results/summary.md`. Charts: `report/figures/`. 10 seeds per setting, 0 collisions in all 1,700 runs.
+
+| robots | strategy | SoC | altered / disruption | emergency on time | repair ms |
+|---|---|---|---|---|---|
+| 30 | v2 `local` | 4093 | 3.52 | 25% | 416 |
+| 30 | v1 `local-flat` | 4112 | 3.62 | 20% | 263 |
+| 30 | `full` replan | 4131 | 18.29 | 75% | 124 |
+| 50 | v2 `local` | 6958 | 5.88 | 35% | 2270 |
+| 50 | v1 `local-flat` | 6974 | 5.75 | 15% | 1102 |
+| 50 | `full` replan | 7201 | 39.33 | 100% | 590 |
+
+v2 lowers total time and makes more emergencies on time, while changing about as many plans as v1. It takes about twice the repair time. Full replanning changes 5–7× more plans. See PROGRESS.md and DECISIONS D17–D24 for details and caveats.
 
 ## Tests
 ```bash
