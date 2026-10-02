@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warehouse Plan Repair</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f6f5f2; --surface: #fcfcfb; --border: #e3e2dd; --grid: #ecebe7;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #8a8983;
+  --shelf: #52514e; --station: #1baf7a; --dock: #dcdbd6; --pickup: #f1f0ec;
+  --robot: #2a78d6; --altered: #eb6834; --disrupted: #e34948; --blocked: #1f1f1e;
+  --emergency: #eda100; --old: #8a8983; --accent: #2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --border: #2f2f2c; --grid: #262624;
+    --text: #ffffff; --text-2: #c3c2b7; --muted: #8a8983;
+    --shelf: #6b6a65; --station: #199e70; --dock: #2c2c29; --pickup: #20201e;
+    --robot: #3987e5; --altered: #d95926; --disrupted: #e66767; --blocked: #000000;
+    --emergency: #c98500; --old: #8a8983; --accent: #3987e5;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --border: #2f2f2c; --grid: #262624;
+  --text: #ffffff; --text-2: #c3c2b7; --muted: #8a8983;
+  --shelf: #6b6a65; --station: #199e70; --dock: #2c2c29; --pickup: #20201e;
+  --robot: #3987e5; --altered: #d95926; --disrupted: #e66767; --blocked: #000000;
+  --emergency: #c98500; --old: #8a8983; --accent: #3987e5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1280px; margin: 0 auto; padding: 20px 16px 40px; }
+header h1 { font-size: 20px; margin: 0 0 2px; font-weight: 650; letter-spacing: -0.01em; }
+header p { margin: 0 0 16px; color: var(--text-2); max-width: 75ch; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.stage { padding: 12px; }
+canvas { width: 100%; height: auto; display: block; border-radius: 6px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px;
+  border-top: 1px solid var(--border); }
+button { font: inherit; background: var(--bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 7px; padding: 5px 11px; cursor: pointer; min-height: 32px; }
+button:hover { border-color: var(--muted); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; min-width: 74px; }
+input[type=range] { flex: 1; min-width: 140px; accent-color: var(--accent); }
+.tlabel { font-variant-numeric: tabular-nums; color: var(--text-2); min-width: 92px; text-align: right; }
+select { font: inherit; background: var(--bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 7px; padding: 4px 6px; min-height: 32px; }
+label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--text-2); }
+.status { padding: 10px 14px; border-top: 1px solid var(--border); color: var(--text-2); min-height: 44px; }
+.status b { color: var(--text); font-weight: 600; }
+aside { display: flex; flex-direction: column; gap: 16px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border);
+  border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.stat { background: var(--surface); padding: 10px 12px; }
+.stat .v { font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stat .k { color: var(--text-2); font-size: 12px; }
+.panel h2 { font-size: 13px; margin: 0; padding: 10px 12px; border-bottom: 1px solid var(--border);
+  font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.04em; }
+.events { max-height: 420px; overflow: auto; }
+.ev { display: grid; grid-template-columns: 44px 1fr auto; gap: 8px; padding: 8px 12px; cursor: pointer;
+  border-bottom: 1px solid var(--border); align-items: baseline; }
+.ev:hover, .ev.on { background: var(--bg); }
+.ev .t { font-variant-numeric: tabular-nums; color: var(--text-2); }
+.ev .d { font-size: 13px; }
+.ev .n { font-variant-numeric: tabular-nums; font-size: 12px; color: var(--text-2); white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 10px 12px; font-size: 12px; color: var(--text-2); }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+.sw.dot { border-radius: 50%; }
+.sw.dash { height: 0; border-top: 2px dashed var(--old); border-radius: 0; width: 16px; vertical-align: 3px; }
+.sw.line { height: 0; border-top: 3px solid var(--altered); border-radius: 0; width: 16px; vertical-align: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Warehouse plan repair: replay</h1>
+    <p id="sub">Robots follow their Space-Time A* plans. When a disruption happens, the affected robots repair their plans locally by negotiating with neighbours. Pick a disruption to see the original plans (dashed) next to the repaired ones (solid).</p>
+  </header>
+  <div class="layout">
+    <section class="card">
+      <div class="stage"><canvas id="cv"></canvas></div>
+      <div class="legend">
+        <span><span class="sw dot" style="background:var(--robot)"></span>robot</span>
+        <span><span class="sw dot" style="background:var(--altered)"></span>plan altered</span>
+        <span><span class="sw dot" style="background:var(--disrupted)"></span>disrupted / broken</span>
+        <span><span class="sw" style="background:var(--blocked)"></span>blocked cell</span>
+        <span><span class="sw" style="background:var(--shelf)"></span>shelf</span>
+        <span><span class="sw" style="background:var(--station)"></span>delivery station</span>
+        <span><span class="sw" style="background:var(--dock)"></span>dock</span>
+        <span><span class="sw dash"></span>original plan</span>
+        <span><span class="sw line"></span>repaired plan</span>
+      </div>
+      <div class="controls">
+        <button id="play" class="primary" aria-label="Play or pause">Play</button>
+        <button id="back" aria-label="Step back">◀</button>
+        <button id="fwd" aria-label="Step forward">▶</button>
+        <input id="slider" type="range" min="0" value="0" aria-label="Time step">
+        <span class="tlabel" id="tl">t = 0</span>
+        <select id="speed" aria-label="Playback speed">
+          <option value="3">0.5×</option><option value="6" selected>1×</option>
+          <option value="12">2×</option><option value="24">4×</option>
+        </select>
+        <label class="chk"><input type="checkbox" id="paths" checked> plans</label>
+        <label class="chk"><input type="checkbox" id="ids" checked> ids</label>
+      </div>
+      <div class="status" id="status"></div>
+    </section>
+    <aside>
+      <div class="stats" id="stats"></div>
+      <div class="card panel">
+        <h2>Disruptions</h2>
+        <div class="events" id="events"></div>
+      </div>
+    </aside>
+  </div>
+</main>
+<script>
+const RUN = /*__RUN_DATA__*/null;
+const $ = id => document.getElementById(id);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const cv = $('cv'), ctx = cv.getContext('2d');
+let t = 0, playing = false, timer = null, focus = null;
+const H = RUN.h, W = RUN.w, T = RUN.T;
+const key = c => c[0] * 1000 + c[1];
+const shelves = new Set(RUN.shelves.map(key)), stations = new Set(RUN.stations.map(key));
+const homes = new Set(RUN.homes.map(key)), pickups = new Set(RUN.pickups.map(key));
+const pos = (a, tt) => a.path[Math.min(tt, a.path.length - 1)];
+const kindLabel = d => d.kind === 'blockage'
+  ? `Cell (${d.cell}) blocked ${d.permanent ? 'permanently' : 'for ' + d.duration + ' steps'}`
+  : d.kind === 'breakdown'
+  ? `Robot ${d.agent} breaks down ${d.permanent ? 'permanently' : 'for ' + d.duration + ' steps'}`
+  : `Robot ${d.agent} gets an emergency task`;
+
+function brokenAt(aid, tt) {
+  return RUN.disruptions.some(d => d.kind === 'breakdown' && d.agent === aid && d.t <= tt &&
+    (d.duration === null || tt < d.t + d.duration));
+}
+
+let cell = 20;
+function resize() {
+  const w = cv.parentElement.clientWidth - 24;
+  cell = Math.max(8, Math.floor(w / W));
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = W * cell * dpr; cv.height = H * cell * dpr;
+  cv.style.width = W * cell + 'px'; cv.style.height = H * cell + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  draw();
+}
+
+function drawPath(cells, color, dash, lw, alpha) {
+  if (!cells || cells.length < 2) return;
+  ctx.save(); ctx.globalAlpha = alpha; ctx.strokeStyle = color; ctx.lineWidth = lw;
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.setLineDash(dash);
+  ctx.beginPath();
+  cells.forEach(([r, c], i) => { const x = c * cell + cell / 2, y = r * cell + cell / 2;
+    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+  ctx.stroke(); ctx.restore();
+}
+
+function draw() {
+  const C = n => css(n);
+  ctx.fillStyle = C('--surface'); ctx.fillRect(0, 0, W * cell, H * cell);
+  for (let r = 0; r < H; r++) for (let c = 0; c < W; c++) {
+    const k = r * 1000 + c;
+    let f = null;
+    if (shelves.has(k)) f = C('--shelf'); else if (stations.has(k)) f = C('--station');
+    else if (homes.has(k)) f = C('--dock'); else if (pickups.has(k)) f = C('--pickup');
+    if (f) { ctx.fillStyle = f; ctx.fillRect(c * cell, r * cell, cell, cell); }
+  }
+  ctx.strokeStyle = C('--grid'); ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let c = 0; c <= W; c++) { ctx.moveTo(c * cell + .5, 0); ctx.lineTo(c * cell + .5, H * cell); }
+  for (let r = 0; r <= H; r++) { ctx.moveTo(0, r * cell + .5); ctx.lineTo(W * cell, r * cell + .5); }
+  ctx.stroke();
+  for (const b of RUN.blockages) {
+    if (b.start <= t && (b.end === null || t < b.end)) {
+      const [r, c] = b.cell;
+      ctx.fillStyle = C('--blocked'); ctx.fillRect(c * cell, r * cell, cell, cell);
+      ctx.strokeStyle = C('--disrupted'); ctx.lineWidth = 2; ctx.beginPath();
+      ctx.moveTo(c * cell + 4, r * cell + 4); ctx.lineTo(c * cell + cell - 4, r * cell + cell - 4);
+      ctx.moveTo(c * cell + cell - 4, r * cell + 4); ctx.lineTo(c * cell + 4, r * cell + cell - 4); ctx.stroke();
+    }
+  }
+  // Which disruption is highlighted: the focused one while within its window, else the most recent (8 steps).
+  let hl = null;
+  if (focus !== null && t >= focus.t && t < focus.t + 40) hl = focus;
+  else { for (const d of RUN.disruptions) if (d.t <= t && t < d.t + 8) hl = d; }
+  const altered = new Set(hl ? hl.altered : []);
+  if ($('paths').checked) {
+    if (hl) {
+      const off = t - hl.t;
+      for (const a of hl.altered) {
+        drawPath(hl.old[a].slice(off), C('--old'), [4, 4], 2, 0.9);
+        drawPath(hl.new[a].slice(off), C('--altered'), [], 3, 0.95);
+      }
+    } else {
+      for (const a of RUN.agents) drawPath(a.path.slice(t, t + 15), C('--robot'), [], 1.5, 0.25);
+    }
+  }
+  if (hl && hl.cell) {
+    const [r, c] = hl.cell;
+    ctx.strokeStyle = C('--disrupted'); ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.arc(c * cell + cell / 2, r * cell + cell / 2, cell * 0.95, 0, 7); ctx.stroke();
+  }
+  for (const a of RUN.agents) {
+    const [r, c] = pos(a, t);
+    const x = c * cell + cell / 2, y = r * cell + cell / 2;
+    const broken = brokenAt(a.id, t);
+    const disrupted = broken || (hl && hl.agent === a.id);
+    ctx.fillStyle = disrupted ? C('--disrupted') : altered.has(a.id) ? C('--altered') : C('--robot');
+    ctx.beginPath(); ctx.arc(x, y, cell * 0.42, 0, 7); ctx.fill();
+    ctx.strokeStyle = C('--surface'); ctx.lineWidth = 1.5; ctx.stroke();
+    if (broken) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath();
+      const s = cell * 0.18;
+      ctx.moveTo(x - s, y - s); ctx.lineTo(x + s, y + s); ctx.moveTo(x + s, y - s); ctx.lineTo(x - s, y + s); ctx.stroke();
+    } else if ($('ids').checked && cell >= 14) {
+      ctx.fillStyle = '#fff'; ctx.font = `600 ${Math.floor(cell * 0.42)}px system-ui`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(a.id, x, y + 0.5);
+    }
+  }
+  $('slider').value = t;
+  const delivered = RUN.agents.reduce((s, a) => s + a.deliveries.filter(d => d <= t).length, 0);
+  $('tl').textContent = `t = ${t} / ${T - 1}`;
+  $('status').innerHTML = hl
+    ? `<b>#${hl.id} at t=${hl.t}:</b> ${kindLabel(hl)}. Directly affected: <b>${hl.direct.length}</b>, plans altered: <b>${hl.altered.length}</b>, extra robots changed through negotiation: <b>${hl.collateral.length}</b>. Messages: ${hl.messages}.`
+    : `Tasks delivered: <b>${delivered}</b> / ${RUN.n_tasks}. Pick a disruption on the right to inspect it.`;
+  document.querySelectorAll('.ev').forEach(e => e.classList.toggle('on', hl && +e.dataset.id === hl.id));
+}
+
+function setT(v) { t = Math.max(0, Math.min(T - 1, v)); draw(); }
+function play(on) {
+  playing = on; $('play').textContent = on ? 'Pause' : 'Play';
+  clearInterval(timer);
+  if (on) timer = setInterval(() => { if (t >= T - 1) play(false); else setT(t + 1); }, 1000 / +$('speed').value);
+}
+
+function init() {
+  $('slider').max = T - 1;
+  const m = RUN.metrics;
+  const stats = [
+    ['Sum of task completion times', m.soc.toLocaleString()],
+    ['Makespan (last delivery)', m.makespan],
+    ['Disruptions', m.n_disruptions],
+    ['Avg plans altered per disruption', (m.altered_mean ?? 0).toFixed(2)],
+    ['Overhead vs. undisrupted', '+' + m.soc_overhead],
+    ['Collisions', m.collisions],
+  ];
+  $('stats').innerHTML = stats.map(([k, v]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
+  $('sub').textContent = `${RUN.agents.length} robots, ${RUN.n_tasks} pick-and-deliver tasks, repair strategy: ${RUN.strategy}. ` +
+    'When a disruption happens, the affected robots repair their plans locally by negotiating with neighbours. Pick a disruption to compare original plans (dashed) with repaired ones (solid).';
+  $('events').innerHTML = RUN.disruptions.map(d =>
+    `<div class="ev" data-id="${d.id}" role="button" tabindex="0"><span class="t">t=${d.t}</span>` +
+    `<span class="d">${kindLabel(d)}</span><span class="n">${d.altered.length} altered</span></div>`).join('')
+    || '<div class="ev"><span></span><span class="d">No disruptions</span></div>';
+  document.querySelectorAll('.ev[data-id]').forEach(e => {
+    const go = () => { play(false); focus = RUN.disruptions[+e.dataset.id]; setT(focus.t); };
+    e.onclick = go; e.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } };
+  });
+  $('play').onclick = () => play(!playing);
+  $('back').onclick = () => { play(false); setT(t - 1); };
+  $('fwd').onclick = () => { play(false); setT(t + 1); };
+  $('slider').oninput = e => { play(false); setT(+e.target.value); };
+  $('speed').onchange = () => playing && play(true);
+  $('paths').onchange = draw; $('ids').onchange = draw;
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    if (e.key === ' ') { e.preventDefault(); play(!playing); }
+    if (e.key === 'ArrowRight') setT(t + 1);
+    if (e.key === 'ArrowLeft') setT(t - 1);
+  });
+  window.addEventListener('resize', resize);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  resize();
+}
+init();
+</script>
+</body>
+</html>
