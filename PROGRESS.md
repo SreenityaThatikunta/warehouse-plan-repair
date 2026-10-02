@@ -95,3 +95,7 @@
   - disruption snapshots
   - `run.gif`
   - `replay.html`
+
+### 2026-10-02
+- Project titled **"Negotiated Local Plan Repair for Multi-Robot Warehouse Pathfinding"**.
+- Created the private GitHub repo `SreenityaThatikunta/warehouse-plan-repair` and pushed the code, docs, results, charts and demos (69 files; `.venv` and `.DS_Store` excluded).
