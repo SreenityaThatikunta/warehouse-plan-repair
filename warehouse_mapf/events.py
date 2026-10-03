@@ -24,6 +24,7 @@ class Event:
     pickup: Cell | None = None    # emergency task
     delivery: Cell | None = None
     on_path: bool = False         # blockage: only cells some robot will enter soon
+    safe: bool = True             # False: skip the solvability filters (stress tests)
 
     @property
     def permanent(self) -> bool:
@@ -42,6 +43,7 @@ class DisruptionConfig:
     window: tuple[float, float] = (0.05, 0.7)   # events happen in this fraction of the nominal makespan
     n_blockages: int | None = None     # overrides obstacle_density when set
     blockage_on_path: bool = False     # block a cell some robot is about to use (guaranteed impact)
+    safe: bool = True                  # False: disruptions may make tasks unsolvable (stress tests)
 
 
 def generate_events(rng: np.random.Generator, cfg: DisruptionConfig, makespan: int,
@@ -60,15 +62,17 @@ def generate_events(rng: np.random.Generator, cfg: DisruptionConfig, makespan: i
         perm = rng.random() < cfg.blockage_perm_prob
         dur = INF if perm else int(rng.integers(cfg.blockage_duration[0], cfg.blockage_duration[1] + 1))
         prefs = [blockable[i] for i in rng.permutation(len(blockable))]
-        events.append(Event(when(), 'blockage', dur, cell_prefs=prefs, on_path=cfg.blockage_on_path))
+        events.append(Event(when(), 'blockage', dur, cell_prefs=prefs, on_path=cfg.blockage_on_path,
+                            safe=cfg.safe))
     for _ in range(cfg.n_breakdowns):
         perm = rng.random() < cfg.breakdown_perm_prob
         dur = INF if perm else int(rng.integers(cfg.breakdown_duration[0], cfg.breakdown_duration[1] + 1))
-        events.append(Event(when(), 'breakdown', dur, agent_prefs=[int(a) for a in rng.permutation(n_agents)]))
+        events.append(Event(when(), 'breakdown', dur, agent_prefs=[int(a) for a in rng.permutation(n_agents)],
+                            safe=cfg.safe))
     for _ in range(cfg.n_emergencies):
         events.append(Event(when(), 'emergency',
                             agent_prefs=[int(a) for a in rng.permutation(n_agents)],
                             pickup=pickups[rng.integers(len(pickups))],
-                            delivery=stations[rng.integers(len(stations))]))
+                            delivery=stations[rng.integers(len(stations))], safe=cfg.safe))
     events.sort(key=lambda e: e.t)
     return events

@@ -1,0 +1,253 @@
+[stress] 10/760 jobs  63s
+  !! stress x=44 local-flat seed=1: collisions=0 all_done=False tasks=46/134
+[stress] 20/760 jobs  83s
+  !! stress x=44 solo seed=3: collisions=0 all_done=False tasks=37/134
+  !! stress x=44 solo seed=6: collisions=0 all_done=False tasks=3/134
+  !! stress x=44 solo seed=9: collisions=0 all_done=False tasks=16/134
+  !! stress x=44 solo seed=8: collisions=0 all_done=False tasks=73/134
+  !! stress x=44 solo seed=4: collisions=0 all_done=False tasks=1/134
+[stress] 30/760 jobs  97s
+[stress] 40/760 jobs  110s
+[stress] 50/760 jobs  117s
+  !! stress x=40 solo seed=4: collisions=0 all_done=False tasks=117/120
+[stress] 60/760 jobs  124s
+[stress] 70/760 jobs  130s
+  !! stress x=40 full seed=4: collisions=0 all_done=False tasks=117/120
+  !! stress x=40 local-flat seed=4: collisions=0 all_done=False tasks=117/120
+[stress] 80/760 jobs  150s
+  !! stress x=40 local seed=4: collisions=0 all_done=False tasks=117/120
+  !! stress x=40 local seed=4: collisions=0 all_done=False tasks=117/120
+  !! stress x=40 local-flat seed=4: collisions=0 all_done=False tasks=117/120
+[stress] 90/760 jobs  173s
+  !! stress x=40 local seed=7: collisions=0 all_done=False tasks=112/120
+  !! stress x=40 local-flat seed=7: collisions=0 all_done=False tasks=112/120
+  !! stress x=40 solo seed=4: collisions=0 all_done=False tasks=117/120
+  !! stress x=40 solo seed=7: collisions=0 all_done=False tasks=112/120
+[stress] 100/760 jobs  211s
+  !! stress x=40 local-flat seed=0: collisions=0 all_done=False tasks=108/120
+  !! stress x=40 full seed=4: collisions=0 all_done=False tasks=117/120
+  !! stress x=40 solo seed=0: collisions=0 all_done=False tasks=108/120
+[stress] 110/760 jobs  231s
+  !! stress x=40 full seed=7: collisions=0 all_done=False tasks=112/120
+  !! stress x=40 local seed=0: collisions=0 all_done=False tasks=108/120
+  !! stress x=40 local-flat seed=2: collisions=0 all_done=False tasks=103/120
+  !! stress x=40 full seed=0: collisions=0 all_done=False tasks=108/120
+  !! stress x=40 solo seed=2: collisions=0 all_done=False tasks=103/120
+[stress] 120/760 jobs  268s
+  !! stress x=40 local seed=1: collisions=0 all_done=False tasks=44/122
+  !! stress x=40 local seed=3: collisions=0 all_done=False tasks=1/122
+  !! stress x=40 full seed=2: collisions=0 all_done=False tasks=103/120
+  !! stress x=40 local seed=2: collisions=0 all_done=False tasks=103/120
+[stress] 130/760 jobs  316s
+  !! stress x=40 local-flat seed=3: collisions=0 all_done=False tasks=1/122
+  !! stress x=40 solo seed=1: collisions=0 all_done=False tasks=0/122
+[stress] 140/760 jobs  338s
+  !! stress x=40 solo seed=4: collisions=0 all_done=False tasks=65/122
+  !! stress x=40 solo seed=3: collisions=0 all_done=False tasks=1/122
+[stress] 150/760 jobs  349s
+  !! stress x=40 solo seed=6: collisions=0 all_done=False tasks=0/122
+[stress] 160/760 jobs  357s
+[stress] 170/760 jobs  360s
+[stress] 180/760 jobs  364s
+[stress] 190/760 jobs  370s
+[stress] 200/760 jobs  376s
+  !! stress x=40 full seed=5: collisions=0 all_done=False tasks=60/122
+[stress] 210/760 jobs  379s
+[stress] 220/760 jobs  383s
+[stress] 230/760 jobs  388s
+[stress] 240/760 jobs  394s
+  !! stress x=40 local seed=6: collisions=0 all_done=False tasks=2/122
+[stress] 250/760 jobs  400s
+[stress] 260/760 jobs  404s
+[stress] 270/760 jobs  410s
+[stress] 280/760 jobs  417s
+[stress] 290/760 jobs  432s
+[stress] 300/760 jobs  439s
+[stress] 310/760 jobs  445s
+[stress] 320/760 jobs  453s
+[stress] 330/760 jobs  482s
+[stress] 340/760 jobs  490s
+  !! stress x=30 local-flat seed=6: collisions=0 all_done=False tasks=19/92
+[stress] 350/760 jobs  497s
+  !! stress x=0.0 local seed=3: collisions=0 all_done=False tasks=59/62
+[stress] 360/760 jobs  501s
+  !! stress x=30 solo seed=6: collisions=0 all_done=False tasks=19/92
+  !! stress x=0.0 local seed=8: collisions=0 all_done=False tasks=60/62
+  !! stress x=0.0 local-flat seed=3: collisions=0 all_done=False tasks=59/62
+[stress] 370/760 jobs  502s
+  !! stress x=0.0 local-flat seed=8: collisions=0 all_done=False tasks=60/62
+  !! stress x=0.0 solo seed=3: collisions=0 all_done=False tasks=59/62
+[stress] 380/760 jobs  503s
+  !! stress x=0.0 solo seed=8: collisions=0 all_done=False tasks=60/62
+  !! stress x=0.0 full seed=3: collisions=0 all_done=False tasks=59/62
+[stress] 390/760 jobs  506s
+  !! stress x=0.0 full seed=8: collisions=0 all_done=False tasks=60/62
+  !! stress x=30 local seed=6: collisions=0 all_done=False tasks=19/92
+  !! stress x=30 solo seed=3: collisions=0 all_done=False tasks=0/92
+  !! stress x=0.0 solo seed=7: collisions=0 all_done=False tasks=48/62
+  !! stress x=0.05 local seed=3: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.0 local-flat seed=7: collisions=0 all_done=False tasks=48/62
+  !! stress x=0.0 full seed=7: collisions=0 all_done=False tasks=48/62
+[stress] 400/760 jobs  516s
+  !! stress x=0.05 local seed=7: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.0 local seed=7: collisions=0 all_done=False tasks=48/62
+  !! stress x=0.05 local seed=9: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 local seed=5: collisions=0 all_done=False tasks=52/62
+  !! stress x=0.05 local seed=4: collisions=0 all_done=False tasks=42/62
+  !! stress x=0.05 local-flat seed=3: collisions=0 all_done=False tasks=56/62
+[stress] 410/760 jobs  529s
+  !! stress x=0.05 local-flat seed=7: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.05 local seed=0: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 solo seed=0: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 local-flat seed=5: collisions=0 all_done=False tasks=52/62
+  !! stress x=0.05 solo seed=3: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 local-flat seed=4: collisions=0 all_done=False tasks=42/62
+  !! stress x=0.05 local-flat seed=0: collisions=0 all_done=False tasks=56/62
+[stress] 420/760 jobs  536s
+  !! stress x=0.05 local-flat seed=9: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 solo seed=9: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 solo seed=7: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 solo seed=5: collisions=0 all_done=False tasks=52/62
+  !! stress x=0.05 solo seed=4: collisions=0 all_done=False tasks=42/62
+  !! stress x=0.05 full seed=2: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.05 full seed=4: collisions=0 all_done=False tasks=45/62
+  !! stress x=0.05 full seed=3: collisions=0 all_done=False tasks=53/62
+[stress] 430/760 jobs  542s
+  !! stress x=0.05 full seed=7: collisions=0 all_done=False tasks=58/62
+  !! stress x=0.05 full seed=9: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.05 full seed=5: collisions=0 all_done=False tasks=52/62
+  !! stress x=0.05 full seed=0: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.1 local seed=1: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 local seed=3: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 local seed=2: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 local seed=6: collisions=0 all_done=False tasks=59/62
+[stress] 440/760 jobs  572s
+  !! stress x=0.1 local seed=7: collisions=0 all_done=False tasks=58/62
+  !! stress x=0.1 local seed=5: collisions=0 all_done=False tasks=60/62
+  !! stress x=0.1 local seed=0: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 local-flat seed=1: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 local-flat seed=0: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 local-flat seed=2: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 local-flat seed=3: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 local-flat seed=5: collisions=0 all_done=False tasks=60/62
+  !! stress x=0.1 local-flat seed=6: collisions=0 all_done=False tasks=59/62
+[stress] 450/760 jobs  674s
+  !! stress x=0.1 local-flat seed=4: collisions=0 all_done=False tasks=20/62
+  !! stress x=0.1 local seed=4: collisions=0 all_done=False tasks=20/62
+  !! stress x=0.1 solo seed=0: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 solo seed=1: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 local-flat seed=8: collisions=0 all_done=False tasks=19/62
+  !! stress x=0.1 solo seed=3: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 solo seed=4: collisions=0 all_done=False tasks=31/62
+  !! stress x=0.1 local seed=9: collisions=0 all_done=False tasks=25/62
+  !! stress x=0.1 solo seed=6: collisions=0 all_done=False tasks=59/62
+[stress] 460/760 jobs  811s
+  !! stress x=0.1 solo seed=8: collisions=0 all_done=False tasks=56/62
+  !! stress x=0.1 local-flat seed=9: collisions=0 all_done=False tasks=39/62
+  !! stress x=0.1 solo seed=2: collisions=0 all_done=False tasks=27/62
+  !! stress x=0.05 local-flat seed=2: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 full seed=1: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.1 full seed=3: collisions=0 all_done=False tasks=58/62
+  !! stress x=0.1 full seed=0: collisions=0 all_done=False tasks=33/62
+  !! stress x=0.1 full seed=4: collisions=0 all_done=False tasks=22/62
+  !! stress x=0.1 full seed=6: collisions=0 all_done=False tasks=57/62
+[stress] 470/760 jobs  889s
+  !! stress x=0.1 full seed=5: collisions=0 all_done=False tasks=28/62
+  !! stress x=0.1 full seed=8: collisions=0 all_done=False tasks=57/62
+  !! stress x=0.1 local seed=8: collisions=0 all_done=False tasks=46/62
+  !! stress x=0.1 full seed=2: collisions=0 all_done=False tasks=27/62
+  !! stress x=0.1 solo seed=5: collisions=0 all_done=False tasks=26/62
+  !! stress x=0.2 local seed=3: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 local seed=1: collisions=0 all_done=False tasks=20/62
+  !! stress x=0.2 local seed=5: collisions=0 all_done=False tasks=22/62
+  !! stress x=0.2 local seed=0: collisions=0 all_done=False tasks=17/62
+[stress] 480/760 jobs  1101s
+  !! stress x=0.2 local seed=4: collisions=0 all_done=False tasks=21/62
+  !! stress x=0.05 local seed=2: collisions=0 all_done=False tasks=59/62
+  !! stress x=0.2 local seed=6: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 local-flat seed=0: collisions=0 all_done=False tasks=18/62
+  !! stress x=0.2 local-flat seed=1: collisions=0 all_done=False tasks=20/62
+  !! stress x=0.2 local seed=8: collisions=0 all_done=False tasks=16/62
+  !! stress x=0.2 local-flat seed=3: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 local seed=7: collisions=0 all_done=False tasks=10/62
+  !! stress x=0.2 local-flat seed=2: collisions=0 all_done=False tasks=15/62
+[stress] 490/760 jobs  1276s
+  !! stress x=0.2 local-flat seed=5: collisions=0 all_done=False tasks=23/62
+  !! stress x=0.2 local-flat seed=7: collisions=0 all_done=False tasks=14/62
+  !! stress x=0.2 local seed=2: collisions=0 all_done=False tasks=15/62
+  !! stress x=0.2 local-flat seed=6: collisions=0 all_done=False tasks=11/62
+  !! stress x=0.1 full seed=9: collisions=0 all_done=False tasks=39/62
+  !! stress x=0.2 local-flat seed=4: collisions=0 all_done=False tasks=19/62
+  !! stress x=0.2 solo seed=0: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 solo seed=3: collisions=0 all_done=False tasks=16/62
+  !! stress x=0.2 local-flat seed=8: collisions=0 all_done=False tasks=16/62
+  !! stress x=0.2 solo seed=5: collisions=0 all_done=False tasks=22/62
+[stress] 500/760 jobs  1374s
+  !! stress x=0.2 solo seed=8: collisions=0 all_done=False tasks=16/62
+  !! stress x=0.2 solo seed=4: collisions=0 all_done=False tasks=15/62
+  !! stress x=0.2 solo seed=9: collisions=0 all_done=False tasks=12/62
+  !! stress x=0.2 solo seed=2: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 solo seed=6: collisions=0 all_done=False tasks=12/62
+  !! stress x=0.2 full seed=3: collisions=0 all_done=False tasks=14/62
+  !! stress x=0.2 full seed=0: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 local-flat seed=9: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 full seed=4: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.2 solo seed=7: collisions=0 all_done=False tasks=34/62
+[stress] 510/760 jobs  1490s
+  !! stress x=0.2 full seed=5: collisions=0 all_done=False tasks=23/62
+  !! stress x=0.2 full seed=6: collisions=0 all_done=False tasks=11/62
+  !! stress x=0.2 full seed=9: collisions=0 all_done=False tasks=9/62
+  !! stress x=0.2 full seed=7: collisions=0 all_done=False tasks=16/62
+  !! stress x=0.1 solo seed=9: collisions=0 all_done=False tasks=21/62
+[stress] 520/760 jobs  1579s
+  !! stress x=0.2 full seed=8: collisions=0 all_done=False tasks=15/62
+  !! stress x=0.2 full seed=2: collisions=0 all_done=False tasks=16/62
+[stress] 530/760 jobs  1614s
+[stress] 540/760 jobs  1627s
+  !! stress x=0.2 full seed=1: collisions=0 all_done=False tasks=16/62
+[stress] 550/760 jobs  1641s
+  !! stress x=0.2 local seed=9: collisions=0 all_done=False tasks=11/62
+[stress] 560/760 jobs  1663s
+[stress] 570/760 jobs  1721s
+[stress] 580/760 jobs  1736s
+[stress] 590/760 jobs  1758s
+  !! stress x=0.25 solo seed=8: collisions=0 all_done=False tasks=14/62
+[stress] 600/760 jobs  1795s
+[stress] 610/760 jobs  1869s
+[stress] 620/760 jobs  1898s
+  !! stress x=0.3 solo seed=8: collisions=0 all_done=False tasks=10/62
+[stress] 630/760 jobs  1993s
+  !! stress x=20 local seed=1: collisions=0 all_done=False tasks=58/60
+[stress] 640/760 jobs  2021s
+  !! stress x=20 local-flat seed=1: collisions=0 all_done=False tasks=58/60
+[stress] 650/760 jobs  2024s
+  !! stress x=20 solo seed=1: collisions=0 all_done=False tasks=58/60
+[stress] 660/760 jobs  2025s
+  !! stress x=20 full seed=1: collisions=0 all_done=False tasks=58/60
+[stress] 670/760 jobs  2027s
+  !! stress x=20 local seed=3: collisions=0 all_done=False tasks=58/60
+  !! stress x=20 local seed=7: collisions=0 all_done=False tasks=47/60
+[stress] 680/760 jobs  2049s
+  !! stress x=20 local-flat seed=3: collisions=0 all_done=False tasks=58/60
+  !! stress x=20 local-flat seed=7: collisions=0 all_done=False tasks=47/60
+[stress] 690/760 jobs  2062s
+  !! stress x=20 solo seed=3: collisions=0 all_done=False tasks=58/60
+  !! stress x=0.3 full seed=1: collisions=0 all_done=False tasks=22/62
+[stress] 700/760 jobs  2072s
+  !! stress x=20 solo seed=7: collisions=0 all_done=False tasks=47/60
+  !! stress x=20 full seed=3: collisions=0 all_done=False tasks=58/60
+[stress] 710/760 jobs  2073s
+  !! stress x=20 full seed=7: collisions=0 all_done=False tasks=47/60
+[stress] 720/760 jobs  2106s
+[stress] 730/760 jobs  2152s
+  !! stress x=20 local-flat seed=1: collisions=0 all_done=False tasks=44/62
+[stress] 740/760 jobs  2164s
+[stress] 750/760 jobs  2171s
+  !! stress x=0.3 local-flat seed=8: collisions=0 all_done=False tasks=17/62
+  !! stress x=0.3 full seed=8: collisions=0 all_done=False tasks=16/62
+  !! stress x=20 solo seed=1: collisions=0 all_done=False tasks=41/62
+  !! stress x=0.2 solo seed=1: collisions=0 all_done=False tasks=31/62
+  !! stress x=0.3 local seed=8: collisions=0 all_done=False tasks=18/62
+  !! stress x=0.25 local-flat seed=8: collisions=0 all_done=False tasks=39/62
+[stress] 760/760 jobs  3215s
+[stress] done: 760/760 runs ok, 16440 disruptions, 3215s

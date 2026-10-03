@@ -1,0 +1,158 @@
+% Failure settings (generated from results/stress_runs.csv; see results/summary.md, "Stress study").
+In the main sweeps robots almost never fail, but partly by construction: the scenario
+generator removes disruptions that would make a task impossible (Section 2). To find
+where the agents really fail, we ran a \textbf{stress study} (760 runs, 10 seeds, all
+strategies) in which this filter can be switched off and the environment pushed further.
+\begin{itemize}
+  \item \textbf{unsafe}: filter off, half of the blockages and breakdowns permanent, $\rho$ = 0--20\%, 20 robots;
+  \item \textbf{unsafe-single}: one permanent blockage or breakdown with the filter off, 20 and 40 robots;
+  \item \textbf{dense}: filter on, $\rho$ = 20--30\%, 20 robots;
+  \item \textbf{crowd}: a small $12\times27$ map (204 free cells, 46 docks) with 20--44 robots;
+  \item \textbf{radius}: communication radius $\R$ = 1, 2, 3, 6 with 40 robots.
+\end{itemize}
+A run \emph{fails} if some task is still undone when it ends. A run ends when every robot
+is done, or when no robot has moved and no goal has been reached for 150 steps. Each
+unfinished robot is classified as \emph{goal cut off} (a remaining goal is unreachable
+past permanent obstacles and dead robots, so the instance has become unsolvable) or
+\emph{deadlocked} (every goal is reachable, but the robot is stuck). No run had a collision.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{stress_completion.png}
+  \caption{Share of tasks completed in the stress settings.}
+  \label{fig:stress}
+\end{figure}
+
+\begin{table}[H]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\caption{Settings where agents fail. Runs failed out of 10 and the share of tasks
+completed; stuck robots per run for \texttt{local} (cut off / deadlocked).}
+\label{tab:failures}
+\begin{tabular}{llrrrrr}
+\toprule
+setting & value & \multicolumn{2}{c}{\texttt{local} (v2)} & stuck & \texttt{local-flat} & \texttt{full} \\
+ & & failed & completed & cut / dead & completed & completed \\
+\midrule
+unsafe & $\rho=0\%$  & 3/10 & 96.9\% & 0.5 / 0.2 & 96.9\% & 96.9\% \\
+       & $\rho=5\%$  & 7/10 & 91.0\% & 1.5 / 0.3 & 91.0\% & 90.8\% \\
+       & $\rho=10\%$ & 10/10 & 80.6\% & 2.3 / 3.1 & 79.2\% & 71.3\% \\
+       & $\rho=20\%$ & 10/10 & 26.8\% & 9.9 / 8.8 & 27.4\% & 24.8\% \\
+\midrule
+unsafe-single & 1 perm.\ breakdown, 20 robots & 2/10 & 97.5\% & 0.4 / 0.2 & 97.5\% & 97.5\% \\
+              & 1 perm.\ breakdown, 40 robots & 4/10 & 96.7\% & 0.4 / 1.0 & 96.7\% & 96.7\% \\
+              & 1 perm.\ blockage, 20 or 40 robots & 1/10 & 99.7\% & 0.1 / 0.0 & 99.7\% & 99.7\% \\
+\midrule
+dense & $\rho=25\%$ & 0/10 & 100\% & -- & 96.3\% & 100\% \\
+      & $\rho=30\%$ & 1/10 & 92.9\% & 0.0 / 2.0 & 92.7\% & 86.1\% \\
+\midrule
+crowd & 30 robots & 1/10 & 92.1\% & 0.0 / 2.9 & 92.1\% & 100\% \\
+      & 40 robots & 3/10 & 73.9\% & 0.0 / 11.9 & 90.1\% & 94.9\% \\
+      & 44 robots & 0/10 & 100\% & -- & 93.4\% & 100\% \\
+\midrule
+radius & $\R$ = 1, 2, 3, 6 & 0/10 & 100\% & -- & 100\% & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{stress_causes.png}
+  \caption{Why robots fail to finish under \texttt{local}: goals cut off (red) or deadlocked
+  although every goal is reachable (orange).}
+  \label{fig:causes}
+\end{figure}
+
+\subsection*{F1. Disruptions that make tasks impossible}
+With the filter off, a permanent blockage or a robot that breaks down for good can cut
+off a pickup cell, a station or a whole aisle segment (Figure~\ref{fig:unreachable}). No
+repair can complete those tasks, so all strategies fail alike. Completion falls from
+96.9\% at $\rho=0\%$ to 26.8\% at $\rho=20\%$, where the map breaks into pieces and about
+10 robots per run have a goal cut off. Even with no blockages at all ($\rho=0\%$), 3 of 10
+runs fail, because a permanently broken robot in a one-cell aisle is itself a wall. A
+\emph{single} permanent breakdown is enough to make 2 of 10 runs fail at 20 robots and
+4 of 10 at 40.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{failure_unreachable.png}
+  \caption{Failure F1/F2 (\texttt{results/demo\_failure/unreachable.gif}). Permanent
+  blockages (black) cut off the goals of robots 3, 13 and 18. They hold forever and
+  5 of 62 tasks are never done.}
+  \label{fig:unreachable}
+\end{figure}
+
+\subsection*{F2. Knock-on deadlock behind a stuck robot}
+A robot whose goal is cut off does not give up its task. It holds its cell indefinitely,
+and in one-cell aisles that cell can be the only way to another robot's goal. At
+$\rho=10\%$, 2.3 robots per run have a goal cut off, but another 3.1 are deadlocked even
+though all of their goals are reachable. At 20\% it is 9.9 and 8.8. More than half of the
+failures in these settings are therefore caused by the agents' reaction, not by the
+instance. Local repair suffers less from this than full replanning (80.6\% vs 71.3\%
+completed at 10\%, 3.1 vs 6.6 deadlocked robots), because a global replan rebuilds every
+plan around the stuck robots and can wall more robots in.
+
+\subsection*{F3. Hold cascade in crowded maps (a weakness of our method)}
+On the small map with 40 robots, 3 of 10 \texttt{local} runs fail, and in each of them
+nearly the whole fleet stops. In seed 3, a robot breaks down \emph{temporarily} in an aisle
+at $t=14$ and directly blocks 6 robots. They cannot find a detour, so they hold (Tier 4).
+Every robot that planned through a held cell is then re-queued and also holds. Within one
+step all 40 robots hold, each seeing the others as permanent walls, and only 1 of 122
+tasks is ever delivered. Negotiation cannot untangle this: coalitions have at most 3--4
+members, and Tier 3b at most 8, while the knot involves 40. \texttt{full} replanning plans
+everyone together and solves the same instance (122/122). This is the setting in which
+the local method is clearly worse than the global baseline. \texttt{local-flat} failed in
+1 of 10 runs here and \texttt{solo} in 4. The effect depends strongly on the instance: at 44
+robots no \texttt{local} run failed, and the 95\% confidence band in
+Figure~\ref{fig:stress} is wide.
+
+\subsection*{F4. Very high obstacle density}
+With the filter on (every task stays solvable), failures start at about 25--30\% density:
+1 of 10 runs fails for each local strategy at 30\% (2 deadlocked robots), and 2 of 10 for
+full replanning (86.1\% completed). Up to 20\% density no strategy failed.
+
+\subsection*{F5. Gridlock without negotiation}
+Without negotiation (\texttt{solo}), robots gridlock much more often. On the main map with
+50 robots, a single permanent breakdown at $t=40$ leaves all 49 remaining robots holding
+from then on, and only 26 of 150 tasks are done (Figure~\ref{fig:gridlock}). On the small map
+with 44 robots, 5 of 10 \texttt{solo} runs fail (59.7\% completed). \texttt{local} solves
+both: 150/150 on the first instance and 10 of 10 runs on the second. Negotiation is what
+prevents these gridlocks.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{failure_gridlock_solo.png}
+  \caption{Failure F5 (\texttt{results/demo\_failure/gridlock\_solo.gif}): with
+  \texttt{solo}, all 49 live robots (red) gridlock after one permanent breakdown. The same
+  instance with \texttt{local} completes all 150 tasks.}
+  \label{fig:gridlock}
+\end{figure}
+
+\subsection*{F6. Emergency deadlines}
+Emergency tasks are always eventually delivered, but rarely by their deadline (ideal time
++ 3 steps) once the fleet is dense: 25--35\% on time at 30--50 robots on the main map,
+and 5\% on the crowded map with 40 robots and at 30\% density. Full replanning reaches
+70--100\% because it can move every robot out of the emergency robot's way.
+
+\subsection*{Where the agents did not fail}
+\begin{itemize}
+  \item \textbf{Communication radius.} Shrinking $\R$ from 6 to 1 caused no failures at
+        40 robots and raised SoC by only 1\% (5577 vs 5510). Short-range negotiation finds
+        fewer partners, but robots that hold for 10 steps widen their search (expanding
+        ring), which breaks the deadlocks a short radius would otherwise cause.
+  \item \textbf{Solvable instances on the main map}: 5--50 robots and up to 20\% obstacle
+        density (1{,}700 runs of the main sweeps). No \texttt{local} run failed.
+\end{itemize}
+
+\subsection*{Summary}
+The agents fail to complete their tasks when
+(i) permanent disruptions cut goals off, even a single robot breaking down for good in a
+one-cell aisle;
+(ii) robots stuck in this way keep blocking others, which in these settings accounts for
+more than half of the stuck robots;
+(iii) a map is so crowded that one local hold cascades into a fleet-wide gridlock, the
+case where global replanning does better;
+(iv) obstacle density reaches about 30\%;
+(v) robots cannot negotiate (\texttt{solo}).
+Possible remedies are to detect unreachable goals and release or re-auction the task while
+moving the robot aside, and to escalate to a larger regional replan once a hold cascade
+exceeds a few robots.

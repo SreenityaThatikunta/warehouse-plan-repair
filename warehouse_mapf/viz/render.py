@@ -225,3 +225,32 @@ def save_frame(sim, t: int, path: Path) -> None:
     plt.close(fig)
 
 
+
+
+def save_failure_snapshot(sim, path: Path, title: str) -> None:
+    """Final state of a run that did not finish: stuck robots in red, with a line to the
+    goal each one is stuck on (dashed red X = goal cut off, dashed orange = deadlocked)."""
+    t = sim.t
+    stuck = sim.stuck_robots()
+    fig, ax = plt.subplots(figsize=(10, 6.2), dpi=130)
+    draw_map(ax, sim)
+    draw_blocked(ax, sim, t)
+    draw_agents(ax, sim, t, disrupted=set(stuck), size=80)
+    for aid, why in (stuck.items() if len(stuck) <= 10 else ()):     # too many lines would hide the map
+        a = sim.agents[aid]
+        g = a.remaining_goals()[0].cell
+        (r0, c0), (r1, c1) = a.pos(t), g
+        color = C['disrupted'] if why == 'unreachable' else C['altered']
+        ax.plot([c0, c1], [r0, r1], '--', color=color, lw=1.2, alpha=0.8, zorder=5)
+        ax.scatter([c1], [r1], s=110, marker='X' if why == 'unreachable' else 'o', facecolor='none' if why != 'unreachable' else color,
+                   edgecolor=color, linewidth=1.5, zorder=8)
+    n_un = sum(v == 'unreachable' for v in stuck.values())
+    m = sim.metrics()
+    ax.set_title(f'{title}\nt = {t}: {m["tasks_done"]}/{m["tasks_total"]} tasks done; '
+                 f'{len(stuck)} robots stuck ({n_un} goal cut off, {len(stuck) - n_un} deadlocked)',
+                 fontsize=9.5, loc='left', color=C['text'])
+    _legend(ax, extra=(Line2D([], [], marker='X', ls='--', color=C['disrupted'], label='goal cut off'),
+                       Line2D([], [], marker='o', ls='--', mfc='none', color=C['altered'], label='deadlocked: next goal')))
+    fig.tight_layout()
+    fig.savefig(path, facecolor='white')
+    plt.close(fig)

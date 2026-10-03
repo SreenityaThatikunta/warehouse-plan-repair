@@ -132,3 +132,37 @@
 - **Single disruption:** emergency events alter 1.38 robots vs 1.14, because deadline escalation recruits helpers. Permanent breakdowns alter 13.5 vs 13.8.
 - **λ sweep:** at 40 robots, v2 with λ=3 beats v1 at every λ on both axes (SoC overhead 345, 4.67 altered). At 20 robots they are about even.
 - **Chains ablation (`local-nochain`):** results are within noise of full v2 (at 50 robots: SoC 6963 vs 6958, altered 5.72 vs 5.88, on time 30% vs 35%), at half the repair time. Chains fired in 14 of 60 runs. They are kept on, as requested, but the data does not show a clear gain (D23).
+- Committed and pushed v2 as `0ab6ce8`.
+
+### 2026-10-03: failure study, demos, LaTeX report
+- **Assignment check:** a codebase, a report and a graphical demo are needed, and the report must point out settings where agents fail. The report was missing, and our sweeps almost never fail because the D16 filters keep every instance solvable. Plan: PLAN.md §11. The report is in LaTeX (user's choice).
+- **Stress plumbing:**
+  - `DisruptionConfig.safe` switches the D16 filters off
+  - stall detection: a run stops after 150 steps with no movement and no goal reached
+  - every unfinished robot is classified as `unreachable` (a goal is cut off) or `deadlock`
+  - new metrics: `completion`, `stalled`, `stuck_unreachable`, `stuck_deadlock`
+- **`stress` sweep** (`--sweep stress`, 760 runs):
+  - `unsafe`: 0–20% density, half the events permanent, filters off
+  - `unsafe-single`: one permanent blockage or breakdown, filters off
+  - `dense`: 20–30% density
+  - `crowd`: a small 12×27 map with 20–44 robots
+  - `radius`: R = 1–6 at 40 robots
+  - **Quick check (2 seeds):** unsafe at 10% leaves `local` at 94% completion (robots whose goals are cut off) and `full` at 74% (also deadlocks). The safe settings did not fail. The full run is in progress.
+- **Demos regenerated with v2** (`experiments/make_demos.py`), plus `results/demo_failure/`:
+  - `unreachable.gif/png`: unsafe disruptions, seed 0. 57 of 62 tasks done; 3 robots' goals cut off by permanent blockages.
+  - `gridlock_solo.gif/png`: `solo`, 50 robots, permanent breakdown, seed 5. 26 of 150 tasks; all 49 live robots deadlocked from t=40, and the stall detector stops the run at t=189. `local` finishes the same instance (150/150).
+  - The failure snapshot drops the stuck-to-goal lines when more than 10 robots are stuck; 49 lines hid the map.
+- **Report draft:** `report/report.tex` covers problem, environment, method (pseudocode and a TikZ protocol figure), setup, results, the failure section (`report/failures.tex`, pending the stress results), the demo, and limitations.
+  - The installed TeX has no `algorithm`/`algpseudocode`, so the pseudocode uses `listings`.
+  - **Claim fixed while checking against the data:** Tier 1 settles 94% of repairs at 5 robots but only 57% at 50, not ">90%".
+- **Stress sweep done:** 760 runs in 54 min, 0 collisions. Table in `results/summary.md` ("Stress study"); charts `stress_completion.png` and `stress_causes.png`. Results for `local` v2:
+  - **unsafe:** completion 96.9% / 91.0% / 80.6% / 26.8% at 0 / 5 / 10 / 20% density. Every strategy fails about equally. Even at 0%, 3 of 10 runs fail, because a permanently broken robot in a 1-wide aisle is a wall.
+  - **Knock-on deadlock:** at 10%, 2.3 robots per run have a goal cut off, and another 3.1 deadlock behind them although their goals are reachable (9.9 + 8.8 at 20%). Local does better than `full` here (80.6% vs 71.3%).
+  - **unsafe-single:** one permanent breakdown fails 2/10 runs at 20 robots and 4/10 at 40; one permanent blockage fails 1/10.
+  - **crowd (small map), the main weakness of our method:** 1/10 runs fail at 30 robots and 3/10 at 40 (73.9%), against 1/10 (94.9%) for `full`.
+    - **Mechanism, seed 3:** a temporary breakdown at t=14 hits 6 robots; their Tier 4 holds cascade until all 40 robots hold and 1 of 122 tasks gets done. `full` solves the same instance (122/122).
+    - At 44 robots no `local` run fails, so the effect is instance-specific.
+  - **dense (filters on):** 1/10 runs fail at 30% (2 deadlocked robots); `full` fails 2/10. No failures up to 25% for v2.
+  - **radius R = 1–6:** no failures. SoC is 1% worse at R=1, because the expanding ring compensates.
+  - **Emergency deadlines:** on time only 5% on the crowded map with 40 robots and at 30% density.
+- **Report:** `report/failures.tex` written (F1 goals cut off, F2 knock-on deadlock, F3 hold cascade, F4 very dense, F5 `solo` gridlock, F6 deadlines, plus where agents did not fail). `report/report.pdf` builds with `latexmk -pdf`: 12 pages, no overfull boxes. I checked the pages visually and enlarged the snapshot figure. LaTeX build files are gitignored.

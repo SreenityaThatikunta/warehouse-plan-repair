@@ -10,6 +10,7 @@ The affected robots **repair their plans locally**. They negotiate with neighbou
 - `PLAN.md`: design and algorithms
 - `DECISIONS.md`: design choices and the reasons for them
 - `PROGRESS.md`: log of the work done
+- `report/report.tex` → `report/report.pdf`: the report, including the settings where agents fail
 
 ## Setup
 ```bash
@@ -48,6 +49,8 @@ Add `--viz --out results/demo` to write the visuals:
 | `single` | exactly one disruption per run, for each type (temporary or permanent blockage or breakdown, emergency) | 10–50 robots. This gives the number of plans altered to handle a single disruption. |
 | `lambda` | alter penalty λ: 0, 1, 3, 6, 12 (`local` vs `local-flat`) | 20 and 40 robots. Shows the trade-off between robots altered and extra time. |
 
+| `stress` (run separately: `--sweep stress`) | settings built to make robots fail: solvability filters off, 20–30% density, a small crowded map, a short communication radius | 10 seeds. Reports completion rate and stuck robots, labelled *goal cut off* or *deadlock*. |
+
 Every configuration is run with `local`, `local-flat`, `solo` and `full` on the same seeds. The `agents` sweep also runs `local-nochain` (v2 without chained negotiation).
 
 ## Results (v2 vs v1)
@@ -64,6 +67,19 @@ Full tables: `results/summary.md`. Charts: `report/figures/`. 10 seeds per setti
 | 50 | `full` replan | 7201 | 39.33 | 100% | 590 |
 
 v2 lowers total time and makes more emergencies on time, while changing about as many plans as v1. It takes about twice the repair time. Full replanning changes 5–7× more plans. See PROGRESS.md and DECISIONS D17–D24 for details and caveats.
+
+## Demos
+```bash
+.venv/bin/python experiments/make_demos.py
+```
+- `results/demo/`: GIF, interactive `replay.html` and snapshots of a 20-robot run with mixed disruptions
+- `results/demo_single/`: a before/after snapshot of each disruption type
+- `results/demo_failure/`: GIFs and final-state snapshots of runs where robots fail (goals cut off; `solo` gridlock)
+
+## Report
+```bash
+cd report && latexmk -pdf report.tex
+```
 
 ## Tests
 ```bash

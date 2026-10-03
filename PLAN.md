@@ -236,7 +236,22 @@ A comparison with a peer repo (`Sirin-890/autonomus`, branches `main` and `v2`) 
 ### Order of work
 I3 (metric first, so the baseline is captured) → I1 → I2 → I4 throughput and `--live` → tests → I5 sweeps → update README, DECISIONS and PROGRESS.
 
-## 11. Assumptions and open questions
+## 11. Failure study and report (2026-10-03)
+
+The assignment needs a codebase, a **report** and a graphical demonstration. The report must point out **settings where the agents fail to complete their tasks**. Our sweeps hardly fail (1 of 1,700 runs), because the generator removes impossible instances (D16). So:
+
+1. **`safe` switch** (`DisruptionConfig.safe`, default True). When False, the D16 filters are off: blockages may disconnect the map or land on goal cells, permanent breakdowns may happen anywhere, and emergency cells are not checked for reachability.
+2. **Stall detection.** A run stops once nothing has moved and no goal has been reached for `stall_limit` (150) steps while robots are still unfinished.
+3. **Failure classification.** Each unfinished robot is labelled *unreachable* (a remaining goal is cut off by permanent obstacles or dead robots) or *deadlock* (reachable, but stuck). New metrics: `completion` (tasks done / total), `stalled`, `stuck_unreachable`, `stuck_deadlock`.
+4. **Stress sweep `stress`, 10 seeds:**
+   - (a) unsafe disruptions at 0–20% density, with half the blockages permanent
+   - (b) extreme safe density, 20–30%
+   - (c) crowding on a small map, 20–40 robots
+   - (d) communication radius R = 1–6 at 40 robots
+5. **Demos:** regenerate with v2, plus a GIF and snapshot of a failure case.
+6. **Report:** LaTeX in `report/report.tex`, built with `pdflatex`. It covers the problem, method (pseudocode and a protocol figure), setup, results, a failure-settings section, and limitations.
+
+## 12. Assumptions and open questions
 
 - **Movement:** 4-connected moves plus wait, and every action costs 1 time step.
 - **Collisions:** vertex and edge (swap) conflicts are forbidden. Following another agent closely is allowed.

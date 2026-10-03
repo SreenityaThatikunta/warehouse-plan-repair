@@ -4,7 +4,9 @@
 
 results/demo/          mixed-disruption run (20 robots): GIF, interactive replay, snapshots
 results/demo_single/   one clean before/after snapshot per disruption type
-report/figures/        warehouse overview + copies of the single-disruption snapshots
+results/demo_failure/  runs where robots FAIL to finish: goals cut off (unsafe disruptions)
+                       and a fleet gridlock (solo ablation): GIF + final-state snapshot
+report/figures/        warehouse overview + copies of the single-disruption and failure snapshots
 """
 from __future__ import annotations
 
@@ -20,7 +22,7 @@ from run_experiments import SINGLE_TYPES  # noqa: E402
 from warehouse_mapf.scenario import ScenarioConfig, build  # noqa: E402
 from warehouse_mapf.viz.export import export_run  # noqa: E402
 from warehouse_mapf.viz.render import (save_animation, save_disruption_snapshot,  # noqa: E402
-                                       save_disruption_snapshots, save_frame)
+                                       save_disruption_snapshots, save_failure_snapshot, save_frame)
 
 FIG = ROOT / 'report' / 'figures'
 
@@ -68,7 +70,45 @@ def single_demos(n_agents: int = 20) -> None:
         print(f'{label:<17} direct={len(r.direct)} altered={len(r.altered)} collateral={len(r.collateral)}')
 
 
+def failure_demos() -> None:
+    out = ROOT / 'results' / 'demo_failure'
+    shutil.rmtree(out, ignore_errors=True)
+    out.mkdir(parents=True)
+    # 1. Unsafe disruptions (solvability filters off): permanent blockages cut goals off.
+    unsafe = dict(obstacle_density=0.10, safe=False, blockage_perm_prob=0.5, breakdown_perm_prob=0.5,
+                  n_breakdowns=2, n_emergencies=2)
+    for seed in range(20):
+        sim = build(ScenarioConfig.from_dict(dict(n_agents=20, disruptions=unsafe)), seed)
+        m = sim.run()
+        if not m['all_done'] and m['stuck_unreachable']:
+            break
+    save_failure_snapshot(sim, out / 'unreachable.png',
+                          f'Failure: unsafe disruptions (10% density, 50% permanent), 20 robots, local v2, seed {seed}')
+    save_animation(sim, out / 'unreachable.gif')
+    shutil.copy(out / 'unreachable.png', FIG / 'failure_unreachable.png')
+    print(f'unreachable demo: seed {seed}, {m["tasks_done"]}/{m["tasks_total"]} tasks, '
+          f'{m["stuck_unreachable"]} cut off, {m["stuck_deadlock"]} deadlocked')
+    # 2. Fleet gridlock without negotiation (solo ablation), one permanent breakdown, 50 robots.
+    cfg = ScenarioConfig.from_dict(dict(n_agents=50, tasks_per_agent=3, repair=dict(strategy='solo'),
+                                        disruptions=SINGLE_TYPES['breakdown (perm)']))
+    sim = build(cfg, 5)
+    m = sim.run()
+    save_failure_snapshot(sim, out / 'gridlock_solo.png',
+                          'Failure: gridlock without negotiation (solo ablation), 50 robots, 1 permanent breakdown, seed 5')
+    save_animation(sim, out / 'gridlock_solo.gif')
+    shutil.copy(out / 'gridlock_solo.png', FIG / 'failure_gridlock_solo.png')
+    print(f'gridlock demo: {m["tasks_done"]}/{m["tasks_total"]} tasks, stalled={m["stalled"]}, '
+          f'{m["stuck_deadlock"]} deadlocked')
+    # Same instance with local repair, for contrast.
+    cfg.repair.strategy = 'local'
+    sim = build(cfg, 5)
+    m = sim.run()
+    save_frame(sim, sim.t, out / 'gridlock_local_final.png')
+    print(f'same instance, local: {m["tasks_done"]}/{m["tasks_total"]} tasks, all_done={m["all_done"]}')
+
+
 if __name__ == '__main__':
     FIG.mkdir(parents=True, exist_ok=True)
     single_demos()
     mixed_demo()
+    failure_demos()

@@ -150,15 +150,17 @@ class Simulator:
 
     def _pick_blockage_cell(self, ev: Event, t: int) -> Cell | None:
         occupied = {a.pos(t) for a in self.agents}
-        taboo = occupied | self._remaining_goal_cells() | set(self.blk.active_at(t)) \
-            | self.blk.permanent_cells() | set(self.wh.homes) | set(self.wh.stations)
+        taboo = occupied | set(self.blk.active_at(t)) | self.blk.permanent_cells() \
+            | set(self.wh.homes) | set(self.wh.stations)
+        if ev.safe:
+            taboo |= self._remaining_goal_cells()
         soon = None
         if ev.on_path:
             soon = {a.pos(tau) for a in self._live() for tau in range(t + 2, t + 12)}
         for c in ev.cell_prefs:
             if c in taboo or (soon is not None and c not in soon):
                 continue
-            if ev.permanent and not self._connected_without({c}):
+            if ev.safe and ev.permanent and not self._connected_without({c}):
                 continue
             return c
         return None
@@ -169,7 +171,7 @@ class Simulator:
             a = self.agents[aid]
             if a.dead or a.done(t) or a.fixed_until > t:
                 continue
-            if ev.kind == 'breakdown' and ev.permanent:
+            if ev.kind == 'breakdown' and ev.permanent and ev.safe:
                 if goal_cells is None:
                     goal_cells = {g.cell for o in self._live() if o.id != aid for g in o.remaining_goals()}
                 if a.pos(t) in goal_cells or not self._connected_without({a.pos(t)}):
@@ -226,8 +228,9 @@ class Simulator:
             if a is None:
                 return None
             ev = copy.copy(ev)
-            ev.pickup = self._usable_cell(ev.pickup, self.wh.pickups, a.pos(t))
-            ev.delivery = self._usable_cell(ev.delivery, self.wh.stations, a.pos(t))
+            if ev.safe:
+                ev.pickup = self._usable_cell(ev.pickup, self.wh.pickups, a.pos(t))
+                ev.delivery = self._usable_cell(ev.delivery, self.wh.stations, a.pos(t))
             if ev.pickup is None or ev.delivery is None:
                 return None
             rec.agent, rec.cell = a.id, ev.pickup
@@ -351,6 +354,8 @@ class Simulator:
             if pos_now[a] == pos_next[b] and pos_now[b] == pos_next[a] and pos_now[a] != pos_now[b]:
                 self.collisions.append(('edge', t, a, b))
 
+    stall_limit = 150   # steps with no movement and no goal reached before a run is declared stuck
+
     def run(self, max_steps: int | None = None) -> dict:
         if not self.agents[0].path and not self.initial_plan():
             raise RuntimeError('initial planning failed')
@@ -358,6 +363,8 @@ class Simulator:
         ev_i = 0
         for a in self.agents:
             a.update_progress(0)
+        self.stalled = False
+        last_progress = 0
         for t in range(max_steps):
             self.t = t
             while ev_i < len(self.events) and self.events[ev_i].t <= t:
@@ -375,9 +382,28 @@ class Simulator:
             if not self.pending and all(a.done(t) for a in self.agents):
                 break
             self._check_step(t)
+            ptrs = [a.ptr for a in self.agents]
             for a in self.agents:
                 a.update_progress(t + 1)
+            if any(a.pos(t) != a.pos(t + 1) for a in self.agents) or ptrs != [a.ptr for a in self.agents]:
+                last_progress = t
+            elif t - last_progress >= self.stall_limit:
+                self.stalled = True
+                break
         return self.metrics()
+
+    def stuck_robots(self) -> dict[int, str]:
+        """Unfinished live robots -> 'unreachable' (a remaining goal is cut off by permanent
+        obstacles / dead robots) or 'deadlock' (every goal reachable, but the robot is stuck)."""
+        t = self.t
+        walls = self.blk.permanent_cells() | {a.pos(t) for a in self.agents if a.dead}
+        out = {}
+        for a in self._live():
+            if a.done(t):
+                continue
+            reach = self.grid.reachable(a.pos(t), walls - {a.pos(t)})
+            out[a.id] = 'unreachable' if any(g.cell not in reach for g in a.remaining_goals()) else 'deadlock'
+        return out
 
     # ------------------------------------------------------------ metrics
     def metrics(self) -> dict:
@@ -402,6 +428,11 @@ class Simulator:
         )
         m['soc_overhead'] = m['soc'] - m['nominal_soc']
         m['throughput'] = done_tasks / max(1, m['makespan'])
+        m['completion'] = done_tasks / max(1, self.n_tasks)
+        m['stalled'] = bool(getattr(self, 'stalled', False))
+        stuck = self.stuck_robots() if not m['all_done'] else {}
+        m['stuck_unreachable'] = sum(1 for v in stuck.values() if v == 'unreachable')
+        m['stuck_deadlock'] = sum(1 for v in stuck.values() if v == 'deadlock')
         finish = {tid: tt for a in self.agents for tid, tt in a.completed}
         if self.deadlines:
             late = [max(0, finish[tid] - dl) for tid, dl in self.deadlines.items() if tid in finish]

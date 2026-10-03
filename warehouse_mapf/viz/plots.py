@@ -168,6 +168,58 @@ def lambda_chart(runs, dis, path) -> None:
     plt.close(fig)
 
 
+def stress_charts(runs, out: Path) -> None:
+    """Completion rate per stress setting, and why robots got stuck."""
+    panels = [('unsafe', 'Unsafe disruptions (filters off, 20 robots)', 'Dynamic obstacle density', True),
+              ('dense', 'Very high obstacle density (20 robots)', 'Dynamic obstacle density', True),
+              ('crowd', 'Crowding: small 12×27 map', 'Number of robots', False)]
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4), squeeze=False)
+    for ax, (setting, title, xlabel, pct) in zip(axes[0], panels):
+        d = runs[runs.setting == setting]
+        a = agg(d, ['strategy', 'x'], 'completion')
+        for st in [s for s in STRAT if s in set(a.strategy)]:
+            e = a[a.strategy == st].sort_values('x')
+            color, label, marker = STRAT[st]
+            ax.fill_between(e.x, e['mean'] - e['ci'], np.minimum(1, e['mean'] + e['ci']), color=color, alpha=0.1, lw=0)
+            ax.plot(e.x, e['mean'], color=color, lw=2, marker=marker, ms=6, label=label,
+                    markeredgecolor='white', markeredgewidth=1)
+        ax.set_title(title)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel('Tasks completed (share)')
+        ax.set_xticks(sorted(d.x.unique()))
+        if pct:
+            ax.xaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
+        ax.yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
+        ax.set_ylim(0, 1.03)
+    axes[0][0].legend(loc='lower left', fontsize=8)
+    fig.text(0.01, -0.03, '10 seeds per point; bands: 95% CI. A run ends when every robot is done or nothing has '
+             'moved for 150 steps.', fontsize=8, color=INK2, ha='left')
+    fig.savefig(out / 'stress_completion.png')
+    plt.close(fig)
+
+    # Why robots got stuck (local v2): goal cut off vs deadlocked although every goal is reachable.
+    d = runs[(runs.strategy == 'local') & runs.setting.isin(['unsafe', 'unsafe-single', 'dense', 'crowd'])].copy()
+    d['label'] = d.apply(lambda r: (f"{r.setting}\n{r.x:.0%}" if r.setting in ('unsafe', 'dense')
+                                    else f"1 {r['dtype'].split()[0]}\n{int(r.x)} robots" if r.setting == 'unsafe-single'
+                                    else f"crowd\n{int(r.x)} robots"), axis=1)
+    g = d.groupby(['setting', 'x', 'label'], sort=True)[['stuck_unreachable', 'stuck_deadlock']].mean().reset_index()
+    g = g[(g.stuck_unreachable + g.stuck_deadlock) > 0]
+    fig, ax = plt.subplots(figsize=(12, 3.8))
+    xs = np.arange(len(g))
+    ax.bar(xs, g.stuck_unreachable, color='#e34948', label='goal cut off (unsolvable)', width=0.7, edgecolor='white')
+    ax.bar(xs, g.stuck_deadlock, bottom=g.stuck_unreachable, color='#eda100', width=0.7, edgecolor='white',
+           label='deadlocked (all goals reachable)')
+    ax.set_xticks(xs, g.label, fontsize=8)
+    ax.set_ylabel('Stuck robots per run (mean)')
+    ax.set_title('Why robots fail to finish (local v2, settings with failures)')
+    fig.text(0.01, -0.06, '"1 blockage / breakdown": a single permanent event with the solvability filters off. '
+             'unsafe x%: filters off at density x.', fontsize=8, color=INK2, ha='left')
+    ax.grid(axis='x', visible=False)
+    ax.legend(loc='upper left', fontsize=8.5)
+    fig.savefig(out / 'stress_causes.png')
+    plt.close(fig)
+
+
 def summary_table(runs, dis, x, xname) -> pd.DataFrame:
     rows = []
     for (xv, s), g in runs.groupby([x, 'strategy']):
@@ -288,6 +340,28 @@ def main() -> None:
         md += ['## Sweep 4: alter penalty λ (20 and 40 robots)', '',
                'λ is the score charged per extra robot whose plan changes. Higher λ means fewer plans '
                'altered but possibly longer detours.', '', md_table(t), '']
+
+    if (R / 'stress_runs.csv').exists():
+        runs = pd.read_csv(R / 'stress_runs.csv')
+        runs['dtype'] = runs.dtype.fillna('')
+        stress_charts(runs, O)
+        rows = []
+        for (setting, dt, xv, s), g in runs.groupby(['setting', 'dtype', 'x', 'strategy']):
+            rows.append({'setting': setting + (f' {dt}' if setting == 'unsafe-single' else ''),
+                         'x': f'{xv:.0%}' if setting in ('unsafe', 'dense') else
+                              f'R={xv:g}' if setting == 'radius' else f'{xv:g} robots',
+                         'strategy': s, 'runs failed': f'{int((~g.all_done).sum())}/{len(g)}',
+                         'tasks completed': f'{g.completion.mean():.1%}',
+                         'stuck: goal cut off': f'{g.stuck_unreachable.mean():.1f}',
+                         'stuck: deadlock': f'{g.stuck_deadlock.mean():.1f}',
+                         'emergency on time': fmt_pct(g.get('emergency_on_time')),
+                         '_o': ['unsafe', 'unsafe-single', 'dense', 'crowd', 'radius'].index(setting),
+                         '_x': xv, '_s': ORDER[s]})
+        t = pd.DataFrame(rows).sort_values(['_o', 'setting', '_x', '_s']).drop(columns=['_o', '_x', '_s'])
+        md += ['## Stress study: settings where robots fail', '',
+               'Run with `--sweep stress`. *Goal cut off*: a remaining goal is unreachable past permanent '
+               'obstacles and dead robots. *Deadlock*: every goal is reachable but the robot is stuck. '
+               'A run ends when nothing has moved for 150 steps.', '', md_table(t), '']
 
     (R / 'summary.md').write_text('\n'.join(md))
     print(f'figures -> {O}/, tables -> {R / "summary.md"}')

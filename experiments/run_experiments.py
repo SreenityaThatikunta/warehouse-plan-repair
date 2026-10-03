@@ -11,6 +11,13 @@ Sweeps
            measure "agents whose plans change to handle a single disruption"
   lambda   alter penalty lambda 0..12 at 20 and 40 robots (local vs local-flat): the
            trade-off between total time and robots altered
+  stress   settings built to make agents FAIL (for the report's failure section):
+           unsafe   solvability filters off (blockages may cut off goals / the map),
+                    50% of blockages permanent, density 0..20 %, 20 robots
+           dense    very high (safe) dynamic obstacle density 20..30 %, 20 robots
+           unsafe-single  one permanent blockage / breakdown with the filters off
+           crowd    small 3x4-block map, 20..44 robots (46 docks)
+           radius   communication radius 1..6, 40 robots
 Every configuration is run with each strategy (local / local-flat / solo / full) on the
 same seeds; the agents sweep also runs local-nochain (v2 without chained negotiation).
 """
@@ -35,6 +42,31 @@ from warehouse_mapf.scenario import ScenarioConfig, run_scenario  # noqa: E402
 STRATEGIES = ('local', 'local-flat', 'solo', 'full')
 SWEEP_STRATEGIES = {'agents': STRATEGIES + ('local-nochain',), 'lambda': ('local', 'local-flat')}
 LAMBDAS = (0.0, 1.0, 3.0, 6.0, 12.0)
+SWEEP_STRATEGIES['stress'] = STRATEGIES
+SMALL_MAP = dict(block_rows=3, block_cols=4)
+
+
+def stress_jobs(quick: bool) -> list[dict]:
+    jobs = []
+    for d in ((0.0, 0.1) if quick else (0.0, 0.05, 0.10, 0.20)):
+        c = copy.deepcopy(BASE)
+        c['disruptions'].update(obstacle_density=d, safe=False, blockage_perm_prob=0.5, breakdown_perm_prob=0.5)
+        jobs.append(dict(sweep='stress', setting='unsafe', x=d, cfg=dict(c, n_agents=20)))
+    for d in ((0.25,) if quick else (0.20, 0.25, 0.30)):
+        c = copy.deepcopy(BASE)
+        c['disruptions']['obstacle_density'] = d
+        jobs.append(dict(sweep='stress', setting='dense', x=d, cfg=dict(c, n_agents=20)))
+    for label in ('blockage (perm)', 'breakdown (perm)'):
+        for n in ((20,) if quick else (20, 40)):
+            dis = dict(SINGLE_TYPES[label], safe=False)
+            jobs.append(dict(sweep='stress', setting='unsafe-single', x=n, dtype=label,
+                             cfg=dict(n_agents=n, tasks_per_agent=3, disruptions=dis)))
+    for n in ((30,) if quick else (20, 30, 40, 44)):
+        jobs.append(dict(sweep='stress', setting='crowd', x=n, cfg=dict(copy.deepcopy(BASE), n_agents=n, map=SMALL_MAP)))
+    for r in ((1, 6) if quick else (1, 2, 3, 6)):
+        jobs.append(dict(sweep='stress', setting='radius', x=r, cfg=dict(copy.deepcopy(BASE), n_agents=40),
+                         repair=dict(comm_radius=r)))
+    return jobs
 BASE = dict(tasks_per_agent=3,
             disruptions=dict(obstacle_density=0.03, n_breakdowns=2, n_emergencies=2))
 
@@ -62,6 +94,8 @@ def make_jobs(sweep: str, seeds: int, quick: bool) -> list[dict]:
             for label, dis in SINGLE_TYPES.items():
                 jobs.append(dict(sweep=sweep, x=n, dtype=label,
                                  cfg=dict(n_agents=n, tasks_per_agent=3, disruptions=dis)))
+    elif sweep == 'stress':
+        jobs = stress_jobs(quick)
     elif sweep == 'lambda':
         for n in ((20,) if quick else (20, 40)):
             for lam in ((0.0, 6.0) if quick else LAMBDAS):
@@ -88,6 +122,8 @@ def run_job(job: dict) -> tuple[dict | None, list[dict]]:
         sim, m = run_scenario(cfg, job['seed'])
         meta = {k: job[k] for k in ('sweep', 'x', 'strategy', 'seed')}
         meta['dtype'] = job.get('dtype', 'mixed')
+        meta['setting'] = job.get('setting', '')
+        meta['comm_radius'] = cfg.repair.comm_radius
         meta['n_agents'] = cfg.n_agents
         meta['density'] = cfg.disruptions.obstacle_density
         meta['alter_penalty'] = cfg.repair.alter_penalty
@@ -106,7 +142,7 @@ def run_job(job: dict) -> tuple[dict | None, list[dict]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument('--sweep', choices=['agents', 'density', 'single', 'lambda', 'all'], default='all')
+    ap.add_argument('--sweep', choices=['agents', 'density', 'single', 'lambda', 'stress', 'all'], default='all')
     ap.add_argument('--seeds', type=int, default=10)
     ap.add_argument('--quick', action='store_true')
     ap.add_argument('--workers', type=int, default=max(1, (os.cpu_count() or 2) - 1))
@@ -126,7 +162,7 @@ def main() -> None:
                 if row is not None:
                     rows.append(row)
                     drows += dr
-                    bad = row['collisions'] or not row['all_done'] or row['tasks_done'] + row['tasks_lost'] != row['tasks_total']
+                    bad = row['collisions'] or sweep != 'stress' and not row['all_done'] or row['tasks_done'] + row['tasks_lost'] != row['tasks_total']
                     if bad:
                         print(f'  !! {sweep} x={row["x"]} {row["strategy"]} seed={row["seed"]}: '
                               f'collisions={row["collisions"]} all_done={row["all_done"]} '

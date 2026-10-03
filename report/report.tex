@@ -1,0 +1,370 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{figures/}}
+\definecolor{ours}{HTML}{2A78D6}
+\definecolor{muted}{HTML}{52514E}
+\lstset{basicstyle=\footnotesize\ttfamily, columns=fullflexible, mathescape=true, frame=single,
+        framerule=0.4pt, rulecolor=\color{muted!40}, xleftmargin=4pt, xrightmargin=4pt,
+        keywordstyle=\bfseries, morekeywords={if,then,else,for,each,return,while,do,and,or,not,try}}
+\newcommand{\R}{R}
+
+\title{Negotiated Local Plan Repair for\\Multi-Robot Warehouse Pathfinding}
+\author{Sreenitya Thatikunta}
+\date{October 2026}
+
+\begin{document}
+\emergencystretch=2em
+\maketitle
+
+\begin{abstract}
+Robots in a grid warehouse carry items from pickup cells to delivery stations along
+collision-free paths from prioritized Space-Time A* (ST-A*). While they execute
+these paths, robots break down, cells become blocked and robots receive urgent
+tasks. We repair the joint plan \emph{locally}. Affected robots negotiate over a
+range-limited message bus with the smallest useful set of neighbours, and the
+global planner is never re-run. Over 1{,}700 simulated runs (5--50 robots,
+0--15\% dynamic obstacle density, 10 seeds each) there were no collisions, and every
+task was completed by every repair strategy except one gridlocked run of the
+no-negotiation ablation. Local repair changed 5--7$\times$ fewer plans per
+disruption than replanning from scratch, at equal or lower total time. A stress study
+then identifies the settings in which robots \emph{fail} to finish their tasks:
+disruptions that cut goals off, gridlock without negotiation, and emergency deadlines
+that become infeasible in dense fleets.
+\end{abstract}
+
+\section{Problem}
+A team of $n$ robots moves on a 4-connected grid. In each time step a robot moves to a
+neighbouring free cell or waits. Two robots may not occupy the same cell at the same
+time (vertex conflict) or swap cells (edge conflict). Each robot has a list of tasks
+(go to a pickup cell, then to a delivery station) and returns to its own dock after the
+last one. During execution three kinds of disruption occur:
+\begin{enumerate}
+  \item \textbf{breakdown}: a robot stops, for 5--20 steps or permanently;
+  \item \textbf{blockage}: a free cell becomes an obstacle, for 10--40 steps or permanently;
+  \item \textbf{emergency task}: a robot receives a pickup--delivery task that goes before its others.
+\end{enumerate}
+The assignment requires that disrupted robots repair their plans by communicating with
+nearby robots, that global planning is never re-run from scratch, and that as few
+robots as possible change their plans. We measure the total time to complete all tasks
+(sum of costs, SoC), the number of robots whose plans change per disruption, and how
+both scale with the number of robots and the density of dynamic obstacles.
+
+\section{Environment}
+\paragraph{Map.} A Kiva-style warehouse of $18\times33$ cells (Figure~\ref{fig:overview}):
+$5\times5$ shelf blocks of $2\times5$ cells separated by one-cell aisles, with a free
+perimeter corridor. It has 344 free cells, 150 pickup cells (next to a shelf), 14 delivery
+stations on the side walls, and 58 private docks on the top and bottom rows. Docks are
+dead-end bays, so robots never drive through each other's docks.
+\paragraph{Tasks.} Each robot gets 3 random tasks, ordered greedily by nearest pickup.
+Picking up and dropping off take no extra time.
+\paragraph{Disruptions.} Events are generated up front from the seed, so every strategy
+faces the same schedule. They happen in the first 5--70\% of the undisrupted makespan.
+The \emph{dynamic obstacle density} $\rho$ is the number of blockage events divided by
+the number of free cells. By default a generator filter keeps every instance solvable:
+blockages never disconnect the map or land on a goal, and emergency cells are reachable.
+Section~\ref{sec:failures} switches this filter off.
+\paragraph{Communication.} Robots within Manhattan distance $\R=6$ can exchange messages
+(ALERT, STATUS, REQUEST, PROPOSE, COMMIT, ACCEPT, REJECT, UPDATE). Messages are delivered
+within the time step, and every message is counted.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.92\linewidth]{warehouse_overview.png}
+  \caption{The warehouse at $t=0$ with 20 robots and the next 25 steps of their planned paths.}
+  \label{fig:overview}
+\end{figure}
+
+\section{Method}
+\subsection{Initial plan: prioritized Space-Time A*}
+Robots are planned one at a time, longest task chain first. Each path is written into a
+space-time reservation table (vertex and edge reservations, plus a parking reservation at
+the dock from arrival onwards). ST-A* searches states $(x,y,g,t)$, where $g$ is the index
+of the next goal, so a robot's whole pickup$\to$delivery$\to\dots\to$dock chain is one
+search. The heuristic is the exact static distance through the remaining goals. If an
+attempt fails, the order is randomly restarted.
+
+\subsection{Local repair}
+When a disruption happens at time $t$, the robots whose reservations it invalidates are
+queued. Each queued robot $a$ is repaired with the tiers below, cheapest in plans changed
+first. Let $\ell^\ast$ be $a$'s robot-free (ideal) path, $p_{\text{solo}}$ its best path
+with every other plan fixed, and $d(p)=|p|-|\ell^\ast|$ the delay. A coalition $S$ of
+neighbours that replan jointly with $a$ (with $a$ planned first) is scored
+\begin{equation}
+  \text{score}(S)= \underbrace{d(p_a)+\textstyle\sum_{m\in S}\Delta_m}_{\text{extra steps}}
+  + \lambda\,|S| + \text{DL}(p_a), \label{eq:score}
+\end{equation}
+where $\Delta_m$ is member $m$'s added completion time, $\lambda=3$ is the price of
+changing one more robot's plan, and $\text{DL}$ adds a penalty of 10 if the plan makes an
+emergency delivery miss its deadline. A coalition is accepted only if its score is below
+that of going solo.
+
+\begin{lstlisting}
+Repair(a, t):
+  $\ell^\ast$ $\leftarrow$ ST-A*(a, ignoring other robots);   $p_{\text{solo}}$ $\leftarrow$ ST-A*(a, others fixed)
+  if $d(p_{\text{solo}})\le\delta$ and no deadline is lost then commit $p_{\text{solo}}$; return      // Tier 1
+  for each radius $r$ in ($\R$, $2\R$ [, wider ring if a has been holding]) do              // Tiers 2-3
+      ALERT robots within $r$;  candidates $\leftarrow$ movable robots whose plans block $\ell^\ast$
+      for $k$ = 1 .. max coalition size do
+          for each coalition $S$ of $k$ candidates do
+              REQUEST/PROPOSE: replan a first, then each $m\in S$;
+                  if m fails or $\Delta_m>\delta$: m recruits its own blockers (chain, $\le$2 hops)
+          if best score < score(solo) then COMMIT best; REJECT the rest; return
+  if a is urgent (emergency, or no solo path) then                                  // Tier 3b
+      group $\leftarrow$ movable robots within $2\R$ crossing $\ell^\ast$ ($\le$ 8)
+      prioritized ST-A* for a + group; accept if score < score(solo)
+  if $p_{\text{solo}}$ exists then commit $p_{\text{solo}}$                       // long detour
+  else hold position, re-queue robots planned through a's cell, retry next step  // Tier 4
+\end{lstlisting}
+
+\paragraph{Design details.}
+\begin{itemize}
+  \item \textbf{Smallest coalition first.} Only robots that actually block $a$'s ideal
+        path are candidates (at most 4). Sizes 1, 2, 3 are tried in order, and the search
+        stops at the first size whose best coalition beats going solo. A size is skipped
+        when $\lambda|S|$ alone already exceeds the solo delay.
+  \item \textbf{Chains.} A member $m$ that cannot dodge alone recruits up to 2 robots in
+        its own range whose plans block its \emph{relaxed} path (its best path if movable
+        neighbours made way), at most 2 hops and 6 robots per tree. The whole tree is
+        scored by Eq.~\eqref{eq:score}, so a chain is chosen only if it beats both going
+        solo and every flat coalition.
+  \item \textbf{Tier 3b} is a bounded group replan around the stuck robot, not a global
+        one. It is restricted to urgent robots because applying it to every stuck robot
+        changed 0.6 more plans per disruption at 50 robots.
+  \item \textbf{Emergencies.} At the event, the deadline is the robot-free delivery time
+        plus 3 steps. Emergency robots negotiate for any delay ($\delta=0$), may form
+        coalitions of 4, and are never asked to move for others.
+  \item \textbf{Permanent breakdown.} The broken robot's cell becomes an obstacle. Its
+        unfinished tasks are auctioned to robots in range (lowest marginal cost wins), and a
+        carried item is handed off at a reachable neighbouring cell.
+  \item \textbf{Expanding ring.} A robot that has held for 10 steps doubles its search
+        radius every 10 steps. This fixed a deadlock between two holding robots 16 cells
+        apart (beyond $2\R$), each needing the other's cell.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=7mm and 9mm, every node/.style={font=\small},
+  box/.style={draw, rounded corners=2pt, align=center, minimum height=8mm, inner sep=4pt},
+  dec/.style={box, fill=ours!8}, arr/.style={-{Stealth[length=2mm]}, thick, muted}]
+  \node[box] (d) {disruption at $t$\\queue affected robots};
+  \node[dec, right=of d] (t1) {Tier 1\\solo replan};
+  \node[dec, right=of t1] (t2) {Tiers 2--3\\negotiate in $\R$, $2\R$\\(+ chains)};
+  \node[dec, right=of t2] (t3b) {Tier 3b\\local group\\(urgent only)};
+  \node[box, below=10mm of t2] (t4) {long detour, or\\Tier 4: hold \& retry\\(expanding ring)};
+  \node[box, below=10mm of t1, fill=green!8] (ok) {commit, UPDATE\\neighbours};
+  \draw[arr] (d) -- (t1);
+  \draw[arr] (t1) -- node[above, font=\scriptsize]{delay $>\delta$} (t2);
+  \draw[arr] (t2) -- node[above, font=\scriptsize]{no gain} (t3b);
+  \draw[arr] (t3b) |- (t4);
+  \draw[arr] (t1) -- node[left, font=\scriptsize]{ok} (ok);
+  \draw[arr] (t2) -- node[above, sloped, font=\scriptsize]{COMMIT} (ok);
+  \draw[arr] (t4) -- (ok);
+\end{tikzpicture}
+\caption{Repair protocol. Each tier is tried only if the previous one cannot do as well
+as going solo, so the robots touched grow only when needed.}
+\label{fig:protocol}
+\end{figure}
+
+\subsection{Strategies compared}
+\begin{itemize}
+  \item \texttt{local}: the method above (v2).
+  \item \texttt{local-flat}: our first version (flat coalitions only, no Tier 3b, no deadline term).
+  \item \texttt{local-nochain}: v2 without chains (robots sweep only).
+  \item \texttt{solo}: Tier 1 only, an ablation with no negotiation.
+  \item \texttt{full}: re-runs prioritized ST-A* for all live robots from the current state
+        after every disruption. This is the reference that the assignment forbids for
+        repair; it shows what staying local costs.
+\end{itemize}
+
+\section{Experimental setup}
+Every configuration was run for 10 seeds with every strategy on identical instances and
+event schedules. The defaults are 3 tasks per robot, 3\% dynamic obstacle density (20\%
+of blockages permanent), 2 breakdowns (30\% permanent) and 2 emergencies per run.
+\begin{itemize}
+  \item \textbf{Robots}: 5, 10, 20, 30, 40, 50.
+  \item \textbf{Density}: $\rho$ = 0, 2, 5, 10, 15\% with 20 robots.
+  \item \textbf{Single disruption}: exactly one disruption of each type (temporary or
+        permanent blockage or breakdown, emergency) with 10--50 robots. This isolates the
+        number of plans changed to handle one disruption.
+  \item \textbf{Alter penalty}: $\lambda$ = 0, 1, 3, 6, 12 at 20 and 40 robots.
+  \item \textbf{Stress}: settings built to make robots fail (Section~\ref{sec:failures}).
+\end{itemize}
+\textbf{Altered} counts the robots whose future path after the repair differs from the
+plan just before the disruption, including the disrupted robot and all cascades.
+\textbf{Direct} counts those the disruption itself invalidated. \textbf{Collateral} is
+altered minus direct. Every executed step is checked for vertex, edge and obstacle
+collisions, and the test suite (27 tests) re-validates all future plans after every
+disruption in a strict mode that forbids reservation overwrites.
+
+\section{Results}
+All 1{,}700 runs of the four main sweeps had zero collisions. Every task was completed
+in every run, except one \texttt{solo} run discussed in Section~\ref{sec:failures}.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{agents_altered.png}\end{subfigure}
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{agents_overhead.png}\end{subfigure}
+  \caption{Robots sweep. Left: plans changed per disruption. Right: extra time steps
+  caused by the disruptions. Bands are 95\% confidence intervals.}
+  \label{fig:agents}
+\end{figure}
+
+\begin{table}[H]
+\centering\small
+\caption{Robots sweep (means over 10 seeds; 12 disruptions per run).}
+\label{tab:agents}
+\begin{tabular}{rlrrrrr}
+\toprule
+robots & strategy & SoC & altered / dis. & collateral & emerg.\ on time & repair ms \\
+\midrule
+20 & local      & 2612 & 2.06 & 0.26 & 65\% & 126 \\
+   & local-flat & 2608 & 2.11 & 0.27 & 45\% & 81 \\
+   & solo       & 2622 & 1.93 & 0.07 & 30\% & 12 \\
+   & full       & 2611 & 9.22 & 7.28 & 100\% & 41 \\
+\midrule
+30 & local      & 4093 & 3.52 & 0.77 & 25\% & 416 \\
+   & local-flat & 4112 & 3.62 & 0.71 & 20\% & 263 \\
+   & solo       & 4148 & 3.09 & 0.25 & 20\% & 29 \\
+   & full       & 4131 & 18.29 & 15.46 & 75\% & 124 \\
+\midrule
+50 & local      & 6958 & 5.88 & 1.44 & 35\% & 2270 \\
+   & local-flat & 6974 & 5.75 & 1.42 & 15\% & 1102 \\
+   & solo       & 7089 & 4.62 & 0.23 & 15\% & 67 \\
+   & full       & 7201 & 39.33 & 35.09 & 100\% & 590 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Plans changed.} Local repair changes about one robot beyond those the
+disruption hits directly (collateral 0.3--1.4). Full replanning changes 9--39 robots per
+disruption, nearly the whole fleet, at no better total time: at 50 robots its SoC is
+\emph{worse} (7201 vs 6958), because prioritized planning from scratch reshuffles
+priorities and delays robots that were not affected.
+\paragraph{Total time.} \texttt{local} has the lowest or near-lowest SoC at every size.
+Negotiation pays off as the fleet grows: \texttt{solo} needs 131 more steps than
+\texttt{local} at 50 robots, and its overhead rises fastest.
+\paragraph{v2 vs v1.} Compared with \texttt{local-flat}, v2 lowers SoC by 7--19 steps at
+30--50 robots and raises the emergency on-time rate (65\% vs 45\% at 20 robots, 35\% vs
+15\% at 50), changing about as many plans (+0.13 at 50 robots, fewer elsewhere). The
+cost is roughly twice the repair time. The \texttt{local-nochain} ablation is within
+noise of v2 at half the repair time: chains solve cases flat coalitions cannot (a
+covered test case), but such cases are rare in these sweeps.
+\paragraph{Scaling.} Repair time grows with fleet size, from milliseconds at 10 robots to
+about 2.3\,s per disruption at 50 (Python, single core), mostly spent in ST-A* searches
+inside negotiation.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{density_soc.png}\end{subfigure}
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{density_altered.png}\end{subfigure}
+  \caption{Density sweep (20 robots). SoC rises with $\rho$ for all strategies. The plans
+  changed per disruption stay flat for local repair and about 4$\times$ higher for full
+  replanning.}
+  \label{fig:density}
+\end{figure}
+
+\paragraph{Obstacle density.} From 0\% to 15\% density the number of disruptions per run
+grows from 4 to 45, and SoC overhead from 143 to 503 steps for \texttt{local}. Plans
+changed per disruption stay between 2.1 and 2.7. At 10\% density v2 beats v1 on SoC
+(2768 vs 2792), plans changed (2.63 vs 2.77) and emergency on-time rate (40\% vs 15\%).
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.53\linewidth}\includegraphics[width=\linewidth]{single_altered.png}\end{subfigure}
+  \begin{subfigure}{0.45\linewidth}\includegraphics[width=\linewidth]{agents_tiers.png}\end{subfigure}
+  \caption{Left: plans changed to handle a single disruption, by type (10--50 robots
+  pooled). Right: which tier resolved each robot's repair.}
+  \label{fig:single}
+\end{figure}
+
+\paragraph{Single disruption.} A temporary breakdown changes 2.2 plans (exactly the robots
+hit directly) and a temporary blockage 3.1. Permanent events change more because their
+effects last: a permanent breakdown changes 13.5 plans, most of them direct (the robots
+that would pass the dead robot plus the winners of its tasks). Full replanning changes
+22--29 robots for any single event. A solo replan (Tier 1) settles 94\% of robot repairs at 5
+robots but only 57\% at 50: as the fleet grows, negotiation (Tiers 2--3) and Tier 3b take
+over a larger share. Holds stay below 0.3\%.
+
+\paragraph{Alter penalty.} Figure~\ref{fig:lambda} shows the trade-off set by $\lambda$:
+$\lambda=0$ minimizes time but changes the most plans, and $\lambda=12$ the opposite. At 40
+robots the default $\lambda=3$ for v2 is better than v1 at every $\lambda$ on both axes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{lambda_tradeoff.png}
+  \caption{Plans changed vs.\ SoC overhead as the alter penalty $\lambda$ varies.}
+  \label{fig:lambda}
+\end{figure}
+
+\section{Settings where agents fail}
+\label{sec:failures}
+\input{failures.tex}
+
+\section{Graphical demonstration}
+All visuals are generated with matplotlib from the simulator's run log by running
+\texttt{python experiments/make\_demos.py}. They are:
+\begin{itemize}
+  \item \texttt{results/demo/run.gif}: animation of a 20-robot run with 12 mixed
+        disruptions. Altered robots and their repaired paths are highlighted for 8 steps
+        after each event.
+  \item \texttt{results/demo/replay.html}: interactive replay in the browser (play, pause, scrub).
+  \item \texttt{results/demo\_single/*.png}: before/after snapshots of each disruption
+        type, with the old plan dashed and the repaired plan solid (Figure~\ref{fig:snapshots}).
+  \item \texttt{results/demo\_failure/*}: GIFs and final-state snapshots of the failure
+        cases in Section~\ref{sec:failures}.
+  \item \texttt{python -m warehouse\_mapf.run --agents 20 --live}: replays any run in an
+        interactive window.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{\linewidth}\includegraphics[width=\linewidth]{snapshot_breakdown_perm.png}\caption{permanent breakdown}\end{subfigure}\\[4pt]
+  \begin{subfigure}{\linewidth}\includegraphics[width=\linewidth]{snapshot_emergency.png}\caption{emergency task}\end{subfigure}
+  \caption{Disruption snapshots from the demonstration: the dashed line is the plan before
+  the repair, the solid line the repaired plan, and orange robots are those whose plans changed.}
+  \label{fig:snapshots}
+\end{figure}
+
+\section{Limitations and future work}
+\begin{itemize}
+  \item \textbf{Prioritized planning is incomplete.} Neither the initial planner nor the
+        joint replans inside negotiation guarantee a solution when one exists. Holds and the
+        expanding ring recover in practice, but not provably.
+  \item \textbf{Robots never give up a task.} A robot whose goal is permanently cut off
+        holds forever. It should detect this, report it, and release or re-auction the task.
+  \item \textbf{Emergency deadlines are soft.} The deadline term changes which repair is
+        preferred, but it cannot preempt robots already in the way. In dense fleets most
+        deadlines (ideal + 3 steps) are missed.
+  \item \textbf{Repair time} grows to seconds at 50 robots in Python. Caching searches,
+        bounding chains (they add about 2$\times$ for little gain) or a compiled ST-A* would help.
+  \item \textbf{Idealized communication}: instant, lossless messages within range. Delays
+        and dropped messages are not modelled.
+\end{itemize}
+
+\section*{Reproducing}
+\begin{lstlisting}
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest -q tests                        # 27 tests
+.venv/bin/python experiments/run_experiments.py            # main sweeps (~20 min, 10 cores)
+.venv/bin/python experiments/run_experiments.py --sweep stress
+.venv/bin/python -m warehouse_mapf.viz.plots               # figures + results/summary.md
+.venv/bin/python experiments/make_demos.py                 # GIFs, snapshots, replay
+\end{lstlisting}
+Code: \url{https://github.com/SreenityaThatikunta/warehouse-plan-repair}
+
+\end{document}

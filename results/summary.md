@@ -125,3 +125,86 @@ Plans altered per single disruption, by number of robots:
 | 40 | local-flat | 3 | 5517 ± 152 | 352 | 4.79 | 1.15 | 25% | 604 |
 | 40 | local-flat | 6 | 5528 ± 144 | 363 | 4.29 | 0.72 | 25% | 651 |
 | 40 | local-flat | 12 | 5539 ± 141 | 374 | 4.10 | 0.48 | 20% | 564 |
+
+## Stress study: settings where robots fail
+
+Run with `--sweep stress`. *Goal cut off*: a remaining goal is unreachable past permanent obstacles and dead robots. *Deadlock*: every goal is reachable but the robot is stuck. A run ends when nothing has moved for 150 steps.
+
+| setting | x | strategy | runs failed | tasks completed | stuck: goal cut off | stuck: deadlock | emergency on time |
+|---|---|---|---|---|---|---|---|
+| unsafe | 0% | local | 3/10 | 96.9% | 0.5 | 0.2 | 45% |
+| unsafe | 0% | local-flat | 3/10 | 96.9% | 0.5 | 0.2 | 35% |
+| unsafe | 0% | solo | 3/10 | 96.9% | 0.5 | 0.2 | 35% |
+| unsafe | 0% | full | 3/10 | 96.9% | 0.5 | 0.2 | 65% |
+| unsafe | 5% | local | 7/10 | 91.0% | 1.5 | 0.3 | 45% |
+| unsafe | 5% | local-flat | 7/10 | 91.0% | 1.5 | 0.3 | 40% |
+| unsafe | 5% | solo | 6/10 | 91.3% | 1.4 | 0.4 | 35% |
+| unsafe | 5% | full | 7/10 | 90.8% | 1.7 | 0.3 | 60% |
+| unsafe | 10% | local | 10/10 | 80.6% | 2.3 | 3.1 | 35% |
+| unsafe | 10% | local-flat | 9/10 | 79.2% | 2.1 | 3.4 | 35% |
+| unsafe | 10% | solo | 9/10 | 73.4% | 2.4 | 5.6 | 25% |
+| unsafe | 10% | full | 9/10 | 71.3% | 2.5 | 6.6 | 45% |
+| unsafe | 20% | local | 10/10 | 26.8% | 9.9 | 8.8 | 10% |
+| unsafe | 20% | local-flat | 10/10 | 27.4% | 9.7 | 9.1 | 15% |
+| unsafe | 20% | solo | 10/10 | 31.0% | 11.2 | 6.1 | 10% |
+| unsafe | 20% | full | 10/10 | 24.8% | 10.0 | 8.7 | 0% |
+| unsafe-single blockage (perm) | 20 robots | local | 1/10 | 99.7% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 20 robots | local-flat | 1/10 | 99.7% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 20 robots | solo | 1/10 | 99.7% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 20 robots | full | 1/10 | 99.7% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 40 robots | local | 1/10 | 99.8% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 40 robots | local-flat | 1/10 | 99.8% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 40 robots | solo | 1/10 | 99.8% | 0.1 | 0.0 | - |
+| unsafe-single blockage (perm) | 40 robots | full | 1/10 | 99.8% | 0.1 | 0.0 | - |
+| unsafe-single breakdown (perm) | 20 robots | local | 2/10 | 97.5% | 0.4 | 0.2 | - |
+| unsafe-single breakdown (perm) | 20 robots | local-flat | 2/10 | 97.5% | 0.4 | 0.2 | - |
+| unsafe-single breakdown (perm) | 20 robots | solo | 2/10 | 97.5% | 0.4 | 0.2 | - |
+| unsafe-single breakdown (perm) | 20 robots | full | 2/10 | 97.5% | 0.4 | 0.2 | - |
+| unsafe-single breakdown (perm) | 40 robots | local | 4/10 | 96.7% | 0.4 | 1.0 | - |
+| unsafe-single breakdown (perm) | 40 robots | local-flat | 4/10 | 96.7% | 0.4 | 1.0 | - |
+| unsafe-single breakdown (perm) | 40 robots | solo | 4/10 | 96.7% | 0.4 | 1.0 | - |
+| unsafe-single breakdown (perm) | 40 robots | full | 4/10 | 96.7% | 0.4 | 1.0 | - |
+| dense | 20% | local | 0/10 | 100.0% | 0.0 | 0.0 | 45% |
+| dense | 20% | local-flat | 0/10 | 100.0% | 0.0 | 0.0 | 40% |
+| dense | 20% | solo | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| dense | 20% | full | 0/10 | 100.0% | 0.0 | 0.0 | 65% |
+| dense | 25% | local | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| dense | 25% | local-flat | 1/10 | 96.3% | 0.0 | 1.0 | 30% |
+| dense | 25% | solo | 1/10 | 92.3% | 0.0 | 1.9 | 15% |
+| dense | 25% | full | 0/10 | 100.0% | 0.0 | 0.0 | 50% |
+| dense | 30% | local | 1/10 | 92.9% | 0.0 | 2.0 | 5% |
+| dense | 30% | local-flat | 1/10 | 92.7% | 0.0 | 2.0 | 5% |
+| dense | 30% | solo | 1/10 | 91.6% | 0.0 | 2.0 | 5% |
+| dense | 30% | full | 2/10 | 86.1% | 0.0 | 4.0 | 25% |
+| crowd | 20 robots | local | 0/10 | 100.0% | 0.0 | 0.0 | 40% |
+| crowd | 20 robots | local-flat | 1/10 | 97.1% | 0.0 | 0.9 | 35% |
+| crowd | 20 robots | solo | 1/10 | 96.6% | 0.0 | 0.9 | 30% |
+| crowd | 20 robots | full | 0/10 | 100.0% | 0.0 | 0.0 | 95% |
+| crowd | 30 robots | local | 1/10 | 92.1% | 0.0 | 2.9 | 20% |
+| crowd | 30 robots | local-flat | 1/10 | 92.1% | 0.0 | 2.9 | 10% |
+| crowd | 30 robots | solo | 2/10 | 82.1% | 0.0 | 5.8 | 5% |
+| crowd | 30 robots | full | 0/10 | 100.0% | 0.0 | 0.0 | 90% |
+| crowd | 40 robots | local | 3/10 | 73.9% | 0.0 | 11.9 | 5% |
+| crowd | 40 robots | local-flat | 1/10 | 90.1% | 0.0 | 4.0 | 5% |
+| crowd | 40 robots | solo | 4/10 | 65.4% | 0.0 | 15.9 | 10% |
+| crowd | 40 robots | full | 1/10 | 94.9% | 0.0 | 3.8 | 70% |
+| crowd | 44 robots | local | 0/10 | 100.0% | 0.0 | 0.0 | 5% |
+| crowd | 44 robots | local-flat | 1/10 | 93.4% | 0.0 | 4.2 | 5% |
+| crowd | 44 robots | solo | 5/10 | 59.7% | 0.0 | 22.0 | 5% |
+| crowd | 44 robots | full | 0/10 | 100.0% | 0.0 | 0.0 | 70% |
+| radius | R=1 | local | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=1 | local-flat | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=1 | solo | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=1 | full | 0/10 | 100.0% | 0.0 | 0.0 | 80% |
+| radius | R=2 | local | 0/10 | 100.0% | 0.0 | 0.0 | 20% |
+| radius | R=2 | local-flat | 0/10 | 100.0% | 0.0 | 0.0 | 20% |
+| radius | R=2 | solo | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=2 | full | 0/10 | 100.0% | 0.0 | 0.0 | 80% |
+| radius | R=3 | local | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| radius | R=3 | local-flat | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| radius | R=3 | solo | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=3 | full | 0/10 | 100.0% | 0.0 | 0.0 | 85% |
+| radius | R=6 | local | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| radius | R=6 | local-flat | 0/10 | 100.0% | 0.0 | 0.0 | 25% |
+| radius | R=6 | solo | 0/10 | 100.0% | 0.0 | 0.0 | 15% |
+| radius | R=6 | full | 0/10 | 100.0% | 0.0 | 0.0 | 85% |
