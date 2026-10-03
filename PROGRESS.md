@@ -166,3 +166,10 @@
   - **radius R = 1–6:** no failures. SoC is 1% worse at R=1, because the expanding ring compensates.
   - **Emergency deadlines:** on time only 5% on the crowded map with 40 robots and at 30% density.
 - **Report:** `report/failures.tex` written (F1 goals cut off, F2 knock-on deadlock, F3 hold cascade, F4 very dense, F5 `solo` gridlock, F6 deadlines, plus where agents did not fail). `report/report.pdf` builds with `latexmk -pdf`: 12 pages, no overfull boxes. I checked the pages visually and enlarged the snapshot figure. LaTeX build files are gitignored.
+- Committed and pushed the failure study and the 12-page report as `f84e4fe`.
+- **Report cut to 5 pages** (user request). Changes:
+  - title lists the team: Sreenitya Thatikunta (B23CS1072), Arpita Deshmukh (B23CM1007), Prajna Agrawal (B23CS1054)
+  - no code blocks or pseudocode; the tiers are described in prose and a one-row diagram, and the repo is linked at the end
+  - one results table (20 and 50 robots), one figure of plans changed, the stress completion chart and table, and one failure snapshot
+  - the failure section is merged into `report.tex`; `report/failures.tex` is removed
+  - builds with no overfull boxes; pages checked visually
