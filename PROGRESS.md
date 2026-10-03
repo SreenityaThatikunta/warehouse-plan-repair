@@ -173,3 +173,7 @@
   - one results table (20 and 50 robots), one figure of plans changed, the stress completion chart and table, and one failure snapshot
   - the failure section is merged into `report.tex`; `report/failures.tex` is removed
   - builds with no overfull boxes; pages checked visually
+- **Report revised to 6 pages** (user request):
+  - abstract and date removed; it starts directly with the sections
+  - added back: the single-disruption and extra-time charts, the λ trade-off chart, the stuck-robot causes chart, and the `solo` gridlock snapshot
+  - builds with no overfull boxes; pages checked visually

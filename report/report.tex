@@ -24,24 +24,13 @@
 
 \title{\vspace{-1.2cm}Negotiated Local Plan Repair for Multi-Robot Warehouse Pathfinding}
 \author{\begin{tabular}{ccc}Sreenitya Thatikunta & Arpita Deshmukh & Prajna Agrawal\\ B23CS1072 & B23CM1007 & B23CS1054\end{tabular}}
-\date{\vspace{-0.4cm}October 2026}
+\date{\vspace{-0.6cm}}
 
 \begin{document}
 \maketitle
 \vspace{-0.5cm}
 
-\begin{abstract}
-Robots in a grid warehouse carry items from pickup cells to delivery stations along
-collision-free paths from prioritized Space-Time A* (ST-A*). During execution, robots break
-down, cells become blocked and robots receive urgent tasks. We repair the joint plan
-\emph{locally}: affected robots negotiate over a range-limited message bus with the smallest
-useful set of neighbours, and the global planner is never re-run. Over 1{,}700 runs (5--50
-robots, 0--15\% dynamic obstacle density) there were no collisions, and local repair changed
-5--7$\times$ fewer plans per disruption than replanning from scratch, at equal or lower total
-time. A stress study of 760 more runs identifies where the agents \emph{fail} to finish their
-tasks: disruptions that cut goals off, robots stuck behind them, cascading holds on crowded
-maps, very high obstacle density, and the absence of negotiation.
-\end{abstract}
+
 
 \section{Problem and environment}
 $n$ robots move on a 4-connected grid. In each step a robot moves to a neighbouring free cell
@@ -169,6 +158,22 @@ disruption stay between 2.1 and 2.7. Raising $\lambda$ from 0 to 12 trades a few
 for fewer altered robots; at 40 robots our default $\lambda=3$ beats the first version at any
 $\lambda$ on both measures.
 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{single_altered.png}\end{subfigure}
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{agents_overhead.png}\end{subfigure}
+  \caption{Left: plans changed to handle a single disruption, by type (10--50 robots pooled).
+  Right: extra time steps caused by disruptions vs.\ number of robots.}
+  \label{fig:single}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{lambda_tradeoff.png}
+  \caption{Plans changed vs.\ extra time as the alter penalty $\lambda$ varies (ours vs.\ our first version).}
+  \label{fig:lambda}
+\end{figure}
+
 \section{Settings where agents fail}
 \label{sec:fail}
 In the main sweeps robots rarely fail, partly because the generator filters out disruptions that
@@ -215,6 +220,13 @@ comm.\ radius, 40 robots & $\R=1,2,3,6$ & 0/10 & 100\% & -- & 100\% & 100\% \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{stress_causes.png}
+  \caption{Why robots fail to finish under our method: goal cut off (red) or deadlocked although every goal is reachable (orange).}
+  \label{fig:causes}
+\end{figure}
+
 \textbf{Goals cut off.} With the filter off, a permanent blockage or a robot that breaks down
 for good can seal off a pickup cell, a station or an aisle segment (Figure~\ref{fig:unreach}).
 No repair can finish those tasks, so all strategies fail alike: completion drops from 97\% to
@@ -249,6 +261,14 @@ Emergency deadlines are met in only 5--35\% of cases in dense fleets, though the
 eventually delivered. The agents did \emph{not} fail with a short communication radius
 ($\R=1$ costs only 1\% more time, since holding robots widen their search), nor in any
 solvable instance on the main map with up to 50 robots and 20\% density.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.78\linewidth]{failure_gridlock_solo.png}
+  \caption{Gridlock without negotiation (\texttt{solo}): after one permanent breakdown all 49
+  remaining robots (red) wait on each other. Our method completes all 150 tasks on the same instance.}
+  \label{fig:gridlock}
+\end{figure}
 
 \section{Graphical demonstration}
 Simulations are rendered with matplotlib: an animated GIF of a 20-robot run with mixed
