@@ -189,3 +189,4 @@
 - **Submission files** in `submission/` (gitignored):
   - `warehouse-plan-repair.zip` (1.4 MB): source, tests, experiment scripts, README and docs, and the three MP4 videos. Built with `git archive`, so there are no `.venv` or cache files. All 27 tests pass from an extracted copy.
   - `report.pdf`: the 6-page report.
+- **Submission zip rebuilt without PLAN/PROGRESS/DECISIONS.md** (user request). The zip's README is adjusted so nothing dangles: the doc links are replaced by a pointer to the separately submitted `report.pdf`, "See PLAN.md §3" becomes an inline package layout, and the LaTeX build section is dropped. The repo's own README is unchanged. 27 tests pass from the extracted zip.
