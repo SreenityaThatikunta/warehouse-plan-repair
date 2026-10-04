@@ -201,3 +201,10 @@
   - **Added:** a key-terms table, an "In short" takeaway box per section, numbered main findings, and a one-line "how to read it" in each table and figure caption.
   - **Simplified:** the scoring formula is now a sentence (extra steps + 3 per extra robot disturbed + 10 if a deadline is missed); δ, λ and ρ are explained in words; jargon is replaced (ablation, coalition, cascade); prioritized Space-Time A* is explained with a reservation "calendar".
   - Now **9 pages**, with no overfull boxes; pages checked visually. `submission/report.pdf` updated.
+- **Report revised to a formal register** (user request):
+  - "In short" boxes renamed to "Summary"
+  - calendar example removed; no quotation marks left
+  - neutral captions (no "read it as" phrasing)
+  - the graphical section lists only the demonstration video and the failure videos
+  - the GitHub link is removed
+  - Still 9 pages, no overfull boxes; pages checked visually. `submission/report.pdf` updated.
