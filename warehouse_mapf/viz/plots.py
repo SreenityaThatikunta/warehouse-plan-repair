@@ -33,7 +33,8 @@ plt.rcParams.update({
     'font.size': 10, 'axes.edgecolor': GRID, 'axes.labelcolor': INK2, 'xtick.color': INK2,
     'ytick.color': INK2, 'axes.titlesize': 11, 'axes.titleweight': 'bold', 'axes.titlelocation': 'left',
     'axes.spines.top': False, 'axes.spines.right': False, 'axes.grid': True, 'grid.color': GRID,
-    'grid.linewidth': 0.8, 'axes.axisbelow': True, 'legend.frameon': False, 'figure.dpi': 150,
+    'grid.linewidth': 0.7, 'axes.axisbelow': True, 'legend.frameon': False, 'figure.dpi': 170,
+    'axes.titlepad': 10, 'axes.labelsize': 9.5, 'xtick.labelsize': 9, 'ytick.labelsize': 9,
     'savefig.bbox': 'tight', 'savefig.facecolor': 'white',
 })
 
@@ -48,18 +49,24 @@ def agg(df: pd.DataFrame, by: list[str], col: str) -> pd.DataFrame:
     return pd.DataFrame({'mean': g.mean(), 'ci': g.apply(ci95), 'n': g.size()}).reset_index()
 
 
-def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=tuple(STRAT),
+CHART_STRATEGIES = ('full', 'solo', 'local-flat', 'local')    # drawing order: ours last, on top
+
+
+def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=CHART_STRATEGIES,
                xfmt=None, note=None, ylim0=True):
-    fig, ax = plt.subplots(figsize=(6.4, 4))
+    fig, ax = plt.subplots(figsize=(6.4, 4.2))
     a = agg(df, ['strategy', x], col)
     for s in strategies:
         d = a[a.strategy == s].sort_values(x)
         if d.empty:
             continue
         color, label, marker = STRAT[s]
-        ax.fill_between(d[x], d['mean'] - d['ci'], d['mean'] + d['ci'], color=color, alpha=0.12, lw=0)
-        ax.plot(d[x], d['mean'], color=color, lw=2, marker=marker, ms=6, label=label,
-                markeredgecolor='white', markeredgewidth=1)
+        ours = s == 'local'
+        ax.fill_between(d[x], d['mean'] - d['ci'], d['mean'] + d['ci'], color=color,
+                        alpha=0.14 if ours else 0.04, lw=0)
+        ax.plot(d[x], d['mean'], color=color, lw=2.6 if ours else 1.6, marker=marker, ms=7 if ours else 5,
+                label=label, markeredgecolor='white', markeredgewidth=1.2, zorder=4 if ours else 3,
+                solid_capstyle='round')
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -68,11 +75,20 @@ def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=tuple(STRAT),
     ax.set_xticks(sorted(df[x].unique()))
     if ylim0:
         ax.set_ylim(bottom=0)
-    ax.legend(loc='upper left', fontsize=8.5)
-    if note:
-        fig.text(0.01, -0.03, note, fontsize=8, color=INK2, ha='left')
+    h, l = ax.get_legend_handles_labels()
+    order = sorted(range(len(l)), key=lambda i: ORDER[[k for k, v in STRAT.items() if v[1] == l[i]][0]])
+    ax.legend([h[i] for i in order], [l[i] for i in order], loc='upper center', bbox_to_anchor=(0.5, -0.17),
+              ncol=2, fontsize=8, handlelength=2.2, columnspacing=1.5)
+    _subtitle(ax, note)
     fig.savefig(path)
     plt.close(fig)
+
+
+def _subtitle(ax, note):
+    """Footnote shown as a muted line directly under the title (never collides with the legend)."""
+    if note:
+        ax.set_title(ax.get_title(loc='left'), loc='left', pad=18)
+        ax.text(0, 1.015, note, transform=ax.transAxes, fontsize=7.8, color=INK2, ha='left', va='bottom')
 
 
 def grouped_bars(df, cat, col, title, ylabel, path, order=None, note=None):
@@ -96,9 +112,9 @@ def grouped_bars(df, cat, col, title, ylabel, path, order=None, note=None):
     ax.set_ylabel(ylabel)
     ax.grid(axis='x', visible=False)
     ax.margins(y=0.12)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.16), ncol=3, fontsize=8.5)
-    if note:
-        fig.text(0.01, -0.1, note, fontsize=8, color=INK2, ha='left')
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.16), ncol=min(4, len(strategies)), fontsize=7.8,
+              columnspacing=1.2, handlelength=1.4)
+    _subtitle(ax, note)
     fig.savefig(path)
     plt.close(fig)
 

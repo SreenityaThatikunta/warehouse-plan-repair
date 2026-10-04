@@ -193,3 +193,7 @@
 - **Report:** added the subsection "Scaling with the number of robots and obstacle density". It has Table 2, covering every point of both sweeps (SoC for local/solo/full; extra steps, plans altered and repair ms for local vs full), and Figure 3, total time vs robots and vs density. A paragraph discusses each trend. Nothing was dropped (user: going past 6 pages is fine), so the report is now **7 pages**.
   - **Two wording fixes after checking against the data:** each extra disruption costs about 9 steps, not 8; at low density the strategies are "within about 10 steps", and full is slightly ahead at 0%.
   - `submission/report.pdf` updated.
+- **Visual style pass** (user request: prettier visuals):
+  - **Warehouse renders** (`viz/render.py`): shelves drawn as rounded blocks with rack lines instead of dark cells, no grid lines, warm floor, rounded tiles for docks, pickups, blocked cells and stations (with a ▼ marker), larger robots with a soft shadow, and paths with a white casing and rounded joins.
+  - **Charts** (`viz/plots.py`): our method drawn thicker and on top, lighter confidence bands for the others, legends below the plot, footnotes as a muted subtitle (no more collisions), and `local-nochain` left off the line charts (still in the tables).
+  - All figures, snapshots, MP4s and failure images regenerated; the numbers are unchanged. Report rebuilt (7 pages, no overfull boxes), and the submission zip and PDF refreshed. 27 tests pass.
