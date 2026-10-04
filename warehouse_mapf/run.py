@@ -60,7 +60,7 @@ def main() -> None:
         args.out.mkdir(parents=True, exist_ok=True)
         export_run(sim, args.out / 'replay.json')
         save_disruption_snapshots(sim, args.out)
-        save_animation(sim, args.out / 'run.gif')
+        save_animation(sim, args.out / 'run.mp4')
         print(f'\nVisual outputs written to {args.out}/')
     if args.live:
         from .viz.render import show_live

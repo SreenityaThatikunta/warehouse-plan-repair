@@ -9,7 +9,7 @@ import matplotlib
 if os.environ.get('WAREHOUSE_LIVE') != '1':     # set by `run --live` to keep an interactive backend
     matplotlib.use('Agg')
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.animation import FuncAnimation, PillowWriter  # noqa: E402
+from matplotlib.animation import FFMpegWriter, FuncAnimation, PillowWriter  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
@@ -166,41 +166,61 @@ def save_disruption_snapshots(sim, out: Path, max_n: int = 12) -> list[Path]:
     return paths
 
 
+def draw_frame(ax, sim, t: int, trail: int = 6, recent_window: int = 8) -> None:
+    """One animation frame: map, blockages, robots with short trails, and for 8 steps after each
+    disruption the robots whose plans changed (orange) with their repaired paths."""
+    ax.clear()
+    draw_map(ax, sim)
+    draw_blocked(ax, sim, t)
+    active = [r for r in sim.records if r.t <= t < r.t + recent_window]
+    hl, dis = set(), set()
+    for r in active:
+        hl |= r.altered
+        if r.agent is not None:
+            dis.add(r.agent)
+        _event_marker(ax, r)
+        for aid in r.altered:
+            draw_path(ax, r.new_paths[aid], t, 20, C['altered'], '-', lw=1.4, alpha=0.8)
+    for a in sim.agents:
+        seg = [a.pos(tau) for tau in range(max(0, t - trail), t + 1)]
+        ax.plot([c for _, c in seg], [r for r, _ in seg], color=C['agent'], alpha=0.25, lw=2, zorder=3)
+    draw_agents(ax, sim, t, highlight=hl, disrupted=dis, size=70)
+    done = sum(1 for a in sim.agents for (_, tt) in a.completed if tt <= t)
+    head = f't = {t:>3}   tasks delivered: {done}/{sim.n_tasks}   strategy: {sim.rcfg.strategy}'
+    if active:
+        head += '\n' + describe(active[-1]) + f'  ->  {len(active[-1].altered)} plan(s) altered'
+    ax.set_title(head, fontsize=9, loc='left', color=C['text'])
+
+
 def _animation(sim, fps: int, trail: int, dpi: int, repeat: bool = True):
-    T = sim.t + 1
     fig, ax = plt.subplots(figsize=(10, 6.2), dpi=dpi)
-    recent_window = 8
-
-    def frame(t):
-        ax.clear()
-        draw_map(ax, sim)
-        draw_blocked(ax, sim, t)
-        active = [r for r in sim.records if r.t <= t < r.t + recent_window]
-        hl, dis = set(), set()
-        for r in active:
-            hl |= r.altered
-            if r.agent is not None:
-                dis.add(r.agent)
-            _event_marker(ax, r)
-            for aid in r.altered:
-                draw_path(ax, r.new_paths[aid], t, 20, C['altered'], '-', lw=1.4, alpha=0.8)
-        for a in sim.agents:
-            seg = [a.pos(tau) for tau in range(max(0, t - trail), t + 1)]
-            ax.plot([c for _, c in seg], [r for r, _ in seg], color=C['agent'], alpha=0.25, lw=2, zorder=3)
-        draw_agents(ax, sim, t, highlight=hl, disrupted=dis, size=70)
-        done = sum(1 for a in sim.agents for (_, tt) in a.completed if tt <= t)
-        head = f't = {t:>3}   tasks delivered: {done}/{sim.n_tasks}   strategy: {sim.rcfg.strategy}'
-        if active:
-            head += '\n' + describe(active[-1]) + f'  ->  {len(active[-1].altered)} plan(s) altered'
-        ax.set_title(head, fontsize=9, loc='left', color=C['text'])
-
-    anim = FuncAnimation(fig, frame, frames=range(T), interval=1000 // fps, repeat=repeat)
+    anim = FuncAnimation(fig, lambda t: draw_frame(ax, sim, t, trail), frames=range(sim.t + 1),
+                         interval=1000 // fps, repeat=repeat)
     return fig, anim
 
 
+def save_demo_frame(sim, t: int, path: Path) -> None:
+    """A single animation frame with a legend (for the report)."""
+    fig, ax = plt.subplots(figsize=(10, 6.6), dpi=150)
+    draw_frame(ax, sim, t)
+    _legend(ax, extra=(Line2D([], [], color=C['altered'], lw=1.6, label='repaired path'),
+                       Line2D([], [], color=C['agent'], lw=2, alpha=0.35, label='recent trail'),
+                       Line2D([], [], marker='o', ls='', mfc='none', mec=C['disrupted'], ms=9,
+                              label='disruption location'),
+                       Line2D([], [], marker='s', ls='', color=C['pickup'], mec=C['grid'], label='pickup cell')))
+    fig.tight_layout()
+    fig.savefig(path, facecolor='white')
+    plt.close(fig)
+
+
 def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90) -> None:
+    """MP4 (H.264, needs ffmpeg) or GIF, chosen by the file extension."""
     fig, anim = _animation(sim, fps, trail, dpi)
-    anim.save(path, writer=PillowWriter(fps=fps))
+    if Path(path).suffix == '.mp4':
+        writer = FFMpegWriter(fps=fps, codec='libx264', extra_args=['-pix_fmt', 'yuv420p'])
+    else:
+        writer = PillowWriter(fps=fps)
+    anim.save(path, writer=writer)
     plt.close(fig)
 
 

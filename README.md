@@ -32,7 +32,7 @@ Add `--live` to replay the finished run in an interactive window (`--fps` sets t
 
 Add `--viz --out results/demo` to write the visuals:
 - `disruption_XX_*.png`: before/after snapshot of each disruption
-- `run.gif`: animation of the whole run
+- `run.mp4`: video of the whole run (needs ffmpeg)
 - `replay.html`: interactive replay (open it in a browser)
 - `replay.json`
 
@@ -72,9 +72,9 @@ v2 lowers total time and makes more emergencies on time, while changing about as
 ```bash
 .venv/bin/python experiments/make_demos.py
 ```
-- `results/demo/`: GIF, interactive `replay.html` and snapshots of a 20-robot run with mixed disruptions
+- `results/demo/`: MP4 video, interactive `replay.html` and snapshots of a 20-robot run with mixed disruptions
 - `results/demo_single/`: a before/after snapshot of each disruption type
-- `results/demo_failure/`: GIFs and final-state snapshots of runs where robots fail (goals cut off; `solo` gridlock)
+- `results/demo_failure/`: MP4 videos and final-state snapshots of runs where robots fail (goals cut off; `solo` gridlock)
 
 ## Report
 ```bash

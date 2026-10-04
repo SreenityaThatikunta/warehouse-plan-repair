@@ -169,7 +169,7 @@ $\lambda$ on both measures.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\linewidth]{lambda_tradeoff.png}
+  \includegraphics[width=0.72\linewidth]{lambda_tradeoff.png}
   \caption{Plans changed vs.\ extra time as the alter penalty $\lambda$ varies (ours vs.\ our first version).}
   \label{fig:lambda}
 \end{figure}
@@ -222,7 +222,7 @@ comm.\ radius, 40 robots & $\R=1,2,3,6$ & 0/10 & 100\% & -- & 100\% & 100\% \\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\linewidth]{stress_causes.png}
+  \includegraphics[width=0.8\linewidth]{stress_causes.png}
   \caption{Why robots fail to finish under our method: goal cut off (red) or deadlocked although every goal is reachable (orange).}
   \label{fig:causes}
 \end{figure}
@@ -248,7 +248,7 @@ same instance. The effect depends on the instance: at 44 robots no run failed.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.78\linewidth]{failure_unreachable.png}
+  \includegraphics[width=0.66\linewidth]{failure_unreachable.png}
   \caption{A failure from the demonstration: permanent blockages (black) cut off the goals of
   robots 3, 13 and 18, and 5 of 62 tasks are never done.}
   \label{fig:unreach}
@@ -264,17 +264,26 @@ solvable instance on the main map with up to 50 robots and 20\% density.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.78\linewidth]{failure_gridlock_solo.png}
+  \includegraphics[width=0.66\linewidth]{failure_gridlock_solo.png}
   \caption{Gridlock without negotiation (\texttt{solo}): after one permanent breakdown all 49
   remaining robots (red) wait on each other. Our method completes all 150 tasks on the same instance.}
   \label{fig:gridlock}
 \end{figure}
 
 \section{Graphical demonstration}
-Simulations are rendered with matplotlib: an animated GIF of a 20-robot run with mixed
-disruptions (repaired robots and paths highlighted), an interactive replay in the browser,
-before/after snapshots of each disruption type (old plan dashed, repaired plan solid), GIFs of
-the failure cases above, and a live replay window.
+Simulations are rendered with matplotlib: an MP4 video of a 20-robot run with mixed
+disruptions (Figure~\ref{fig:demo}), an interactive replay in the browser, before/after
+snapshots of each disruption type (old plan dashed, repaired plan solid), MP4 videos of the
+failure cases above, and a live replay window. For 8 steps after each disruption, the video
+highlights the robots whose plans changed and draws their repaired paths.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{demo_frame.png}
+  \caption{A frame from the demonstration video, two steps after a permanent blockage (red circle)
+  that changed 11 plans. Orange robots have altered plans; orange lines are their repaired paths.}
+  \label{fig:demo}
+\end{figure}
 
 \section{Limitations}
 \begin{itemize}\setlength{\itemsep}{1pt}

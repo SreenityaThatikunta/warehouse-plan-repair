@@ -2,10 +2,10 @@
 
     python experiments/make_demos.py
 
-results/demo/          mixed-disruption run (20 robots): GIF, interactive replay, snapshots
+results/demo/          mixed-disruption run (20 robots): MP4, interactive replay, snapshots
 results/demo_single/   one clean before/after snapshot per disruption type
 results/demo_failure/  runs where robots FAIL to finish: goals cut off (unsafe disruptions)
-                       and a fleet gridlock (solo ablation): GIF + final-state snapshot
+                       and a fleet gridlock (solo ablation): MP4 + final-state snapshot
 report/figures/        warehouse overview + copies of the single-disruption and failure snapshots
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / 'experiments'))
 from run_experiments import SINGLE_TYPES  # noqa: E402
 from warehouse_mapf.scenario import ScenarioConfig, build  # noqa: E402
 from warehouse_mapf.viz.export import export_run  # noqa: E402
-from warehouse_mapf.viz.render import (save_animation, save_disruption_snapshot,  # noqa: E402
+from warehouse_mapf.viz.render import (save_animation, save_demo_frame, save_disruption_snapshot,  # noqa: E402
                                        save_disruption_snapshots, save_failure_snapshot, save_frame)
 
 FIG = ROOT / 'report' / 'figures'
@@ -37,7 +37,10 @@ def mixed_demo() -> None:
     sim.run()
     export_run(sim, out / 'replay.json')
     save_disruption_snapshots(sim, out)
-    save_animation(sim, out / 'run.gif')
+    save_animation(sim, out / 'run.mp4')
+    # report screenshot: a frame shortly after the disruption that changed the most plans
+    rec = max(sim.records, key=lambda r: len(r.altered))
+    save_demo_frame(sim, rec.t + 2, FIG / 'demo_frame.png')
     print('mixed demo:', sim.metrics()['soc'], 'SoC,', len(sim.records), 'disruptions')
 
 
@@ -84,7 +87,7 @@ def failure_demos() -> None:
             break
     save_failure_snapshot(sim, out / 'unreachable.png',
                           f'Failure: unsafe disruptions (10% density, 50% permanent), 20 robots, local v2, seed {seed}')
-    save_animation(sim, out / 'unreachable.gif')
+    save_animation(sim, out / 'unreachable.mp4')
     shutil.copy(out / 'unreachable.png', FIG / 'failure_unreachable.png')
     print(f'unreachable demo: seed {seed}, {m["tasks_done"]}/{m["tasks_total"]} tasks, '
           f'{m["stuck_unreachable"]} cut off, {m["stuck_deadlock"]} deadlocked')
@@ -95,7 +98,7 @@ def failure_demos() -> None:
     m = sim.run()
     save_failure_snapshot(sim, out / 'gridlock_solo.png',
                           'Failure: gridlock without negotiation (solo ablation), 50 robots, 1 permanent breakdown, seed 5')
-    save_animation(sim, out / 'gridlock_solo.gif')
+    save_animation(sim, out / 'gridlock_solo.mp4')
     shutil.copy(out / 'gridlock_solo.png', FIG / 'failure_gridlock_solo.png')
     print(f'gridlock demo: {m["tasks_done"]}/{m["tasks_total"]} tasks, stalled={m["stalled"]}, '
           f'{m["stuck_deadlock"]} deadlocked')
