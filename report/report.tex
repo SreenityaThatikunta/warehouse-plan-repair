@@ -277,10 +277,18 @@ before/after snapshots of each disruption type (old plan dashed, repaired plan s
 the failure cases above, and a live replay window.
 
 \section{Limitations}
-Prioritized planning is incomplete, so neither the initial plan nor joint replans are guaranteed
-to succeed. Robots never release a task whose goal is cut off. Hold cascades on crowded maps need
-an escalation to a larger regional replan. Emergency deadlines are soft. Repair takes seconds at
-50 robots in Python. Communication is assumed instant and lossless.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item \textbf{Incomplete planner:} prioritized planning does not guarantee a solution when one
+        exists, either for the initial plan or for joint replans during repair.
+  \item \textbf{No task release:} a robot whose goal is cut off holds its task and its cell forever,
+        which can deadlock other robots.
+  \item \textbf{Hold cascades:} on crowded maps one local hold can spread to the whole fleet;
+        an escalation to a larger regional replan is needed.
+  \item \textbf{Soft emergency deadlines:} the deadline only changes which repair is preferred, so
+        in dense fleets most deadlines are missed.
+  \item \textbf{Repair time:} it reaches about 2\,s per disruption at 50 robots in Python.
+  \item \textbf{Idealized communication:} messages are instant and never lost.
+\end{itemize}
 
 \vspace{4pt}
 \noindent\textbf{Code, results and demos:} \url{https://github.com/SreenityaThatikunta/warehouse-plan-repair}

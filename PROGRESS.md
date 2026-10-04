@@ -177,3 +177,9 @@
   - abstract and date removed; it starts directly with the sections
   - added back: the single-disruption and extra-time charts, the λ trade-off chart, the stuck-robot causes chart, and the `solo` gridlock snapshot
   - builds with no overfull boxes; pages checked visually
+
+### 2026-10-04
+- Checked the full assignment brief against the deliverables; every requirement is covered. Open items:
+  - the GitHub repo linked from the report is **private**, so graders cannot open it
+  - the code and the PDF still have to be uploaded to Google Classroom
+- **Report:** the Limitations section is now a bullet list (6 pages, no overfull boxes).
