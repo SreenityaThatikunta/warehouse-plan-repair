@@ -10,7 +10,7 @@ The affected robots **repair their plans locally**. They negotiate with neighbou
 - `PLAN.md`: design and algorithms
 - `DECISIONS.md`: design choices and the reasons for them
 - `PROGRESS.md`: log of the work done
-- `report/report.tex` → `report/report.pdf`: the 7-page report, including the settings where agents fail
+- `report/report.tex` → `report/report.pdf`: the report, including the settings where agents fail
 
 ## Setup
 ```bash

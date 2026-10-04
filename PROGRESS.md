@@ -197,3 +197,7 @@
   - **Warehouse renders** (`viz/render.py`): shelves drawn as rounded blocks with rack lines instead of dark cells, no grid lines, warm floor, rounded tiles for docks, pickups, blocked cells and stations (with a ▼ marker), larger robots with a soft shadow, and paths with a white casing and rounded joins.
   - **Charts** (`viz/plots.py`): our method drawn thicker and on top, lighter confidence bands for the others, legends below the plot, footnotes as a muted subtitle (no more collisions), and `local-nochain` left off the line charts (still in the tables).
   - All figures, snapshots, MP4s and failure images regenerated; the numbers are unchanged. Report rebuilt (7 pages, no overfull boxes), and the submission zip and PDF refreshed. 27 tests pass.
+- **Report rewritten in plain language for the viva** (user request: "too complex"). Same results, figures and tables.
+  - **Added:** a key-terms table, an "In short" takeaway box per section, numbered main findings, and a one-line "how to read it" in each table and figure caption.
+  - **Simplified:** the scoring formula is now a sentence (extra steps + 3 per extra robot disturbed + 10 if a deadline is missed); δ, λ and ρ are explained in words; jargon is replaced (ablation, coalition, cascade); prioritized Space-Time A* is explained with a reservation "calendar".
+  - Now **9 pages**, with no overfull boxes; pages checked visually. `submission/report.pdf` updated.
