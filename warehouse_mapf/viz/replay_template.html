@@ -188,7 +188,6 @@ function draw() {
       ctx.moveTo(c * cell + cell - 4, r * cell + 4); ctx.lineTo(c * cell + 4, r * cell + cell - 4); ctx.stroke();
     }
   }
-  // Which disruption is highlighted: the focused one while within its window, else the most recent (8 steps).
   let hl = null;
   if (focus !== null && t >= focus.t && t < focus.t + 40) hl = focus;
   else { for (const d of RUN.disruptions) if (d.t <= t && t < d.t + 8) hl = d; }

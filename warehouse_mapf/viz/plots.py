@@ -1,7 +1,3 @@
-"""Experiment charts + markdown summary tables from results/*.csv.
-
-    python -m warehouse_mapf.viz.plots [--results results] [--out report/figures]
-"""
 from __future__ import annotations
 
 import argparse
@@ -10,11 +6,10 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
-import pandas as pd  # noqa: E402
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
-# Fixed categorical order (validated palette slots 1-3); colour follows the strategy.
 STRAT = {
     'local':         ('#2a78d6', 'Local negotiated repair v2 (ours)', 'o'),
     'local-flat':    ('#eda100', 'Local repair v1 (flat coalitions)', 'D'),
@@ -49,7 +44,7 @@ def agg(df: pd.DataFrame, by: list[str], col: str) -> pd.DataFrame:
     return pd.DataFrame({'mean': g.mean(), 'ci': g.apply(ci95), 'n': g.size()}).reset_index()
 
 
-CHART_STRATEGIES = ('full', 'solo', 'local-flat', 'local')    # drawing order: ours last, on top
+CHART_STRATEGIES = ('full', 'solo', 'local-flat', 'local')
 
 
 def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=CHART_STRATEGIES,
@@ -85,7 +80,6 @@ def line_chart(df, x, col, title, xlabel, ylabel, path, strategies=CHART_STRATEG
 
 
 def _subtitle(ax, note):
-    """Footnote shown as a muted line directly under the title (never collides with the legend)."""
     if note:
         ax.set_title(ax.get_title(loc='left'), loc='left', pad=18)
         ax.text(0, 1.015, note, transform=ax.transAxes, fontsize=7.8, color=INK2, ha='left', va='bottom')
@@ -161,7 +155,6 @@ def fmt_num(x, nd: int) -> str:
 
 
 def lambda_chart(runs, dis, path) -> None:
-    """Trade-off between plans altered and extra time as lambda varies, one panel per fleet size."""
     ns = sorted(runs.n_agents.unique())
     fig, axes = plt.subplots(1, len(ns), figsize=(5.2 * len(ns), 4), squeeze=False)
     for ax, n in zip(axes[0], ns):
@@ -185,7 +178,6 @@ def lambda_chart(runs, dis, path) -> None:
 
 
 def stress_charts(runs, out: Path) -> None:
-    """Completion rate per stress setting, and why robots got stuck."""
     panels = [('unsafe', 'Unsafe disruptions (filters off, 20 robots)', 'Dynamic obstacle density', True),
               ('dense', 'Very high obstacle density (20 robots)', 'Dynamic obstacle density', True),
               ('crowd', 'Crowding: small 12×27 map', 'Number of robots', False)]
@@ -213,7 +205,6 @@ def stress_charts(runs, out: Path) -> None:
     fig.savefig(out / 'stress_completion.png')
     plt.close(fig)
 
-    # Why robots got stuck (local v2): goal cut off vs deadlocked although every goal is reachable.
     d = runs[(runs.strategy == 'local') & runs.setting.isin(['unsafe', 'unsafe-single', 'dense', 'crowd'])].copy()
     d['label'] = d.apply(lambda r: (f"{r.setting}\n{r.x:.0%}" if r.setting in ('unsafe', 'dense')
                                     else f"1 {r['dtype'].split()[0]}\n{int(r.x)} robots" if r.setting == 'unsafe-single'

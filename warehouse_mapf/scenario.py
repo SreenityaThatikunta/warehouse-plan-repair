@@ -1,7 +1,6 @@
-"""Build a complete, reproducible scenario (map, agents, tasks, disruptions) from a config + seed."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 
 import numpy as np
 
@@ -29,9 +28,6 @@ class ScenarioConfig:
         base = cls()
         m = {**base.map, **d.pop('map', {})}
         return cls(map=m, disruptions=dis, repair=rep, **d)
-
-    def to_dict(self) -> dict:
-        return asdict(self)
 
 
 _WAREHOUSE_CACHE: dict = {}

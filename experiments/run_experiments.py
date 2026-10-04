@@ -1,26 +1,3 @@
-"""Experiment sweeps. Writes results/<sweep>_runs.csv and results/<sweep>_disruptions.csv.
-
-    python experiments/run_experiments.py                      # all sweeps
-    python experiments/run_experiments.py --sweep agents --seeds 5
-    python experiments/run_experiments.py --quick              # small smoke version
-
-Sweeps
-  agents   number of robots 5..50, fixed dynamic obstacle density
-  density  dynamic obstacle density 0..15 % of free cells, fixed number of robots
-  single   exactly ONE disruption per run (each type, temporary / permanent), to
-           measure "agents whose plans change to handle a single disruption"
-  lambda   alter penalty lambda 0..12 at 20 and 40 robots (local vs local-flat): the
-           trade-off between total time and robots altered
-  stress   settings built to make agents FAIL (for the report's failure section):
-           unsafe   solvability filters off (blockages may cut off goals / the map),
-                    50% of blockages permanent, density 0..20 %, 20 robots
-           dense    very high (safe) dynamic obstacle density 20..30 %, 20 robots
-           unsafe-single  one permanent blockage / breakdown with the filters off
-           crowd    small 3x4-block map, 20..44 robots (46 docks)
-           radius   communication radius 1..6, 40 robots
-Every configuration is run with each strategy (local / local-flat / solo / full) on the
-same seeds; the agents sweep also runs local-nochain (v2 without chained negotiation).
-"""
 from __future__ import annotations
 
 import argparse
@@ -37,7 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from warehouse_mapf.scenario import ScenarioConfig, run_scenario  # noqa: E402
+from warehouse_mapf.scenario import ScenarioConfig, run_scenario
 
 STRATEGIES = ('local', 'local-flat', 'solo', 'full')
 SWEEP_STRATEGIES = {'agents': STRATEGIES + ('local-nochain',), 'lambda': ('local', 'local-flat')}
@@ -153,7 +130,6 @@ def main() -> None:
     sweeps = ['agents', 'density', 'single', 'lambda'] if args.sweep == 'all' else [args.sweep]
     for sweep in sweeps:
         jobs = make_jobs(sweep, args.seeds, args.quick)
-        # longest jobs first for better load balancing
         jobs.sort(key=lambda j: -j['cfg']['n_agents'])
         t0 = time.time()
         rows, drows = [], []

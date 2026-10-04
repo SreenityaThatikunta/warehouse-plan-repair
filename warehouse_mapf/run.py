@@ -1,9 +1,3 @@
-"""CLI: run one scenario and print metrics.
-
-    python -m warehouse_mapf.run --agents 20 --density 0.03 --strategy local --seed 1
-    python -m warehouse_mapf.run --config experiments/configs/demo.yaml --viz
-    python -m warehouse_mapf.run --agents 20 --live          # interactive replay window
-"""
 from __future__ import annotations
 
 import argparse
@@ -17,7 +11,7 @@ from .scenario import ScenarioConfig, run_scenario
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(description='run one warehouse scenario and print metrics')
     ap.add_argument('--config', type=Path)
     ap.add_argument('--agents', type=int)
     ap.add_argument('--density', type=float, help='dynamic obstacle density (fraction of free cells)')
@@ -31,7 +25,7 @@ def main() -> None:
     ap.add_argument('--fps', type=int, default=8, help='frames per second for --live')
     args = ap.parse_args()
     if args.live:
-        os.environ['WAREHOUSE_LIVE'] = '1'      # must be set before the renderer is imported
+        os.environ['WAREHOUSE_LIVE'] = '1'
 
     cfg = ScenarioConfig.from_dict(yaml.safe_load(args.config.read_text()) if args.config else {})
     if args.agents is not None:

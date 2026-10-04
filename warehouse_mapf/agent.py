@@ -1,4 +1,3 @@
-"""Tasks, goals and agent state."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -11,8 +10,8 @@ from .grid import Cell, Grid
 
 class Goal(NamedTuple):
     cell: Cell
-    kind: str          # 'pickup' | 'delivery' | 'home'
-    task_id: int       # -1 for home
+    kind: str
+    task_id: int
 
 
 @dataclass
@@ -20,7 +19,6 @@ class Task:
     id: int
     pickup: Cell
     delivery: Cell
-    emergency: bool = False
 
 
 @dataclass
@@ -28,13 +26,13 @@ class Agent:
     id: int
     start: Cell
     goals: list[Goal]
-    path: list[Cell] = field(default_factory=list)   # path[t] = cell at absolute time t
-    ptr: int = 0                    # index of next goal not yet reached
-    fixed_until: int = 0            # path[:fixed_until+1] may not be changed (e.g. while broken)
-    dead: bool = False              # permanently broken
+    path: list[Cell] = field(default_factory=list)
+    ptr: int = 0
+    fixed_until: int = 0
+    dead: bool = False
     emergency_tasks: set = field(default_factory=set)
     carrying: set = field(default_factory=set)
-    completed: list = field(default_factory=list)    # (task_id, time)
+    completed: list = field(default_factory=list)
     last_delivery: int = 0
 
     def pos(self, t: int) -> Cell:
@@ -56,7 +54,6 @@ class Agent:
                              and self.pos(t) == self.goals[-1].cell)
 
     def update_progress(self, t: int) -> None:
-        """Mark goals reached at time t. The final (home) goal is never 'consumed'."""
         if self.dead:
             return
         pos = self.pos(t)
@@ -83,7 +80,6 @@ def generate_tasks(rng: np.random.Generator, pickups: list[Cell], stations: list
 
 
 def order_tasks_greedy(grid: Grid, start: Cell, tasks: list[Task]) -> list[Task]:
-    """Nearest-next ordering of an agent's task list."""
     remaining, ordered, cur = list(tasks), [], start
     while remaining:
         best = min(remaining, key=lambda tk: grid.dist(cur, tk.pickup))

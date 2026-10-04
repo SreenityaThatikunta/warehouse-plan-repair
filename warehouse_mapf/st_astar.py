@@ -1,14 +1,3 @@
-"""Multi-goal Space-Time A*.
-
-State = (cell, goal_index, t). Goals must be visited in order; the last goal is
-where the agent parks, so it is only accepted once nobody else needs that cell
-later. The heuristic is the exact static distance through the remaining goals.
-
-Once t passes the last time at which anything in the environment changes
-(`t_static`), the problem is time-invariant, so states are deduplicated on
-min(t, t_static + 1). This keeps the search finite even if the goal is
-unreachable.
-"""
 from __future__ import annotations
 
 import heapq
@@ -28,7 +17,6 @@ def st_astar(
     blockages: Blockages | None = None,
     max_expansions: int = 300_000,
 ) -> list[Cell] | None:
-    """Return the cells occupied at times t0, t0+1, ..., arrival (inclusive), or None."""
     n = len(goals)
     dlists = [grid.dist_list(g) for g in goals]
     suffix = [0] * n
@@ -48,10 +36,7 @@ def st_astar(
                 and (rt is None or rt.can_park(c, t, aid))
                 and (blockages is None or blockages.can_park(c, t)))
 
-    # Earliest time the agent may park on its final goal: after every other
-    # reservation of that cell and after any known blockage of it ends. This
-    # lower-bounds the arrival time and steers the search when the goal cell is
-    # still in use by others (otherwise A* floods a large plateau of states).
+    # earliest time the robot may park on its final goal
     g_last = goals[-1]
     t_park = t0
     if rt is not None:
@@ -67,9 +52,8 @@ def st_astar(
                 return None
             t_park = max(t_park, int(e))
 
-    # Fast infeasibility test: cells blocked forever right now (agents parked
-    # there already, permanent blockages) must not cut the start off from a goal.
     if rt is not None or blockages is not None:
+        # quick exit if permanent walls cut a goal off
         walls = set()
         if rt is not None:
             walls |= {c for c, (o, pt) in rt.parked.items() if o != aid and pt <= t0}
@@ -91,16 +75,15 @@ def st_astar(
     if blockages is not None:
         t_static = max(t_static, blockages.max_known_time)
 
-    # Local bindings for speed (this loop dominates the run time).
     nbrs = grid._nbrs
     cell_res = rt.cell_res if rt is not None else {}
     edge_res = rt.edge_res if rt is not None else {}
     parked = rt.parked if rt is not None else {}
     blk_iv = blockages.intervals if blockages is not None else {}
     heappush, heappop = heapq.heappush, heapq.heappop
+    # nothing changes after t_static, so time is capped in the closed set
     t_cap = t_static + 1
 
-    # node = (cell, gi, t, parent_index)
     nodes: list[tuple[Cell, int, int, int]] = [(start, gi0, t0, -1)]
     tie = count()
     open_ = [(t0 + h0, -t0, next(tie), 0)]

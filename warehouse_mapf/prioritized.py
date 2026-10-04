@@ -1,4 +1,3 @@
-"""Prioritized planning with Space-Time A*: the multi-agent plan generator."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,7 +15,7 @@ class PlanRequest:
     start: Cell
     t0: int
     goals: list[Cell]
-    prefix: list[Cell]      # path[:t0] that is already fixed (absolute time)
+    prefix: list[Cell]
 
 
 def plan_prioritized(
@@ -30,18 +29,6 @@ def plan_prioritized(
     park_unplanned: bool = True,
     max_expansions: int = 300_000,
 ) -> dict[int, list[Cell]] | None:
-    """Plan every request one by one, each against the reservations of those before it.
-
-    With `park_unplanned`, agents not yet planned are treated as parked on their
-    start cell so that higher-priority agents do not plan through them (safe when
-    agents start on docks). Otherwise only their current cell at t0 is reserved
-    and they must get out of the way of higher-priority agents. The first `fixed_head`
-    requests keep their position in the order across restarts (e.g. emergency
-    agents); the rest are shuffled if an attempt fails.
-
-    On success the new paths are left in `rt` and returned as full absolute-time
-    paths. On failure `rt` is restored and None is returned.
-    """
     order = list(requests)
     for attempt in range(attempts):
         if attempt > 0 and rng is not None:

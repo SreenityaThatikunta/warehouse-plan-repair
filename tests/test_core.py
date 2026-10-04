@@ -19,22 +19,18 @@ def valid_path(grid, path):
     return all(b == a or b in grid.neighbors(a) for a, b in zip(path, path[1:]))
 
 
-# ---------------------------------------------------------------- grid / map
 def test_warehouse_layout():
     wh = make_warehouse()
     g = wh.grid
     assert len(wh.homes) >= 50
     free = set(g.free_cells())
     assert set(wh.pickups) <= free and set(wh.stations) <= free and set(wh.homes) <= free
-    # docks are dead ends: no lateral moves between neighbouring docks
     h = wh.homes[5]
     assert all(n[1] == h[1] for n in g.neighbors(h))
-    # everything that matters is connected
     reach = g.reachable(wh.homes[0], set())
     assert set(wh.pickups) | set(wh.stations) | set(wh.homes) <= reach
 
 
-# ------------------------------------------------------------------ ST-A*
 def test_st_astar_shortest_multigoal():
     g = open_grid()
     p = st_astar(g, (0, 0), 0, [(0, 4), (4, 4)], aid=0)
@@ -43,11 +39,11 @@ def test_st_astar_shortest_multigoal():
 
 
 def test_st_astar_respects_vertex_and_swap():
-    g = Grid(np.array([[0, 0, 0]], dtype=bool))   # 1x3 corridor
+    g = Grid(np.array([[0, 0, 0]], dtype=bool))
     rt = ReservationTable()
-    rt.add_path(1, [(0, 2), (0, 1), (0, 0)])       # agent 1 walks right-to-left
+    rt.add_path(1, [(0, 2), (0, 1), (0, 0)])
     p = st_astar(g, (0, 0), 0, [(0, 2)], aid=0, rt=rt)
-    assert p is None                                # head-on in a corridor with no escape
+    assert p is None
 
 
 def test_st_astar_waits_for_blockage():
@@ -70,10 +66,9 @@ def test_st_astar_waits_until_goal_is_free():
     rt = ReservationTable()
     rt.add_path(1, [(4, 0), (4, 1), (4, 2), (3, 2), (2, 2), (1, 2), (0, 2), (0, 3), (0, 4)])
     p = st_astar(g, (2, 0), 0, [(2, 2)], aid=0, rt=rt)
-    assert p[-1] == (2, 2) and len(p) - 1 >= 4     # can only park after agent 1 has passed at t=4
+    assert p[-1] == (2, 2) and len(p) - 1 >= 4
 
 
-# ------------------------------------------------------------- prioritized
 def test_prioritized_collision_free():
     wh = make_warehouse()
     rng = np.random.default_rng(3)
@@ -93,13 +88,12 @@ def test_prioritized_collision_free():
                     assert not (at(pa, t) == at(pb, t + 1) and at(pb, t) == at(pa, t + 1) and at(pa, t) != at(pa, t + 1))
 
 
-# ------------------------------------------------------- simulation / repair
 def run(strategy, seed=0, n=15, **dis):
     dis = {**dict(obstacle_density=0.04, n_breakdowns=2, n_emergencies=2), **dis}
     cfg = ScenarioConfig.from_dict(dict(n_agents=n, repair=dict(strategy=strategy), disruptions=dis))
     sim = build(cfg, seed)
-    sim.debug = True            # validate all future plans after every disruption
-    sim.rt.strict = True        # and forbid reservation overwrites
+    sim.debug = True
+    sim.rt.strict = True
     return sim, sim.run()
 
 
@@ -127,7 +121,7 @@ def test_temporary_blockage_changes_only_affected_robots():
     m = sim.run()
     rec = sim.records[0]
     assert 0 in rec.direct
-    assert rec.altered == rec.direct         # nobody else had to change
+    assert rec.altered == rec.direct
     assert m['collisions'] == 0 and m['all_done']
 
 
@@ -148,15 +142,7 @@ def test_permanent_breakdown_reassigns_tasks():
     assert m['tasks_done'] + m['tasks_lost'] == m['tasks_total'] and m['collisions'] == 0
 
 
-# ------------------------------------------------- v2: chains, tier 3b, deadlines
 class _Pocket:
-    """1-wide corridor with a 2-deep side pocket under column 2:
-        row 0:  A . B . G      A must reach G; B is parked on (0,2)
-        row 1:  # # C # #      C is parked in the pocket
-        row 2:  # # . # #
-    A can only pass if B dodges into the pocket, which needs C to step down first.
-    C does not block A's own path, so only a 2-hop chain (A -> B -> C) solves it."""
-
     def __init__(self, strategy, c_emergency=False):
         g = Grid(np.array([[0, 0, 0, 0, 0], [1, 1, 0, 1, 1], [1, 1, 0, 1, 1]], dtype=bool))
         wh = type('WH', (), dict(grid=g, homes=[], stations=[], pickups=[]))()
@@ -182,7 +168,7 @@ def test_chain_solves_what_flat_negotiation_cannot():
     assert p.sim.agents[0].path[-1] == (0, 4)
     assert p.sim.validate_plans(0) == []
     flat = _Pocket('local-flat')
-    assert flat.rec.tiers[0] == 4 and 0 in flat.sim.pending      # v1 can only hold
+    assert flat.rec.tiers[0] == 4 and 0 in flat.sim.pending
 
 
 def test_chain_never_recruits_emergency_robots():
@@ -215,7 +201,7 @@ def test_group_replan_stays_local(monkeypatch):
     for reqs, radius in seen:
         (aid, here), rest = reqs[0], reqs[1:]
         assert len(rest) <= cfg.repair.group_max
-        assert radius >= 2 * R          # > 2R only for a robot widening its ring after holding
+        assert radius >= 2 * R
         assert all(abs(p[0] - here[0]) + abs(p[1] - here[1]) <= radius for _, p in rest)
     assert any(radius == 2 * R for _, radius in seen)
 

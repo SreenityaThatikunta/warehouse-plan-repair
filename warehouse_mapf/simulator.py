@@ -1,4 +1,3 @@
-"""Discrete-time execution of the multi-agent plan with disruptions and repair."""
 from __future__ import annotations
 
 import copy
@@ -19,24 +18,23 @@ from .reservation import Blockages, ReservationTable
 
 @dataclass
 class RepairConfig:
-    strategy: str = 'local'        # 'local' | 'solo' | 'full'
-    comm_radius: int = 6           # Manhattan communication range
-    delta: int = 4                 # solo detour delay accepted without negotiating
-    delta_emergency: int = 0       # emergency agents negotiate for any delay
-    alter_penalty: float = 3.0     # lambda: cost charged per extra altered agent
+    strategy: str = 'local'
+    comm_radius: int = 6
+    delta: int = 4
+    delta_emergency: int = 0
+    alter_penalty: float = 3.0
     max_set_size: int = 3
     max_candidates: int = 4
-    max_expansions: int = 60_000   # ST-A* budget per repair search
-    # v2 additions (used by 'local'; 'local-flat' keeps the v1 behaviour)
-    chain_depth: int = 2           # hops a negotiation may cascade (neighbour recruits its own blockers)
-    chain_fanout: int = 2          # max robots a coalition member may recruit
-    max_chain_nodes: int = 6       # max robots altered by one negotiation tree
-    group_max: int = 8             # tier 3b: max robots in a local group replan
-    group_scope: str = 'urgent'    # tier 3b for 'all' stuck robots, or only 'urgent' ones (emergency / no solo path)
-    emergency_slack: int = 3       # deadline = ideal delivery time at the event + slack
+    max_expansions: int = 60_000
+    chain_depth: int = 2
+    chain_fanout: int = 2
+    max_chain_nodes: int = 6
+    group_max: int = 8
+    group_scope: str = 'urgent'
+    emergency_slack: int = 3
     emergency_max_set_size: int = 4
-    deadline_penalty: float = 10.0 # repair-score cost of a plan that misses an emergency deadline
-    hold_patience: int = 10        # steps on hold before the search radius doubles (expanding ring)
+    deadline_penalty: float = 10.0
+    hold_patience: int = 10
 
 
 @dataclass
@@ -48,13 +46,13 @@ class DisruptionRecord:
     duration: float
     cell: Cell | None = None
     agent: int | None = None
-    direct: set = field(default_factory=set)     # agents whose plan the event itself invalidated
-    altered: set = field(default_factory=set)    # all agents whose future plan changed
-    tiers: dict = field(default_factory=dict)    # agent -> tier that produced its new plan
-    reassigned: dict = field(default_factory=dict)   # task_id -> new agent (permanent breakdown)
-    lost_tasks: list = field(default_factory=list)   # items stranded on a dead robot
+    direct: set = field(default_factory=set)
+    altered: set = field(default_factory=set)
+    tiers: dict = field(default_factory=dict)
+    reassigned: dict = field(default_factory=dict)
+    lost_tasks: list = field(default_factory=list)
     messages: int = 0
-    chain_depth: int = 0                         # deepest negotiation cascade used
+    chain_depth: int = 0
     cpu: float = 0.0
     old_paths: dict = field(default_factory=dict)
     new_paths: dict = field(default_factory=dict)
@@ -91,13 +89,11 @@ class Simulator:
         self.n_tasks = n_tasks
         self.t = 0
         self.nominal: dict | None = None
-        self.initial_paths: dict[int, list[Cell]] = {}
         self.debug = False
         self.guard_hits = 0
-        self.deadlines: dict[int, int] = {}     # emergency task id -> delivery deadline
-        self.rt.strict = False  # set True together with debug to catch overwrites
+        self.deadlines: dict[int, int] = {}
+        self.rt.strict = False
 
-    # ------------------------------------------------------------ planning
     def initial_plan(self) -> bool:
         reqs = [PlanRequest(a.id, a.start, 0, [g.cell for g in a.goals], []) for a in self.agents]
         reqs.sort(key=lambda r: -sum(self.grid.dist(x, y) for x, y in zip([r.start] + r.goals, r.goals)))
@@ -106,12 +102,10 @@ class Simulator:
             return False
         for a in self.agents:
             a.path = planned[a.id]
-        self.initial_paths = {a.id: list(a.path) for a in self.agents}
         self.nominal = self.plan_metrics()
         return True
 
     def plan_metrics(self) -> dict:
-        """Metrics the current plans would achieve if executed with no further disruption."""
         soc = ms = soc_total = 0
         for a in self.agents:
             b = copy.deepcopy(a)
@@ -122,7 +116,6 @@ class Simulator:
             soc_total += b.end_time
         return dict(soc=soc, makespan=ms, soc_total=soc_total)
 
-    # -------------------------------------------------------------- events
     def _live(self) -> list[Agent]:
         return [a for a in self.agents if not a.dead]
 
@@ -139,8 +132,6 @@ class Simulator:
         return need <= reach
 
     def _usable_cell(self, cell: Cell, alternatives: list[Cell], src: Cell) -> Cell | None:
-        """`cell` if it is reachable from `src` past permanent obstacles and dead robots, else
-        the nearest reachable alternative."""
         blocked = self.blk.permanent_cells() | {a.pos(self.t) for a in self.agents if a.dead}
         reach = self.grid.reachable(src, blocked)
         if cell in reach:
@@ -214,7 +205,7 @@ class Simulator:
             else:
                 d = int(ev.duration)
                 owners = {o: tt for o, tt in self.rt.owners_at(c, t + 1, t + d).items() if o != a.id}
-                for o in owners:     # their plans are now invalid; they are repaired below
+                for o in owners:
                     self.rt.remove_path(o, self.agents[o].path, t)
                 self.rt.remove_path(a.id, a.path, t)
                 a.path = pad(a.path, t)[:t + 1] + [c] * d
@@ -266,7 +257,6 @@ class Simulator:
                 rec.new_paths[a.id] = list(a.path)
 
     def _reallocate(self, dead: Agent, t: int, rec: DisruptionRecord) -> list[int]:
-        """Auction the dead agent's unfinished tasks to nearby agents (lowest marginal cost wins)."""
         here = dead.pos(t)
         blocked = self.blk.permanent_cells() | {a.pos(t) for a in self.agents if a.dead}
         homes, stations = set(self.wh.homes), set(self.wh.stations)
@@ -279,7 +269,7 @@ class Simulator:
             delivery = next(g.cell for g in gs if g.kind == 'delivery')
             if any(g.kind == 'pickup' for g in gs):
                 pickup = next(g.cell for g in gs if g.kind == 'pickup')
-            else:   # item is on the dead robot: hand it off from a reachable neighbouring cell
+            else:
                 live = [o for o in self._live()]
                 reach = self.grid.reachable(live[0].pos(t), blocked) if live else set()
                 spots = [n for n in self.grid.neighbors(here)
@@ -318,9 +308,7 @@ class Simulator:
         dead.emergency_tasks.clear()
         return winners
 
-    # ---------------------------------------------------------------- run
     def validate_plans(self, t: int) -> list[tuple]:
-        """Future conflicts between the committed plans (should always be empty)."""
         horizon = max(len(a.path) for a in self.agents) + 1
         conflicts = []
         for tau in range(t, horizon):
@@ -354,7 +342,7 @@ class Simulator:
             if pos_now[a] == pos_next[b] and pos_now[b] == pos_next[a] and pos_now[a] != pos_now[b]:
                 self.collisions.append(('edge', t, a, b))
 
-    stall_limit = 150   # steps with no movement and no goal reached before a run is declared stuck
+    stall_limit = 150
 
     def run(self, max_steps: int | None = None) -> dict:
         if not self.agents[0].path and not self.initial_plan():
@@ -377,7 +365,7 @@ class Simulator:
                     self.strategy.retry(aid, t, rec)
                     self._finalize(rec, snap, t)
                     rec.cpu += time.perf_counter() - t0
-            for a in self.agents:        # goals reached at the start cell of a new plan
+            for a in self.agents:
                 a.update_progress(t)
             if not self.pending and all(a.done(t) for a in self.agents):
                 break
@@ -385,6 +373,7 @@ class Simulator:
             ptrs = [a.ptr for a in self.agents]
             for a in self.agents:
                 a.update_progress(t + 1)
+            # stop once nothing has moved for stall_limit steps
             if any(a.pos(t) != a.pos(t + 1) for a in self.agents) or ptrs != [a.ptr for a in self.agents]:
                 last_progress = t
             elif t - last_progress >= self.stall_limit:
@@ -393,8 +382,6 @@ class Simulator:
         return self.metrics()
 
     def stuck_robots(self) -> dict[int, str]:
-        """Unfinished live robots -> 'unreachable' (a remaining goal is cut off by permanent
-        obstacles / dead robots) or 'deadlock' (every goal reachable, but the robot is stuck)."""
         t = self.t
         walls = self.blk.permanent_cells() | {a.pos(t) for a in self.agents if a.dead}
         out = {}
@@ -405,7 +392,6 @@ class Simulator:
             out[a.id] = 'unreachable' if any(g.cell not in reach for g in a.remaining_goals()) else 'deadlock'
         return out
 
-    # ------------------------------------------------------------ metrics
     def metrics(self) -> dict:
         recs = self.records
         live = self._live()

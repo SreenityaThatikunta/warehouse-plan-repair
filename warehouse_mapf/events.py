@@ -1,10 +1,3 @@
-"""Disruption events and the random disruption schedule generator.
-
-Events are generated up-front from the seed so that different repair strategies
-face the same schedule. Concrete cells/agents are chosen at event time from a
-pre-shuffled preference list (the first candidate that is valid in the current
-state), since what is valid depends on where the robots are.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -17,14 +10,14 @@ from .grid import Cell, INF
 @dataclass
 class Event:
     t: int
-    kind: str                     # 'blockage' | 'breakdown' | 'emergency'
-    duration: float = INF         # INF => permanent (blockage / breakdown)
-    cell_prefs: list[Cell] = field(default_factory=list)   # blockage candidates
-    agent_prefs: list[int] = field(default_factory=list)   # breakdown / emergency candidates
-    pickup: Cell | None = None    # emergency task
+    kind: str
+    duration: float = INF
+    cell_prefs: list[Cell] = field(default_factory=list)
+    agent_prefs: list[int] = field(default_factory=list)
+    pickup: Cell | None = None
     delivery: Cell | None = None
-    on_path: bool = False         # blockage: only cells some robot will enter soon
-    safe: bool = True             # False: skip the solvability filters (stress tests)
+    on_path: bool = False
+    safe: bool = True
 
     @property
     def permanent(self) -> bool:
@@ -33,17 +26,17 @@ class Event:
 
 @dataclass
 class DisruptionConfig:
-    obstacle_density: float = 0.02         # fraction of free cells blocked over the run
+    obstacle_density: float = 0.02
     blockage_duration: tuple[int, int] = (10, 40)
     blockage_perm_prob: float = 0.2
     n_breakdowns: int = 2
     breakdown_duration: tuple[int, int] = (5, 20)
     breakdown_perm_prob: float = 0.3
     n_emergencies: int = 2
-    window: tuple[float, float] = (0.05, 0.7)   # events happen in this fraction of the nominal makespan
-    n_blockages: int | None = None     # overrides obstacle_density when set
-    blockage_on_path: bool = False     # block a cell some robot is about to use (guaranteed impact)
-    safe: bool = True                  # False: disruptions may make tasks unsolvable (stress tests)
+    window: tuple[float, float] = (0.05, 0.7)
+    n_blockages: int | None = None
+    blockage_on_path: bool = False
+    safe: bool = True
 
 
 def generate_events(rng: np.random.Generator, cfg: DisruptionConfig, makespan: int,

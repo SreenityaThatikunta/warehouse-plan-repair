@@ -1,8 +1,3 @@
-"""Space-time reservation table and dynamic blockage map.
-
-Paths are absolute-time lists: path[t] is the cell occupied at time t. After its
-last entry an agent stays ("parks") on its final cell forever.
-"""
 from __future__ import annotations
 
 from collections import defaultdict
@@ -11,20 +6,18 @@ from .grid import Cell, INF
 
 
 class ReservationTable:
-    strict = False      # raise if a reservation would overwrite another agent's (debugging)
+    strict = False
 
     def __init__(self):
-        self.cell_res: dict[Cell, dict[int, int]] = defaultdict(dict)   # cell -> {t: agent}
-        self.edge_res: dict[tuple[Cell, Cell, int], int] = {}           # (u, v, t) -> agent moving u->v at t->t+1
-        self.parked: dict[Cell, tuple[int, int]] = {}                   # cell -> (agent, from time)
-        self._ends: dict[int, int] = {}                                 # agent -> last reserved time
+        self.cell_res: dict[Cell, dict[int, int]] = defaultdict(dict)
+        self.edge_res: dict[tuple[Cell, Cell, int], int] = {}
+        self.parked: dict[Cell, tuple[int, int]] = {}
+        self._ends: dict[int, int] = {}
 
     @property
     def max_time(self) -> int:
-        """Last time at which any vertex reservation exists (after it, only parking remains)."""
         return max(self._ends.values(), default=0)
 
-    # ---- mutation -------------------------------------------------------
     def add_path(self, aid: int, path: list[Cell], from_t: int = 0) -> None:
         for t in range(max(from_t, 0), len(path)):
             if self.strict:
@@ -38,7 +31,6 @@ class ReservationTable:
         self._ends[aid] = len(path) - 1
 
     def remove_path(self, aid: int, path: list[Cell], from_t: int = 0) -> None:
-        """Remove the agent's reservations strictly after `from_t` (vertex) and from `from_t` (edges)."""
         for t in range(max(from_t + 1, 0), len(path)):
             res = self.cell_res.get(path[t])
             if res is not None and res.get(t) == aid:
@@ -61,20 +53,7 @@ class ReservationTable:
         if p is not None and p[0] == aid:
             del self.parked[cell]
 
-    # ---- queries --------------------------------------------------------
-    def vertex_free(self, cell: Cell, t: int, aid: int) -> bool:
-        owner = self.cell_res[cell].get(t) if cell in self.cell_res else None
-        if owner is not None and owner != aid:
-            return False
-        p = self.parked.get(cell)
-        return not (p is not None and p[0] != aid and t >= p[1])
-
-    def edge_free(self, u: Cell, v: Cell, t: int, aid: int) -> bool:
-        owner = self.edge_res.get((v, u, t))
-        return owner is None or owner == aid
-
     def can_park(self, cell: Cell, t: int, aid: int) -> bool:
-        """True if `aid` may stay on `cell` from time t forever."""
         p = self.parked.get(cell)
         if p is not None and p[0] != aid:
             return False
@@ -86,7 +65,6 @@ class ReservationTable:
         return True
 
     def owners_at(self, cell: Cell, t_from: int, t_to: float = INF) -> dict[int, int]:
-        """Agents using `cell` during [t_from, t_to] -> earliest such time."""
         out: dict[int, int] = {}
         for tt, owner in self.cell_res.get(cell, {}).items():
             if t_from <= tt <= t_to:
@@ -98,8 +76,6 @@ class ReservationTable:
 
 
 class Blockages:
-    """Dynamic cell blockages, each an interval [start, end); end = INF for permanent."""
-
     def __init__(self):
         self.intervals: dict[Cell, list[tuple[int, float]]] = defaultdict(list)
         self.max_known_time = 0

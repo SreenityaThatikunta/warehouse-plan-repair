@@ -1,4 +1,3 @@
-"""Export a finished run to JSON and to a self-contained interactive HTML replay."""
 from __future__ import annotations
 
 import json

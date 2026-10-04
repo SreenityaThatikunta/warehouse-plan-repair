@@ -1,4 +1,3 @@
-"""Matplotlib rendering of the warehouse: disruption snapshots (before / after repair) and GIF replay."""
 from __future__ import annotations
 
 import os
@@ -6,15 +5,14 @@ from pathlib import Path
 
 import matplotlib
 
-if os.environ.get('WAREHOUSE_LIVE') != '1':     # set by `run --live` to keep an interactive backend
+if os.environ.get('WAREHOUSE_LIVE') != '1':
     matplotlib.use('Agg')
-import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.animation import FFMpegWriter, FuncAnimation, PillowWriter  # noqa: E402
-from matplotlib.lines import Line2D  # noqa: E402
-from matplotlib.patches import FancyBboxPatch, Rectangle  # noqa: E402
-import matplotlib.patheffects as pe  # noqa: E402
+import matplotlib.pyplot as plt
+from matplotlib.animation import FFMpegWriter, FuncAnimation, PillowWriter
+from matplotlib.lines import Line2D
+from matplotlib.patches import FancyBboxPatch
+import matplotlib.patheffects as pe
 
-# Semantic colours (state, not identity).
 C = dict(
     floor='#f7f6f2', grid='#e4e1d8', shelf='#c9c5b9', shelf_edge='#aaa69a', rack='#b8b4a7',
     station='#1baf7a', home='#e2dfd5', pickup='#f0eee8', agent='#2a78d6', altered='#eb6834',
@@ -31,12 +29,7 @@ def _tile(ax, cell, color, z=1, inset=0.07, round_=0.18, **kw):
                                 edgecolor='none', zorder=z, **kw))
 
 
-def _cell_rect(ax, cell, color, z=1, **kw):
-    _tile(ax, cell, color, z=z, **kw)
-
-
 def _shelf_blocks(wh) -> list[tuple[int, int, int, int]]:
-    """Shelf cells grouped into rectangular blocks (r0, c0, r1, c1), cached per map."""
     key = id(wh)
     if key not in _SHELF_CACHE:
         cells, blocks = set(wh.shelves), []
@@ -79,7 +72,7 @@ def draw_map(ax, sim) -> None:
         ax.add_patch(FancyBboxPatch((c0 - 0.42, r0 - 0.42), c1 - c0 + 0.84, r1 - r0 + 0.84,
                                     boxstyle='round,pad=0,rounding_size=0.28', facecolor=C['shelf'],
                                     edgecolor=C['shelf_edge'], linewidth=0.8, zorder=1))
-        for rr in range(r0, r1 + 1):        # rack line along each shelf row
+        for rr in range(r0, r1 + 1):
             ax.plot([c0 - 0.2, c1 + 0.2], [rr, rr], color=C['rack'], lw=1.0, zorder=1.1,
                     solid_capstyle='round')
 
@@ -125,7 +118,6 @@ def draw_path(ax, path, t: int, horizon: int, color, style='-', lw=1.8, alpha=1.
     casing = [pe.Stroke(linewidth=lw + 2.2, foreground='white', alpha=0.85 * alpha), pe.Normal()]
     ax.plot(xs, ys, style, color=color, lw=lw, alpha=alpha, zorder=z, solid_capstyle='round',
             solid_joinstyle='round', dash_capstyle='round', path_effects=casing if style == '-' else None)
-
 
 
 def _legend(ax, extra=()):
@@ -206,8 +198,6 @@ def save_disruption_snapshots(sim, out: Path, max_n: int = 12) -> list[Path]:
 
 
 def draw_frame(ax, sim, t: int, trail: int = 6, recent_window: int = 8) -> None:
-    """One animation frame: map, blockages, robots with short trails, and for 8 steps after each
-    disruption the robots whose plans changed (orange) with their repaired paths."""
     ax.clear()
     draw_map(ax, sim)
     draw_blocked(ax, sim, t)
@@ -239,7 +229,6 @@ def _animation(sim, fps: int, trail: int, dpi: int, repeat: bool = True):
 
 
 def save_demo_frame(sim, t: int, path: Path) -> None:
-    """A single animation frame with a legend (for the report)."""
     fig, ax = plt.subplots(figsize=(10, 6.6), dpi=150)
     draw_frame(ax, sim, t)
     _legend(ax, extra=(Line2D([], [], color=C['altered'], lw=1.6, label='repaired path'),
@@ -253,7 +242,6 @@ def save_demo_frame(sim, t: int, path: Path) -> None:
 
 
 def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90) -> None:
-    """MP4 (H.264, needs ffmpeg) or GIF, chosen by the file extension."""
     fig, anim = _animation(sim, fps, trail, dpi)
     if Path(path).suffix == '.mp4':
         writer = FFMpegWriter(fps=fps, codec='libx264', extra_args=['-pix_fmt', 'yuv420p'])
@@ -264,7 +252,6 @@ def save_animation(sim, path: Path, fps: int = 6, trail: int = 6, dpi: int = 90)
 
 
 def show_live(sim, fps: int = 8) -> None:
-    """Play the finished run in an interactive matplotlib window."""
     fig, anim = _animation(sim, fps, trail=6, dpi=100, repeat=False)
     plt.show()
 
@@ -284,18 +271,14 @@ def save_frame(sim, t: int, path: Path) -> None:
     plt.close(fig)
 
 
-
-
 def save_failure_snapshot(sim, path: Path, title: str) -> None:
-    """Final state of a run that did not finish: stuck robots in red, with a line to the
-    goal each one is stuck on (dashed red X = goal cut off, dashed orange = deadlocked)."""
     t = sim.t
     stuck = sim.stuck_robots()
     fig, ax = plt.subplots(figsize=(10, 6.2), dpi=130)
     draw_map(ax, sim)
     draw_blocked(ax, sim, t)
     draw_agents(ax, sim, t, disrupted=set(stuck), size=80)
-    for aid, why in (stuck.items() if len(stuck) <= 10 else ()):     # too many lines would hide the map
+    for aid, why in (stuck.items() if len(stuck) <= 10 else ()):
         a = sim.agents[aid]
         g = a.remaining_goals()[0].cell
         (r0, c0), (r1, c1) = a.pos(t), g

@@ -1,11 +1,7 @@
-"""Grid map and warehouse layout generator.
-
-Cells are (row, col) tuples. Movement is 4-connected; waiting is always allowed.
-"""
 from __future__ import annotations
 
 from collections import deque
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -16,8 +12,6 @@ MOVES = ((-1, 0), (1, 0), (0, -1), (0, 1))
 
 class Grid:
     def __init__(self, obstacles: np.ndarray, dead_ends: set[Cell] | None = None):
-        """`dead_ends` are cells (e.g. robot docks) that connect only vertically, so
-        robots never drive through a row of docks to get somewhere else."""
         self.obs = np.asarray(obstacles, dtype=bool)
         dead_ends = dead_ends or set()
         self.h, self.w = self.obs.shape
@@ -34,10 +28,6 @@ class Grid:
                         and not (dc != 0 and ((r, c) in dead_ends or (r + dr, c + dc) in dead_ends))
                     ]
 
-    def passable(self, cell: Cell) -> bool:
-        r, c = cell
-        return 0 <= r < self.h and 0 <= c < self.w and not self.obs[r, c]
-
     def neighbors(self, cell: Cell) -> list[Cell]:
         return self._nbrs[cell]
 
@@ -45,7 +35,6 @@ class Grid:
         return list(self._nbrs.keys())
 
     def dist_map(self, goal: Cell) -> np.ndarray:
-        """True shortest-path distance from every cell to `goal` on the static map (BFS, cached)."""
         d = self._dist_cache.get(goal)
         if d is None:
             d = np.full((self.h, self.w), INF, dtype=np.int64)
@@ -62,7 +51,6 @@ class Grid:
         return d
 
     def dist_list(self, goal: Cell) -> list[list[int]]:
-        """Same as dist_map but as nested Python lists (faster to index in hot loops)."""
         d = self._list_cache.get(goal)
         if d is None:
             d = self._list_cache[goal] = self.dist_map(goal).tolist()
@@ -72,7 +60,6 @@ class Grid:
         return int(self.dist_map(b)[a])
 
     def reachable(self, src: Cell, blocked: set[Cell]) -> set[Cell]:
-        """Cells reachable from `src` when `blocked` cells are treated as extra obstacles."""
         if src in blocked:
             return set()
         seen = {src}
@@ -90,10 +77,9 @@ class Grid:
 class Warehouse:
     grid: Grid
     shelves: list[Cell]
-    pickups: list[Cell]      # aisle cells adjacent to a shelf (where items are picked)
-    stations: list[Cell]     # delivery / packing stations on the left & right walls
-    homes: list[Cell]        # robot docks on the top & bottom walls
-    meta: dict = field(default_factory=dict)
+    pickups: list[Cell]
+    stations: list[Cell]
+    homes: list[Cell]
 
 
 def make_warehouse(
@@ -104,10 +90,6 @@ def make_warehouse(
     aisle: int = 1,
     margin: int = 2,
 ) -> Warehouse:
-    """Kiva-style layout: a grid of shelf blocks separated by aisles, with a free
-    perimeter corridor. Outermost rows hold robot docks (homes); outermost columns
-    hold delivery stations. Docks are dead-end bays entered only from the corridor
-    cell in front of them."""
     h = 2 * margin + block_rows * block_h + (block_rows - 1) * aisle
     w = 2 * margin + block_cols * block_w + (block_cols - 1) * aisle
     obs = np.zeros((h, w), dtype=bool)
@@ -132,6 +114,4 @@ def make_warehouse(
             and any((r + dr, c + dc) in shelf_set for dr, dc in ((-1, 0), (1, 0)))
         }
     )
-    return Warehouse(grid, shelves, pickups, stations, homes,
-                     meta=dict(block_rows=block_rows, block_cols=block_cols, block_h=block_h,
-                               block_w=block_w, aisle=aisle, margin=margin))
+    return Warehouse(grid, shelves, pickups, stations, homes)
