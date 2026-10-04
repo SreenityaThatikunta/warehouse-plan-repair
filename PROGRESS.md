@@ -186,3 +186,6 @@
 - **Demo videos are now MP4** (user request). `save_animation` picks the writer from the extension: `.mp4` uses ffmpeg/H.264, `.gif` uses Pillow. `run.mp4` (37 s), `unreachable.mp4` and `gridlock_solo.mp4` replace the GIFs; `run --viz` also writes `run.mp4`.
 - Frame drawing is now one function, `draw_frame`, so a single frame can be saved. New `save_demo_frame` saves a frame with a full legend: `report/figures/demo_frame.png`, taken 2 steps after the disruption that changed the most plans (a permanent blockage, 11 plans).
 - **Report:** the Graphical demonstration section now shows that frame (Figure 9). Some figures were shrunk to keep it at 6 pages, with no overfull boxes.
+- **Submission files** in `submission/` (gitignored):
+  - `warehouse-plan-repair.zip` (1.4 MB): source, tests, experiment scripts, README and docs, and the three MP4 videos. Built with `git archive`, so there are no `.venv` or cache files. All 27 tests pass from an extracted copy.
+  - `report.pdf`: the 6-page report.
