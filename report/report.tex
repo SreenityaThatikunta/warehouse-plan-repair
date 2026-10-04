@@ -158,6 +158,71 @@ disruption stay between 2.1 and 2.7. Raising $\lambda$ from 0 to 12 trades a few
 for fewer altered robots; at 40 robots our default $\lambda=3$ beats the first version at any
 $\lambda$ on both measures.
 
+\subsection*{Scaling with the number of robots and obstacle density}
+Table~\ref{tab:scaling} and Figure~\ref{fig:soc} give every point of both sweeps. In all of
+them, every strategy completed every task.
+
+\begin{table}[H]
+\centering\footnotesize\setlength{\tabcolsep}{4.5pt}
+\caption{Performance vs.\ number of robots (3\% density, 12 disruptions per run) and vs.\ dynamic
+obstacle density (20 robots). Means over 10 seeds. \emph{Extra steps} = SoC minus the SoC of the
+undisrupted plan. Plans altered and repair time are per disruption.}
+\label{tab:scaling}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{SoC} & \multicolumn{2}{c}{extra steps} & \multicolumn{2}{c}{plans altered} & \multicolumn{2}{c}{repair ms}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+ & local & solo & full & local & full & local & full & local & full\\
+\midrule
+\multicolumn{10}{l}{\textit{Number of robots}}\\
+5  robots & 679  & 681  & 679  & 108 & 109 & 0.89 & 1.38  & 3    & 5 \\
+10 robots & 1330 & 1330 & 1332 & 146 & 148 & 1.23 & 3.07  & 5    & 10 \\
+20 robots & 2612 & 2622 & 2611 & 190 & 189 & 2.06 & 9.22  & 126  & 41 \\
+30 robots & 4093 & 4148 & 4131 & 252 & 290 & 3.52 & 18.29 & 416  & 124 \\
+40 robots & 5510 & 5572 & 5617 & 345 & 452 & 4.68 & 28.62 & 1115 & 289 \\
+50 robots & 6958 & 7089 & 7201 & 377 & 620 & 5.88 & 39.33 & 2270 & 590 \\
+\midrule
+\multicolumn{10}{l}{\textit{Dynamic obstacle density (disruptions per run)}}\\
+0\% (4)   & 2565 & 2568 & 2555 & 143 & 133 & 2.52 & 13.40 & 70  & 45 \\
+2\% (9)   & 2583 & 2591 & 2592 & 161 & 171 & 2.14 & 10.14 & 61  & 45 \\
+5\% (18)  & 2630 & 2652 & 2629 & 208 & 208 & 2.34 & 9.16  & 112 & 62 \\
+10\% (31) & 2768 & 2831 & 2813 & 347 & 392 & 2.63 & 8.81  & 247 & 116 \\
+15\% (45) & 2925 & 2995 & 2997 & 503 & 575 & 2.74 & 8.20  & 320 & 1712 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{agents_soc.png}\end{subfigure}
+  \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{density_soc.png}\end{subfigure}
+  \caption{Total time steps (SoC) vs.\ number of robots (left) and vs.\ dynamic obstacle density
+  (right, 20 robots). Bands are 95\% confidence intervals.}
+  \label{fig:soc}
+\end{figure}
+
+\textbf{More robots.} SoC grows roughly linearly with the fleet (about 140 steps per robot)
+because every robot brings 3 tasks. The time lost to disruptions grows faster, because a crowded
+floor leaves fewer detours. With local repair it rises from 108 to 377 steps between 5 and 50
+robots; with full replanning it rises to 620. Up to 20 robots all strategies are within a few
+steps of each other. From 30 robots on, local repair is clearly ahead (37, 107 and 243 steps less
+than full replanning at 30, 40 and 50 robots), and negotiation beats solo replanning by 55--131
+steps. The plans changed per disruption grow slowly for local repair (0.9 to 5.9, about one extra
+robot per 10 added). For full replanning they grow with the fleet itself (1.4 to 39, i.e.\ almost
+every robot). The price is computation: local repair time grows from 3\,ms to 2.3\,s per
+disruption and messages from 2 to 356, since more neighbours are in range and more coalitions
+are tried.
+
+\textbf{Denser dynamic obstacles.} Raising $\rho$ from 0\% to 15\% raises the number of
+disruptions per run from 4 to 45, and the SoC of local repair by 14\% (2565 to 2925). The extra
+steps grow almost linearly with density (143 to 503), i.e.\ each additional disruption costs about
+9 steps. Plans changed per disruption stay nearly constant (2.1--2.7), because each blockage
+affects only the few robots about to cross it. Full replanning changes 8--13 plans per
+disruption regardless. Up to 5\% density the strategies are within about 10 steps of each other (full replanning is slightly ahead at 0\%). From 10\% on, local repair saves
+45--72 steps over full replanning and 63--70 over solo, and at 15\% full replanning becomes slow
+(1.7\,s per disruption vs.\ 0.3\,s), because replanning everyone around many active blockages is
+hard for prioritized search.
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}{0.49\linewidth}\includegraphics[width=\linewidth]{single_altered.png}\end{subfigure}
