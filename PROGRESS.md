@@ -208,3 +208,4 @@
   - the graphical section lists only the demonstration video and the failure videos
   - the GitHub link is removed
   - Still 9 pages, no overfull boxes; pages checked visually. `submission/report.pdf` updated.
+- **Report:** removed both mentions of the assignment. The problem statement now states the repair requirements directly, and `full` is described as violating the requirement of local repair.

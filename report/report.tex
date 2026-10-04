@@ -49,10 +49,9 @@ The robots first compute collision-free paths. While they execute these paths, t
   \item a robot receives an \textbf{emergency task}, which takes priority over its other tasks and
         has a delivery deadline.
 \end{itemize}
-After a disruption, the robots must \textbf{repair} their plans. The assignment requires that the
-affected robots resolve the situation by communicating with nearby robots, that the multi-agent
-planner is not re-run from scratch, and that the number of robots whose plans change is kept as
-small as possible.
+After a disruption, the robots must \textbf{repair} their plans. The repair is carried out by the
+affected robots through communication with nearby robots, without re-running the multi-agent
+planner from scratch, and with as few robots as possible changing their plans.
 
 \textbf{Environment.} The warehouse map measures $18\times33$ cells. It contains 25 shelf blocks
 separated by one-cell-wide aisles, 150 pickup cells adjacent to the shelves, 14 delivery stations
@@ -142,8 +141,8 @@ an acceptable plan, so other robots are involved only when this reduces the tota
   \item \texttt{local-flat}: our initial version, without multi-level negotiation, Tier 3b or
         emergency deadlines.
   \item \texttt{solo}: Tier 1 only, without communication, to measure the benefit of negotiation.
-  \item \texttt{full}: replans every robot from scratch after each disruption. This is not
-        permitted for repair by the assignment and serves only as a reference.
+  \item \texttt{full}: replans every robot from scratch after each disruption. Since this
+        violates the requirement of local repair, it serves only as a reference.
 \end{itemize}
 
 \summary{robots are planned sequentially and record their paths in a shared reservation table.
